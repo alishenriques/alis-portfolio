@@ -8,7 +8,7 @@
 
 ## Next
 1. GitHub repos + initial commits + CI (lint / typecheck / test)
-2. DS publish workflow to npm (`@alis/design-system`)
+2. DS publish workflow to npm (`@alishenriques/design-system`)
 3. Create Neon and Cloudinary accounts; generate and run the first migration
 4. Deploy API and portfolio on Vercel
 5. Portfolio MVP: Axios GraphQL client with Zod, tests, simple home fed by the CMS

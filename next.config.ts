@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@alis/design-system"],
+  transpilePackages: ["@alishenriques/design-system"],
 };
 
 export default nextConfig;

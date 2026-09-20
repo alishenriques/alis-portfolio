@@ -9,13 +9,13 @@ Portfólio online interativo e animado de Alisson Henriques (`alishenriques`). E
 | Repositório | Papel | Pacote / URL | Deploy |
 |---|---|---|---|
 | **alis-portfolio** (este) | Front-end Next.js (App Router) | — | Vercel |
-| [alis-portfolio-api](https://github.com/alishenriques/alis-portfolio-api) | API GraphQL / CMS | `@alis/portfolio-api` | Vercel (serverless) |
-| [alis-design-system](https://github.com/alishenriques/alis-design-system) | Biblioteca de componentes React | `@alis/design-system` (npm público) | npm via GitHub Actions |
+| [alis-portfolio-api](https://github.com/alishenriques/alis-portfolio-api) | API GraphQL / CMS | `@alishenriques/portfolio-api` | Vercel (serverless) |
+| [alis-design-system](https://github.com/alishenriques/alis-design-system) | Biblioteca de componentes React | `@alishenriques/design-system` (npm público) | npm via GitHub Actions |
 
 ```
 Navegador ─▶ alis-portfolio (Next.js) ──Axios/GraphQL──▶ alis-portfolio-api ─▶ Neon Postgres
                    │                                            └────────────▶ Cloudinary (imagens)
-                   └── importa ──▶ @alis/design-system (npm)
+                   └── importa ──▶ @alishenriques/design-system (npm)
 ```
 
 ## Stack

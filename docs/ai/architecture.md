@@ -5,8 +5,8 @@
 | Repo | Package | Role |
 |---|---|---|
 | `alis-portfolio` | (private app) | Next.js App Router front-end; main repo and source of these docs |
-| `alis-portfolio-api` | `@alis/portfolio-api` | GraphQL API and CMS backend |
-| `alis-design-system` | `@alis/design-system` | React component library published to public npm |
+| `alis-portfolio-api` | `@alishenriques/portfolio-api` | GraphQL API and CMS backend |
+| `alis-design-system` | `@alishenriques/design-system` | React component library published to public npm |
 
 ## Data flow
 
@@ -24,7 +24,7 @@ Responses are parsed with Zod schemas on the front-end as well, even though the 
 
 ## Design system (`alis-design-system`)
 
-Vite library build (ES module + `.d.ts`), React as peer dependency. Styling via CSS Modules and tokens in `src/tokens.css` (`--ds-*`). Consumers import `@alis/design-system` and `@alis/design-system/styles.css`. The portfolio's `next.config.ts` lists it in `transpilePackages`.
+Vite library build (ES module + `.d.ts`), React as peer dependency. Styling via CSS Modules and tokens in `src/tokens.css` (`--ds-*`). Consumers import `@alishenriques/design-system` and `@alishenriques/design-system/styles.css`. The portfolio's `next.config.ts` lists it in `transpilePackages`.
 
 ## Decisions made
 

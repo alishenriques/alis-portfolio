@@ -11,7 +11,7 @@ Instructions for AI agents (Claude Code, Cursor, etc.) working on the Alis portf
 1. **Zero cost.** Never add a paid service or dependency requiring payment.
 2. **Everything typed.** TypeScript `strict`; no `any`. Data crossing a boundary (API, env, forms) is validated with a Zod schema.
 3. **Everything tested.** New logic ships with unit tests. Run `lint`, `typecheck` and `test` before finishing.
-4. **Design system stays isolated.** Reusable UI lives in `alis-design-system` and is consumed as the `@alis/design-system` package. Never import from its source path or copy components.
+4. **Design system stays isolated.** Reusable UI lives in `alis-design-system` and is consumed as the `@alishenriques/design-system` package. Never import from its source path or copy components.
 5. **Do not guess Next.js APIs.** This is Next 16; read `node_modules/next/dist/docs/` first (see `AGENTS.md`).
 6. **Never commit secrets.** Only `.env.example` is tracked.
 7. **Confirm before outward-facing actions** (push, publish to npm, deploy, creating accounts or repos), unless already asked to.
