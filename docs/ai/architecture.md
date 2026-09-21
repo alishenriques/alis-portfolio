@@ -20,7 +20,11 @@ Responses are parsed with Zod schemas on the front-end as well, even though the 
 - `src/graphql/schema.ts`: SDL and resolvers. Domain models are in `src/schemas/domain.ts` (Zod, the source of truth for types).
 - `src/db/schema.ts`: Drizzle tables (`profiles`, `projects`, `media`). Migrations are generated into `drizzle/` and applied with `yarn db:migrate`.
 - **Fallback mode:** without `DATABASE_URL` the API serves data from `src/db/fallback.ts`; without Cloudinary credentials the upload client is `null`.
-- **CMS auth:** mutations require header `x-cms-key` equal to `CMS_API_KEY`. Unauthorized returns a `GraphQLError` with code `UNAUTHORIZED`. Throw `GraphQLError` for client-visible errors: Yoga masks plain `Error`s.
+- **CMS auth:** mutations require header `x-cms-key` equal to `CMS_API_KEY`. Unauthorized returns a `GraphQLError` with code `UNAUTHORIZED`. Throw `GraphQLError` for client-visible errors: Yoga masks plain `Error`s. Invalid input becomes `BAD_USER_INPUT`; writes without a database become `DATABASE_UNAVAILABLE`.
+- **CMS operations:** `updateProfile` (single profile row), `upsertProject` (replaces the project with that slug), `deleteProject`, `createUploadSignature` (signed params for direct browser uploads to Cloudinary; the secret never leaves the API).
+- **Visibility:** public `projects` / `project` return only published projects (`publishedAt` in the past), ordered by `sortOrder`. A valid `x-cms-key` also sees drafts.
+- **Seed:** `yarn db:seed` upserts placeholder profile/project into the configured database (idempotent).
+- **Testing DB code:** tests use PGlite (in-memory Postgres) with the real migrations from `drizzle/` via `src/test/helpers.ts`; `createApp(env, { db, cloudinary })` accepts injected dependencies. `Database` is typed as the driver-agnostic `PgDatabase`.
 
 ## Design system (`alis-design-system`)
 
