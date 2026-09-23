@@ -1,0 +1,55 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "ABOUT": "About",
+    "EXPERIENCE": "Experience",
+    "PROJECTS": "Projects",
+    "CONTACT": "Contact",
+    "OPEN_MENU": "Open menu",
+    "CLOSE_MENU": "Close menu",
+    "SEARCH": "Search"
+  },
+  "HOME": {
+    "TITLE_LINE_1": "SENIOR",
+    "TITLE_HIGHLIGHT": "FRONT-END",
+    "TITLE_LINE_2": "DEV",
+    "SUBTITLE": "Specialist in building modern, high-performance, scalable interfaces, focused on <hl>user experience</hl>, <hl>reusable components</hl> and <hl>clean code</hl>.",
+    "FEATURES": {
+      "TYPESCRIPT": { "LABEL": "Strongly typed", "HIGHLIGHT": "with TypeScript" },
+      "COMPONENTS": { "LABEL": "Reusable", "HIGHLIGHT": "components" },
+      "PERFORMANCE": { "LABEL": "Focused on", "HIGHLIGHT": "performance" },
+      "ACCESSIBLE": { "LABEL": "Responsive UI", "HIGHLIGHT": "and accessible" },
+      "ARCHITECTURE": { "LABEL": "Scalable", "HIGHLIGHT": "architecture" },
+      "TESTS": { "LABEL": "Automated", "HIGHLIGHT": "tests" }
+    },
+    "TAGLINE": "Clean code • Modern interfaces • Performance • Scalability • Automated tests"
+  },
+  "SKILLS": {
+    "TITLE": "Core stack"
+  },
+  "EXPERIENCE": {
+    "TITLE": "Experience",
+    "SUBTITLE": "{count} companies, 17+ years",
+    "EMPTY": "No published experience yet.",
+    "PRESENT": "present"
+  },
+  "ABOUT": {
+    "TITLE": "About"
+  },
+  "PROJECTS": {
+    "TITLE": "Projects",
+    "EMPTY": "No published projects yet."
+  },
+  "CONTACT": {
+    "TITLE": "Let's talk?",
+    "OPEN": "Let's talk",
+    "NAME": "Name",
+    "EMAIL": "Your email",
+    "MESSAGE": "Message",
+    "SEND": "Send message",
+    "SENDING": "Sending…",
+    "SUCCESS": "Message sent! I'll get back to you soon.",
+    "ERROR": "Couldn't send it right now. Try again or write to {email}.",
+    "CLOSE": "Close"
+  }
+}

@@ -1,26 +1,37 @@
 @import "tailwindcss";
 
+/*
+ * Single dark theme by design (see docs/ai/architecture.md — "Console"
+ * direction): this is a deliberate choice, not a missing light mode.
+ *
+ * Re-declares the design system's --ds-font-* tokens to point at the
+ * self-hosted next/font variables set on <html> in layout.tsx. Must come
+ * after "@alishenriques/design-system/styles.css" in the import order
+ * (see layout.tsx) for the cascade to win.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --ds-font-sans: var(--font-plex-sans), "IBM Plex Sans", system-ui, sans-serif;
+  --ds-font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+  --ds-font-display: var(--font-archivo), "Archivo", system-ui, sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--ds-color-bg);
+  --color-foreground: var(--ds-color-fg);
+  --font-sans: var(--ds-font-sans);
+  --font-mono: var(--ds-font-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ds-color-bg);
+  color: var(--ds-color-fg);
+  font-family: var(--ds-font-sans);
+}
+
+/* Used by the decorative hero Trace accent (src/components/Trace.tsx). */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }

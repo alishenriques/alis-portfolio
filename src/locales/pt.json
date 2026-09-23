@@ -1,0 +1,55 @@
+{
+  "NAV": {
+    "HOME": "Início",
+    "ABOUT": "Sobre",
+    "EXPERIENCE": "Experiência",
+    "PROJECTS": "Projetos",
+    "CONTACT": "Contato",
+    "OPEN_MENU": "Abrir menu",
+    "CLOSE_MENU": "Fechar menu",
+    "SEARCH": "Buscar"
+  },
+  "HOME": {
+    "TITLE_LINE_1": "DEV",
+    "TITLE_HIGHLIGHT": "FRONT-END",
+    "TITLE_LINE_2": "SÊNIOR",
+    "SUBTITLE": "Especialista em desenvolvimento de interfaces modernas, performáticas e escaláveis, com foco em <hl>experiência do usuário</hl>, <hl>componentes reutilizáveis</hl> e <hl>código limpo</hl>.",
+    "FEATURES": {
+      "TYPESCRIPT": { "LABEL": "Tipagem forte", "HIGHLIGHT": "com TypeScript" },
+      "COMPONENTS": { "LABEL": "Componentes", "HIGHLIGHT": "reutilizáveis" },
+      "PERFORMANCE": { "LABEL": "Foco em", "HIGHLIGHT": "performance" },
+      "ACCESSIBLE": { "LABEL": "UI responsiva", "HIGHLIGHT": "e acessível" },
+      "ARCHITECTURE": { "LABEL": "Arquitetura", "HIGHLIGHT": "escalável" },
+      "TESTS": { "LABEL": "Testes", "HIGHLIGHT": "automatizados" }
+    },
+    "TAGLINE": "Código limpo • Interfaces modernas • Performance • Escalabilidade • Testes automatizados"
+  },
+  "SKILLS": {
+    "TITLE": "Stack principal"
+  },
+  "EXPERIENCE": {
+    "TITLE": "Experiência",
+    "SUBTITLE": "{count} empresas, 17+ anos",
+    "EMPTY": "Nenhuma experiência publicada ainda.",
+    "PRESENT": "presente"
+  },
+  "ABOUT": {
+    "TITLE": "Sobre"
+  },
+  "PROJECTS": {
+    "TITLE": "Projetos",
+    "EMPTY": "Nenhum projeto publicado ainda."
+  },
+  "CONTACT": {
+    "TITLE": "Vamos conversar?",
+    "OPEN": "Vamos conversar",
+    "NAME": "Nome",
+    "EMAIL": "Seu e-mail",
+    "MESSAGE": "Mensagem",
+    "SEND": "Enviar mensagem",
+    "SENDING": "Enviando…",
+    "SUCCESS": "Mensagem enviada! Respondo em breve.",
+    "ERROR": "Não foi possível enviar agora. Tente de novo ou escreva para {email}.",
+    "CLOSE": "Fechar"
+  }
+}
