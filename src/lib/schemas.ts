@@ -22,5 +22,25 @@ export const projectSchema = z.object({
   publishedAt: z.string().nullable(),
 });
 
+export const experienceSchema = z.object({
+  id: z.string(),
+  company: z.string().min(1),
+  companyLogoUrl: z.string().url().nullable(),
+  role: z.string().min(1),
+  startDate: z.string(),
+  endDate: z.string().nullable(),
+  description: z.string(),
+  sortOrder: z.number(),
+});
+
+export const contactFormSchema = z.object({
+  name: z.string().trim().min(1).max(200),
+  email: z.string().trim().email(),
+  message: z.string().trim().min(1).max(5000),
+  website: z.string().max(0).optional().default(""), // honeypot
+});
+
 export type Profile = z.infer<typeof profileSchema>;
 export type Project = z.infer<typeof projectSchema>;
+export type Experience = z.infer<typeof experienceSchema>;
+export type ContactFormValues = z.infer<typeof contactFormSchema>;

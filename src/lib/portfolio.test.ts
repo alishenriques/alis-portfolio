@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { getProfile, getProjects } from "./portfolio";
+
+import { getExperiences, getProfile, getProjects, sendContactMessage } from "./portfolio";
 
 const { post } = vi.hoisted(() => ({ post: vi.fn() }));
 
@@ -47,5 +48,41 @@ describe("getProjects", () => {
   it("returns an empty list when there are no projects", async () => {
     post.mockResolvedValue({ data: { data: { projects: [] } } });
     await expect(getProjects()).resolves.toEqual([]);
+  });
+});
+
+const experience = {
+  id: "1",
+  company: "Ingresse",
+  companyLogoUrl: null,
+  role: "Front-End Sênior",
+  startDate: "2022-10",
+  endDate: "2025-07",
+  description: "Descrição",
+  sortOrder: 0,
+};
+
+describe("getExperiences", () => {
+  it("returns the parsed experience list", async () => {
+    post.mockResolvedValue({ data: { data: { experiences: [experience] } } });
+    await expect(getExperiences()).resolves.toEqual([experience]);
+  });
+
+  it("returns an empty list when there are no experiences", async () => {
+    post.mockResolvedValue({ data: { data: { experiences: [] } } });
+    await expect(getExperiences()).resolves.toEqual([]);
+  });
+});
+
+describe("sendContactMessage", () => {
+  it("returns true and posts the input as a variable", async () => {
+    post.mockResolvedValue({ data: { data: { sendContactMessage: true } } });
+    const input = { name: "Ana", email: "ana@example.com", message: "Oi!" };
+
+    await expect(sendContactMessage(input)).resolves.toBe(true);
+    expect(post).toHaveBeenCalledWith(
+      "",
+      expect.objectContaining({ variables: { input } }),
+    );
   });
 });
