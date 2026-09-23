@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { ProjectCard } from "./ProjectCard";
+
 import type { Project } from "@/lib/schemas";
+
+import { ProjectCard } from "../ProjectCard";
 
 const project: Project = {
   id: "1",
