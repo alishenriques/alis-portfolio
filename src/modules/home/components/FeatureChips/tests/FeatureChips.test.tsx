@@ -1,0 +1,32 @@
+import { render, screen } from "@testing-library/react";
+import { NextIntlClientProvider } from "next-intl";
+import { describe, expect, it } from "vitest";
+
+import { FeatureChips } from "../FeatureChips";
+
+const messages = {
+  HOME: {
+    FEATURES: {
+      TYPESCRIPT: { LABEL: "Tipagem forte", HIGHLIGHT: "com TypeScript" },
+      COMPONENTS: { LABEL: "Componentes", HIGHLIGHT: "reutilizáveis" },
+      PERFORMANCE: { LABEL: "Foco em", HIGHLIGHT: "performance" },
+      ACCESSIBLE: { LABEL: "UI responsiva", HIGHLIGHT: "e acessível" },
+      ARCHITECTURE: { LABEL: "Arquitetura", HIGHLIGHT: "escalável" },
+      TESTS: { LABEL: "Testes", HIGHLIGHT: "automatizados" },
+    },
+  },
+};
+
+describe("FeatureChips", () => {
+  it("renders all six feature items", () => {
+    render(
+      <NextIntlClientProvider locale="pt" messages={messages}>
+        <FeatureChips />
+      </NextIntlClientProvider>,
+    );
+
+    expect(screen.getAllByRole("listitem")).toHaveLength(6);
+    expect(screen.getByText("com TypeScript")).toBeInTheDocument();
+    expect(screen.getByText("automatizados")).toBeInTheDocument();
+  });
+});

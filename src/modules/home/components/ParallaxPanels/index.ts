@@ -1,0 +1,1 @@
+export { ParallaxPanels } from "./ParallaxPanels";
