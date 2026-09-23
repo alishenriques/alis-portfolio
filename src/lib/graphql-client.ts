@@ -1,5 +1,6 @@
 import axios from "axios";
 import { z, type ZodType } from "zod";
+
 import { loadPublicEnv } from "./env";
 
 const graphqlErrorSchema = z.object({ message: z.string() });

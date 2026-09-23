@@ -1,5 +1,6 @@
-import { z } from "zod";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { z } from "zod";
+
 import { GraphQLRequestError, graphqlRequest } from "./graphql-client";
 
 const { post } = vi.hoisted(() => ({ post: vi.fn() }));
