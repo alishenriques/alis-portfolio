@@ -8,9 +8,11 @@
 - Public GitHub repos, CI green, design system published to npm as `@alishenriques/design-system` (Trusted Publishing configured on npm)
 - Neon database created and migrated; Cloudinary credentials set locally
 - CMS API: project mutations, signed uploads, draft visibility, seed script, PGlite-backed tests
+- Portfolio MVP: `@alishenriques/design-system` installed, Axios/Zod GraphQL client, simple home page fed by the CMS, tests, verified end-to-end locally against the real Neon-backed API
+- `Experience` entity added end-to-end (schema, migration applied to Neon, GraphQL type/mutations, 29 API tests total); not yet rendered on the front-end
 
 ## Next
-1. Portfolio MVP: install `@alishenriques/design-system`, Axios GraphQL client with Zod, tests, simple home fed by the CMS
-2. Deploy API and portfolio on Vercel (env vars set in the Vercel dashboard)
-3. Real content: seed/edit profile and projects, upload images to Cloudinary
+1. Ingest real content from the user's LinkedIn/CV/images (profile, projects, experiences) and apply it via the CMS mutations; upload logos/photos to Cloudinary via `createUploadSignature`
+2. Add an Experience section to the front-end once that content exists
+3. Deploy API and portfolio on Vercel (env vars set in the Vercel dashboard)
 4. Later: visual concept, animations, CMS UI
