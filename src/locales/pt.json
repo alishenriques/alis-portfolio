@@ -58,5 +58,10 @@
     "SUCCESS": "Mensagem enviada! Respondo em breve.",
     "ERROR": "Não foi possível enviar agora. Tente de novo ou escreva para {email}.",
     "CLOSE": "Fechar"
+  },
+  "FOOTER": {
+    "LABEL": "Rodapé",
+    "GITHUB": "Perfil do GitHub de Alisson Henriques",
+    "LINKEDIN": "Perfil do LinkedIn de Alisson Henriques"
   }
 }

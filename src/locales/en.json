@@ -58,5 +58,10 @@
     "SUCCESS": "Message sent! I'll get back to you soon.",
     "ERROR": "Couldn't send it right now. Try again or write to {email}.",
     "CLOSE": "Close"
+  },
+  "FOOTER": {
+    "LABEL": "Footer",
+    "GITHUB": "Alisson Henriques on GitHub",
+    "LINKEDIN": "Alisson Henriques on LinkedIn"
   }
 }
