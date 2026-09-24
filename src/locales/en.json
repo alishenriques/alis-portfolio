@@ -12,9 +12,8 @@
     "LOGO_LABEL": "Alisson Henriques — home"
   },
   "HOME": {
-    "TITLE_LINE_1": "SENIOR",
-    "TITLE_HIGHLIGHT": "FRONT-END",
-    "TITLE_LINE_2": "DEV",
+    "EYEBROW": "Alisson Henriques · Senior Front‑End Developer",
+    "HEADLINE": "Front‑end architecture that <hl>scales</hl> — built with engineering and AI.",
     "SUBTITLE": "Specialist in building modern, high-performance, scalable interfaces, focused on <hl>user experience</hl>, <hl>reusable components</hl> and <hl>clean code</hl>.",
     "FEATURES": {
       "TYPESCRIPT": { "LABEL": "Strongly typed", "HIGHLIGHT": "with TypeScript" },
@@ -24,7 +23,13 @@
       "ARCHITECTURE": { "LABEL": "Scalable", "HIGHLIGHT": "architecture" },
       "TESTS": { "LABEL": "Automated", "HIGHLIGHT": "tests" }
     },
-    "TAGLINE": "Clean code • Modern interfaces • Performance • Scalability • Automated tests"
+    "TAGLINE": {
+      "CLEAN_CODE": "Clean code",
+      "MODERN_UI": "Modern interfaces",
+      "PERFORMANCE": "Performance",
+      "SCALABILITY": "Scalability",
+      "TESTS": "Automated tests"
+    }
   },
   "SKILLS": {
     "TITLE": "Core stack"

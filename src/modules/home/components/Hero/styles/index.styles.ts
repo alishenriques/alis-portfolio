@@ -21,7 +21,7 @@ export const styles = {
     relative
     z-10
     flex
-    max-w-2xl
+    max-w-3xl
     flex-col
     items-center
     gap-6
@@ -42,23 +42,26 @@ export const styles = {
     sm:inline
   `,
 
+  eyebrow: `
+    font-mono
+    text-xs
+    tracking-[0.18em]
+    text-[var(--ds-color-muted)]
+    uppercase
+  `,
+
   title: `
-    text-[clamp(28px,6vw,48px)]
-    leading-[1.05]
+    font-[family-name:var(--ds-font-display)]
+    text-[clamp(30px,5.4vw,52px)]
+    leading-[1.06]
     font-extrabold
-    tracking-[0.02em]
+    tracking-[-0.015em]
+    text-balance
     text-[var(--ds-color-fg)]
   `,
 
   titleHighlight: `
     text-[var(--ds-color-accent)]
-  `,
-
-  dotDivider: `
-    h-1.5
-    w-1.5
-    rounded-full
-    bg-[var(--ds-color-accent)]
   `,
 
   subtitle: `
@@ -99,17 +102,5 @@ export const styles = {
     w-px
     bg-[var(--ds-color-border-strong)]
     sm:block
-  `,
-
-  tagline: `
-    relative
-    z-10
-    max-w-3xl
-    px-4
-    font-mono
-    text-[11px]
-    tracking-[0.15em]
-    text-[var(--ds-color-border-strong)]
-    uppercase
   `,
 };

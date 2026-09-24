@@ -3,7 +3,9 @@ import { useTranslations } from "next-intl";
 
 import { Logo } from "@/shared/components/Logo";
 
+import { GrowthTrace } from "../GrowthTrace";
 import { ParallaxPanels } from "../ParallaxPanels";
+import { TaglineHighlights } from "../TaglineHighlights";
 import { styles } from "./styles/index.styles";
 
 const CONTACT_EMAIL = "alishenriques@gmail.com";
@@ -19,20 +21,23 @@ export function Hero() {
       <div className={styles.content}>
         <Logo />
 
+        <p className={styles.eyebrow}>{t("EYEBROW")}</p>
+
         <div className={styles.titleRow}>
           <span className={styles.bracket} aria-hidden="true">
             {"</>"}
           </span>
           <h1 className={styles.title}>
-            {t("TITLE_LINE_1")} <span className={styles.titleHighlight}>{t("TITLE_HIGHLIGHT")}</span>{" "}
-            {t("TITLE_LINE_2")}
+            {t.rich("HEADLINE", {
+              hl: (chunks) => <span className={styles.titleHighlight}>{chunks}</span>,
+            })}
           </h1>
           <span className={styles.bracket} aria-hidden="true">
             {"</>"}
           </span>
         </div>
 
-        <span className={styles.dotDivider} aria-hidden="true" />
+        <GrowthTrace />
 
         <p className={styles.subtitle}>
           {t.rich("SUBTITLE", {
@@ -53,7 +58,7 @@ export function Hero() {
         </div>
       </div>
 
-      <p className={styles.tagline}>{t("TAGLINE")}</p>
+      <TaglineHighlights />
     </section>
   );
 }

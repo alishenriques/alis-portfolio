@@ -1,0 +1,1 @@
+export { GrowthTrace } from "./GrowthTrace";
