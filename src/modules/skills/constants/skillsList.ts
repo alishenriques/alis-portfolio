@@ -1,6 +1,5 @@
 import {
   SiAngular,
-  SiAngularHex,
   SiGraphql,
   SiGraphqlHex,
   SiNextdotjs,
@@ -27,7 +26,8 @@ export const skillsList: Skill[] = [
   // Next.js's official mark is black — swapped for white so it reads on our dark ground.
   { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
   { name: "TypeScript", icon: SiTypescript, color: SiTypescriptHex },
-  { name: "Angular", icon: SiAngular, color: SiAngularHex },
+  // Simple Icons now ships Angular in near-black, which vanishes on our dark ground — use the classic brand red.
+  { name: "Angular", icon: SiAngular, color: "#DD0031" },
   { name: "Node.js", icon: SiNodedotjs, color: SiNodedotjsHex },
   { name: "GraphQL", icon: SiGraphql, color: SiGraphqlHex },
   { name: "Tailwind CSS", icon: SiTailwindcss, color: SiTailwindcssHex },
