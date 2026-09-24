@@ -21,24 +21,27 @@ export const styles = {
   `,
 
   list: `
-    grid
+    flex
     w-full
-    grid-cols-3
-    gap-x-4
+    flex-wrap
+    justify-center
+    gap-x-2
     gap-y-8
-    divide-[var(--ds-color-border)]
-    sm:flex
-    sm:flex-wrap
-    sm:justify-center
-    sm:divide-x
   `,
 
   item: `
     flex
+    basis-[calc(33.333%-0.5rem)]
     flex-col
     items-center
     gap-2
-    px-4
+    px-2
+    text-center
+    sm:basis-[calc(25%-0.5rem)]
+    lg:basis-[calc(14.2857%-0.5rem)]
+    lg:border-l
+    lg:border-[var(--ds-color-border)]
+    lg:nth-[7n+1]:border-l-0
   `,
 
   label: `
