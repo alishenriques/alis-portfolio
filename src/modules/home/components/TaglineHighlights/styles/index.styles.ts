@@ -25,6 +25,7 @@ export const styles = {
     text-[13px]
     font-medium
     tracking-wide
+    text-left
     text-[var(--ds-color-fg)]
     backdrop-blur-sm
     transition-[transform,border-color,box-shadow]

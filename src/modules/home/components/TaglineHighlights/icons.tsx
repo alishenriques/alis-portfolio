@@ -4,7 +4,7 @@ export type IconProps = SVGProps<SVGSVGElement>;
 
 /**
  * Small hand-drawn icons for the hero tagline: 24x24 grid, 1.75 stroke, rounded caps,
- * each with a playful detail (sparkle, cursor, speed lines, growing bars, bubbles).
+ * each with a playful detail (cursor, speed lines, growing bars, sparkle).
  * `currentColor` for the main stroke, the accent for the fun bits.
  */
 function BaseIcon(props: IconProps) {
@@ -21,18 +21,6 @@ function BaseIcon(props: IconProps) {
       aria-hidden="true"
       {...props}
     />
-  );
-}
-
-/** `< >` brackets with a sparkle: code that shines. */
-export function CleanCodeIcon(props: IconProps) {
-  return (
-    <BaseIcon {...props}>
-      <path d="M8 8 3.5 12.5 8 17" />
-      <path d="M12.5 18l2.2-12" />
-      <path d="M17 8l4.5 4.5L17 17" />
-      <path d="M19.5 2.5v3M18 4h3" className="stroke-[var(--ds-color-accent)]" />
-    </BaseIcon>
   );
 }
 
@@ -69,14 +57,16 @@ export function ScalabilityIcon(props: IconProps) {
   );
 }
 
-/** A lab flask, bubbling, with a check. */
-export function TestsIcon(props: IconProps) {
+/** A microchip with a sparkle at its core: engineering with an AI assist. */
+export function AiAssistedIcon(props: IconProps) {
   return (
     <BaseIcon {...props}>
-      <path d="M9.5 3h5M10.5 3v6L5 18.5A2 2 0 0 0 6.8 21.5h10.4a2 2 0 0 0 1.8-3L13.5 9V3" />
-      <path d="M9.5 15.5l2 2 3.5-3.5" className="stroke-[var(--ds-color-accent)]" />
-      <circle cx="16.5" cy="5.5" r="0.6" className="fill-[var(--ds-color-accent)] stroke-none" />
-      <circle cx="18.5" cy="3" r="0.9" className="fill-[var(--ds-color-accent)] stroke-none" />
+      <rect x="5" y="5" width="14" height="14" rx="3" />
+      <path d="M9 2.5V5M15 2.5V5M9 19v2.5M15 19v2.5M2.5 9H5M2.5 15H5M19 9h2.5M19 15h2.5" />
+      <path
+        d="M12 8.2l1.1 2.7 2.7 1.1-2.7 1.1L12 15.8l-1.1-2.7L8.2 12l2.7-1.1z"
+        className="fill-[var(--ds-color-accent)] stroke-[var(--ds-color-accent)]"
+      />
     </BaseIcon>
   );
 }

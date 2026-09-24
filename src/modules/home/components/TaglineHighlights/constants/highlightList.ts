@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 
-import { CleanCodeIcon, ModernUiIcon, PerformanceIcon, ScalabilityIcon, TestsIcon } from "../icons";
+import { AiAssistedIcon, ModernUiIcon, PerformanceIcon, ScalabilityIcon } from "../icons";
 
 import type { IconProps } from "../icons";
 
@@ -12,9 +12,8 @@ export type HighlightItem = {
 };
 
 export const highlightList: HighlightItem[] = [
-  { id: "clean-code", messageKey: "CLEAN_CODE", icon: CleanCodeIcon },
   { id: "modern-ui", messageKey: "MODERN_UI", icon: ModernUiIcon },
   { id: "performance", messageKey: "PERFORMANCE", icon: PerformanceIcon },
   { id: "scalability", messageKey: "SCALABILITY", icon: ScalabilityIcon },
-  { id: "tests", messageKey: "TESTS", icon: TestsIcon },
+  { id: "ai-assisted", messageKey: "AI_ASSISTED", icon: AiAssistedIcon },
 ];

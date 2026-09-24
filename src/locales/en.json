@@ -25,11 +25,10 @@
       "TESTS": { "LABEL": "Automated", "HIGHLIGHT": "tests" }
     },
     "TAGLINE": {
-      "CLEAN_CODE": "Clean code",
       "MODERN_UI": "Modern interfaces",
       "PERFORMANCE": "Performance",
       "SCALABILITY": "Scalability",
-      "TESTS": "Automated tests"
+      "AI_ASSISTED": "AI-Assisted Software Engineering"
     }
   },
   "SKILLS": {
