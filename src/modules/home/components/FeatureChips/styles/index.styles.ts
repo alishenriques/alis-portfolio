@@ -29,6 +29,7 @@ export const styles = {
     flex
     basis-[calc(50%-0.5rem)]
     sm:basis-[calc(33.333%-1rem)]
+    lg:basis-[calc(20%-1.25rem)]
     flex-col
     items-center
     gap-3

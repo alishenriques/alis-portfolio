@@ -23,7 +23,10 @@
       "ACCESSIBLE": { "LABEL": "Responsive UI", "HIGHLIGHT": "and accessible" },
       "ARCHITECTURE": { "LABEL": "Scalable", "HIGHLIGHT": "architecture" },
       "TESTS": { "LABEL": "Automated", "HIGHLIGHT": "tests" },
-      "CLEAN_CODE": { "LABEL": "Clean", "HIGHLIGHT": "code" }
+      "CLEAN_CODE": { "LABEL": "Clean", "HIGHLIGHT": "code" },
+      "RESPONSIBLE_AI": { "LABEL": "Responsible", "HIGHLIGHT": "AI development" },
+      "PROCESS_OPTIMIZATION": { "LABEL": "Process", "HIGHLIGHT": "optimization" },
+      "OPERATIONAL_EXCELLENCE": { "LABEL": "Operational", "HIGHLIGHT": "excellence" }
     },
     "TAGLINE": {
       "MODERN_UI": "Modern interfaces",

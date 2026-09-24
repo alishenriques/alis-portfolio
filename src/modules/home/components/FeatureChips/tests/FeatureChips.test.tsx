@@ -15,12 +15,15 @@ const messages = {
       ARCHITECTURE: { LABEL: "Arquitetura", HIGHLIGHT: "escalável" },
       TESTS: { LABEL: "Testes", HIGHLIGHT: "automatizados" },
       CLEAN_CODE: { LABEL: "Código", HIGHLIGHT: "limpo" },
+      RESPONSIBLE_AI: { LABEL: "Desenvolvimento de IA", HIGHLIGHT: "responsável" },
+      PROCESS_OPTIMIZATION: { LABEL: "Otimização de", HIGHLIGHT: "processos" },
+      OPERATIONAL_EXCELLENCE: { LABEL: "Excelência", HIGHLIGHT: "operacional" },
     },
   },
 };
 
 describe("FeatureChips", () => {
-  it("renders a titled section with all seven feature items", () => {
+  it("renders a titled section with all ten feature items", () => {
     render(
       <NextIntlClientProvider locale="pt" messages={messages}>
         <FeatureChips />
@@ -28,9 +31,12 @@ describe("FeatureChips", () => {
     );
 
     expect(screen.getByRole("heading", { level: 2, name: "O que eu valorizo" })).toBeInTheDocument();
-    expect(screen.getAllByRole("listitem")).toHaveLength(7);
+    expect(screen.getAllByRole("listitem")).toHaveLength(10);
     expect(screen.getByText("com TypeScript")).toBeInTheDocument();
     expect(screen.getByText("automatizados")).toBeInTheDocument();
     expect(screen.getByText("limpo")).toBeInTheDocument();
+    expect(screen.getByText("responsável")).toBeInTheDocument();
+    expect(screen.getByText("processos")).toBeInTheDocument();
+    expect(screen.getByText("operacional")).toBeInTheDocument();
   });
 });
