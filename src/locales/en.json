@@ -22,7 +22,8 @@
       "PERFORMANCE": { "LABEL": "Focused on", "HIGHLIGHT": "performance" },
       "ACCESSIBLE": { "LABEL": "Responsive UI", "HIGHLIGHT": "and accessible" },
       "ARCHITECTURE": { "LABEL": "Scalable", "HIGHLIGHT": "architecture" },
-      "TESTS": { "LABEL": "Automated", "HIGHLIGHT": "tests" }
+      "TESTS": { "LABEL": "Automated", "HIGHLIGHT": "tests" },
+      "CLEAN_CODE": { "LABEL": "Clean", "HIGHLIGHT": "code" }
     },
     "TAGLINE": {
       "MODERN_UI": "Modern interfaces",

@@ -16,17 +16,19 @@ export const styles = {
   `,
 
   list: `
-    grid
+    flex
     w-full
-    grid-cols-2
+    flex-wrap
+    justify-center
     gap-x-4
     gap-y-10
-    sm:grid-cols-3
     sm:gap-x-6
   `,
 
   item: `
     flex
+    basis-[calc(50%-0.5rem)]
+    sm:basis-[calc(33.333%-1rem)]
     flex-col
     items-center
     gap-3

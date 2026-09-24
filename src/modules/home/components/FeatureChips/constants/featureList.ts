@@ -1,4 +1,4 @@
-import { Accessibility, Blocks, Code2, FlaskConical, Network, Zap } from "lucide-react";
+import { Accessibility, Blocks, Code2, FlaskConical, Network, Sparkles, Zap } from "lucide-react";
 
 export type Feature = {
   id: string;
@@ -14,4 +14,5 @@ export const featureList: Feature[] = [
   { id: "accessible", icon: Accessibility, messageKey: "ACCESSIBLE" },
   { id: "architecture", icon: Network, messageKey: "ARCHITECTURE" },
   { id: "tests", icon: FlaskConical, messageKey: "TESTS" },
+  { id: "clean-code", icon: Sparkles, messageKey: "CLEAN_CODE" },
 ];
