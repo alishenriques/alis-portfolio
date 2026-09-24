@@ -1,30 +1,46 @@
 export const styles = {
+  root: `
+    flex
+    flex-col
+    items-center
+    gap-10
+    py-16
+  `,
+
+  title: `
+    font-mono
+    text-xs
+    uppercase
+    tracking-[0.2em]
+    text-[var(--ds-color-muted)]
+  `,
+
   list: `
     grid
+    w-full
     grid-cols-2
     gap-x-4
-    gap-y-6
-    border-t
-    border-[var(--ds-color-border)]
-    pt-8
+    gap-y-10
     sm:grid-cols-3
     sm:gap-x-6
   `,
 
   item: `
     flex
-    items-start
-    gap-2.5
+    flex-col
+    items-center
+    gap-3
+    text-center
   `,
 
   icon: `
-    mt-0.5
     shrink-0
     text-[var(--ds-color-accent)]
   `,
 
   text: `
-    text-xs
+    max-w-[28ch]
+    text-[15px]
     leading-snug
     text-[var(--ds-color-muted)]
   `,

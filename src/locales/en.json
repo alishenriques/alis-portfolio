@@ -16,6 +16,7 @@
     "HEADLINE": "Front‑end architecture that <hl>scales</hl> — built with engineering and AI.",
     "SUBTITLE": "Specialist in building modern, high-performance, scalable interfaces, focused on <hl>user experience</hl>, <hl>reusable components</hl> and <hl>clean code</hl>.",
     "FEATURES": {
+      "TITLE": "What I value",
       "TYPESCRIPT": { "LABEL": "Strongly typed", "HIGHLIGHT": "with TypeScript" },
       "COMPONENTS": { "LABEL": "Reusable", "HIGHLIGHT": "components" },
       "PERFORMANCE": { "LABEL": "Focused on", "HIGHLIGHT": "performance" },

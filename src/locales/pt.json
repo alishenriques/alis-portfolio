@@ -16,6 +16,7 @@
     "HEADLINE": "Arquitetura de front‑end que <hl>escala</hl> — construída com engenharia e IA.",
     "SUBTITLE": "Especialista em desenvolvimento de interfaces modernas, performáticas e escaláveis, com foco em <hl>experiência do usuário</hl>, <hl>componentes reutilizáveis</hl> e <hl>código limpo</hl>.",
     "FEATURES": {
+      "TITLE": "O que eu valorizo",
       "TYPESCRIPT": { "LABEL": "Tipagem forte", "HIGHLIGHT": "com TypeScript" },
       "COMPONENTS": { "LABEL": "Componentes", "HIGHLIGHT": "reutilizáveis" },
       "PERFORMANCE": { "LABEL": "Foco em", "HIGHLIGHT": "performance" },

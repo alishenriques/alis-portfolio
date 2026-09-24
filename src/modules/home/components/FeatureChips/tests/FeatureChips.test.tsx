@@ -7,6 +7,7 @@ import { FeatureChips } from "../FeatureChips";
 const messages = {
   HOME: {
     FEATURES: {
+      TITLE: "O que eu valorizo",
       TYPESCRIPT: { LABEL: "Tipagem forte", HIGHLIGHT: "com TypeScript" },
       COMPONENTS: { LABEL: "Componentes", HIGHLIGHT: "reutilizáveis" },
       PERFORMANCE: { LABEL: "Foco em", HIGHLIGHT: "performance" },
@@ -18,13 +19,14 @@ const messages = {
 };
 
 describe("FeatureChips", () => {
-  it("renders all six feature items", () => {
+  it("renders a titled section with all six feature items", () => {
     render(
       <NextIntlClientProvider locale="pt" messages={messages}>
         <FeatureChips />
       </NextIntlClientProvider>,
     );
 
+    expect(screen.getByRole("heading", { level: 2, name: "O que eu valorizo" })).toBeInTheDocument();
     expect(screen.getAllByRole("listitem")).toHaveLength(6);
     expect(screen.getByText("com TypeScript")).toBeInTheDocument();
     expect(screen.getByText("automatizados")).toBeInTheDocument();
