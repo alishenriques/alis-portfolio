@@ -2,8 +2,11 @@ import type { ComponentType } from "react";
 
 import {
   SiAngular,
+  SiCss,
   SiGraphql,
   SiGraphqlHex,
+  SiHtml5,
+  SiHtml5Hex,
   SiJavascript,
   SiJavascriptHex,
   SiJsonwebtokens,
@@ -25,7 +28,6 @@ import {
   SiWordpress,
   SiWordpressHex,
 } from "@icons-pack/react-simple-icons";
-import { ArrowLeftRight } from "lucide-react";
 
 
 export type SkillIconProps = {
@@ -42,8 +44,11 @@ export type Skill = {
 };
 
 // Real primary stack (see CV / Experience entries), not just this site's own build.
-// Grouped by area: languages, front-end frameworks/tooling, back-end/APIs, styling, docs/CMS.
+// Grouped by area: web languages, front-end frameworks/tooling, back-end/auth, styling, docs/CMS.
 export const skillsList: Skill[] = [
+  { name: "HTML5", icon: SiHtml5, color: SiHtml5Hex },
+  // Simple Icons' CSS mark is now rebecca purple, which is too dim on the dark ground — use the classic CSS3 blue.
+  { name: "CSS3", icon: SiCss, color: "#1572B6" },
   { name: "JavaScript (ES6)", icon: SiJavascript, color: SiJavascriptHex },
   { name: "TypeScript", icon: SiTypescript, color: SiTypescriptHex },
   { name: "React", icon: SiReact, color: SiReactHex },
@@ -54,8 +59,6 @@ export const skillsList: Skill[] = [
   { name: "Vite", icon: SiVite, color: SiViteHex },
   { name: "Node.js", icon: SiNodedotjs, color: SiNodedotjsHex },
   { name: "GraphQL", icon: SiGraphql, color: SiGraphqlHex },
-  // REST has no brand mark, so a two-way arrow (request/response) stands in for it.
-  { name: "REST", icon: ArrowLeftRight, color: "#FFFFFF" },
   // JWT's own hex is black; jwt.io's magenta reads on the dark ground.
   { name: "JWT", icon: SiJsonwebtokens, color: "#D63AFF" },
   { name: "Tailwind CSS", icon: SiTailwindcss, color: SiTailwindcssHex },

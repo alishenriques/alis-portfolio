@@ -38,10 +38,10 @@ export const styles = {
     px-2
     text-center
     sm:basis-[calc(25%-0.5rem)]
-    lg:basis-[calc(14.2857%-0.5rem)]
+    lg:basis-[calc(20%-0.5rem)]
     lg:border-l
     lg:border-[var(--ds-color-border)]
-    lg:nth-[7n+1]:border-l-0
+    lg:nth-[5n+1]:border-l-0
   `,
 
   label: `
