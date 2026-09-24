@@ -7,7 +7,9 @@
     "CONTACT": "Contact",
     "OPEN_MENU": "Open menu",
     "CLOSE_MENU": "Close menu",
-    "SEARCH": "Search"
+    "SEARCH": "Search",
+    "PRIMARY": "Main navigation",
+    "LOGO_LABEL": "Alisson Henriques — home"
   },
   "HOME": {
     "TITLE_LINE_1": "SENIOR",

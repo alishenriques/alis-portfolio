@@ -7,7 +7,9 @@
     "CONTACT": "Contato",
     "OPEN_MENU": "Abrir menu",
     "CLOSE_MENU": "Fechar menu",
-    "SEARCH": "Buscar"
+    "SEARCH": "Buscar",
+    "PRIMARY": "Navegação principal",
+    "LOGO_LABEL": "Alisson Henriques — início"
   },
   "HOME": {
     "TITLE_LINE_1": "DEV",

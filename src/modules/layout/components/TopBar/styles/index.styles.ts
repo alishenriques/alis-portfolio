@@ -3,9 +3,9 @@ export const styles = {
     sticky
     top-0
     z-30
-    flex
+    grid
+    grid-cols-[1fr_auto_1fr]
     items-center
-    justify-between
     gap-4
     border-b
     border-[var(--ds-color-border)]
@@ -17,15 +17,50 @@ export const styles = {
     sm:px-6
   `,
 
-  side: `
+  left: `
     flex
-    w-24
     items-center
-    first:justify-start
-    last:justify-end
+    justify-start
   `,
 
-  logo: `
+  center: `
+    flex
+    items-center
+    justify-center
+  `,
+
+  right: `
+    flex
+    items-center
+    justify-end
+    gap-3
+  `,
+
+  menuTrigger: `
+    inline-flex
+    items-center
+    justify-center
+    rounded-full
+    border
+    border-[var(--ds-color-border-strong)]
+    p-2
+    text-[var(--ds-color-fg)]
+    transition-colors
+    duration-150
+    hover:border-[var(--ds-color-accent)]
+    hover:text-[var(--ds-color-accent)]
+    lg:hidden
+  `,
+
+  desktopLogo: `
+    hidden
     shrink-0
+    lg:inline-flex
+  `,
+
+  mobileLogo: `
+    inline-flex
+    shrink-0
+    lg:hidden
   `,
 };

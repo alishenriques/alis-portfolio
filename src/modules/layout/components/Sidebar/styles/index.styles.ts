@@ -1,20 +1,6 @@
 export const styles = {
-  trigger: `
-    inline-flex
-    items-center
-    justify-center
-    rounded-full
-    border
-    border-[var(--ds-color-border-strong)]
-    p-2
-    text-[var(--ds-color-fg)]
-    transition-colors
-    duration-150
-    hover:border-[var(--ds-color-accent)]
-    hover:text-[var(--ds-color-accent)]
-  `,
-
   backdrop: `
+    lg:hidden
     fixed
     inset-0
     z-40
@@ -30,6 +16,7 @@ export const styles = {
   `,
 
   drawer: `
+    lg:hidden
     fixed
     inset-y-0
     left-0

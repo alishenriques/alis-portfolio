@@ -4,7 +4,7 @@ export type MenuItem = {
   href: string;
 };
 
-// Keys are relative to the "NAV" i18n namespace (see useTranslations("NAV") in Sidebar).
+// Keys are relative to the "NAV" i18n namespace (see useTranslations("NAV") in Sidebar and DesktopNav).
 export const menuList: MenuItem[] = [
   { id: "home", labelKey: "HOME", href: "/" },
   { id: "about", labelKey: "ABOUT", href: "/sobre" },

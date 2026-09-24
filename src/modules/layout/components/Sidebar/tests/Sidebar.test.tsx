@@ -20,8 +20,8 @@ const messages = {
     ABOUT: "Sobre",
     EXPERIENCE: "Experiência",
     PROJECTS: "Projetos",
-    OPEN_MENU: "Abrir menu",
     CLOSE_MENU: "Fechar menu",
+    PRIMARY: "Navegação principal",
   },
   CONTACT: { OPEN: "Vamos conversar" },
 };
@@ -31,50 +31,75 @@ function Probe() {
   return <span data-testid="contact-open">{String(isOpen)}</span>;
 }
 
-function renderSidebar() {
-  return render(
+function renderSidebar(isOpen: boolean, onClose = vi.fn()) {
+  render(
     <NextIntlClientProvider locale="pt" messages={messages}>
       <ContactDialogProvider>
-        <Sidebar />
+        <Sidebar isOpen={isOpen} onClose={onClose} />
         <Probe />
       </ContactDialogProvider>
     </NextIntlClientProvider>,
   );
+  return onClose;
 }
 
 // The drawer stays mounted and slides off-screen via a CSS transform (not
 // display/visibility), so its accessibility is driven by `aria-hidden` on the
-// <aside>, not the drawer's own visual state. getByRole excludes aria-hidden
-// subtrees by default, which is exactly what these assertions rely on.
+// <aside>. getByRole excludes aria-hidden subtrees by default, which is what
+// these assertions rely on.
 describe("Sidebar", () => {
-  it("is closed by default and opens on trigger click", () => {
-    renderSidebar();
+  it("is hidden from the accessibility tree while closed", () => {
+    renderSidebar(false);
     expect(screen.queryByRole("link", { name: "Início" })).toBeNull();
+  });
 
-    fireEvent.click(screen.getByRole("button", { name: "Abrir menu" }));
+  it("exposes the navigation links while open", () => {
+    renderSidebar(true);
     expect(screen.getByRole("link", { name: "Início" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Experiência" })).toBeInTheDocument();
   });
 
-  it("closes on the close button", () => {
-    renderSidebar();
-    fireEvent.click(screen.getByRole("button", { name: "Abrir menu" }));
+  it("locks page scroll only while open", () => {
+    const { rerender } = render(
+      <NextIntlClientProvider locale="pt" messages={messages}>
+        <ContactDialogProvider>
+          <Sidebar isOpen onClose={vi.fn()} />
+        </ContactDialogProvider>
+      </NextIntlClientProvider>,
+    );
+    expect(document.body.style.overflow).toBe("hidden");
+
+    rerender(
+      <NextIntlClientProvider locale="pt" messages={messages}>
+        <ContactDialogProvider>
+          <Sidebar isOpen={false} onClose={vi.fn()} />
+        </ContactDialogProvider>
+      </NextIntlClientProvider>,
+    );
+    expect(document.body.style.overflow).toBe("");
+  });
+
+  it("asks to close from the close button, the backdrop and Escape", () => {
+    const onClose = renderSidebar(true);
+
     fireEvent.click(screen.getByRole("button", { name: "Fechar menu" }));
-    expect(screen.queryByRole("link", { name: "Início" })).toBeNull();
+    fireEvent.keyDown(document, { key: "Escape" });
+    fireEvent.click(document.querySelector("[aria-hidden='true'].fixed") as HTMLElement);
+
+    expect(onClose).toHaveBeenCalledTimes(3);
   });
 
-  it("closes on Escape", () => {
-    renderSidebar();
-    fireEvent.click(screen.getByRole("button", { name: "Abrir menu" }));
+  it("does not react to Escape while closed", () => {
+    const onClose = renderSidebar(false);
     fireEvent.keyDown(document, { key: "Escape" });
-    expect(screen.queryByRole("link", { name: "Início" })).toBeNull();
+    expect(onClose).not.toHaveBeenCalled();
   });
 
   it("closes and opens the contact dialog when the contact item is picked", () => {
-    renderSidebar();
-    fireEvent.click(screen.getByRole("button", { name: "Abrir menu" }));
+    const onClose = renderSidebar(true);
     fireEvent.click(screen.getByRole("button", { name: "Vamos conversar" }));
 
+    expect(onClose).toHaveBeenCalledTimes(1);
     expect(screen.getByTestId("contact-open")).toHaveTextContent("true");
-    expect(screen.queryByRole("link", { name: "Início" })).toBeNull();
   });
 });
