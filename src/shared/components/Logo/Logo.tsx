@@ -1,30 +1,37 @@
 import { cn } from "@/lib/utils";
 
+import { ACCENT_PATH, FIRST_NAME_PATH, HORIZONTAL_VIEWBOX, LAST_NAME_PATH, MARK_PATH, SYMBOL_VIEWBOX } from "./logoPaths";
 import { styles } from "./styles/index.styles";
 
 export type LogoProps = {
-  /** Shows "Alisson Henriques" next to the mark. Off for tight spaces (e.g. the drawer trigger). */
+  /** Horizontal lockup (monogram + "Alisson Henriques") instead of the monogram alone. Off for tight spaces like the header. */
   withWordmark?: boolean;
   className?: string;
 };
 
 /**
- * Hand-drawn geometric mark (two peaks + one accent triangle), inspired by the
- * user-provided references. Placeholder until a real vector logo is supplied.
+ * The Alisson Henriques logo, rendered inline so it takes the site's tokens: the
+ * monogram and first name use the foreground colour, the triangle and last name
+ * the accent (the brand files were designed on the same palette). The exported
+ * files expose `--logo-*` variables for this; they are set in `styles.root`.
  */
 export function Logo({ withWordmark = true, className }: LogoProps) {
   return (
-    <span className={cn(styles.root, className)}>
-      <svg viewBox="0 0 48 40" className={styles.mark} aria-hidden="true">
-        <polygon points="4,38 19,6 27,38" fill="var(--ds-color-fg)" />
-        <polygon points="17,38 32,14 44,38" fill="var(--ds-color-fg)" opacity="0.85" />
-        <polygon points="31,38 38,26 44,38" fill="var(--ds-color-accent)" />
-      </svg>
+    <svg
+      viewBox={withWordmark ? HORIZONTAL_VIEWBOX : SYMBOL_VIEWBOX}
+      role="img"
+      aria-label="Alisson Henriques"
+      className={cn(styles.root, withWordmark ? styles.horizontal : styles.symbol, className)}
+    >
+      <title>Alisson Henriques</title>
+      <path className={styles.mark} d={MARK_PATH} />
+      <path className={styles.accent} d={ACCENT_PATH} />
       {withWordmark && (
-        <span className={styles.wordmark}>
-          Alisson <span className={styles.wordmarkAccent}>Henriques</span>
-        </span>
+        <>
+          <path className={styles.mark} d={FIRST_NAME_PATH} />
+          <path className={styles.accent} d={LAST_NAME_PATH} />
+        </>
       )}
-    </span>
+    </svg>
   );
 }

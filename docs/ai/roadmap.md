@@ -16,6 +16,7 @@
 - **Layout**: sticky `TopBar` with a centred terminal-style `DesktopNav` from `lg` up, and an animated slide-in/out `Sidebar` drawer below `lg` (replaces the old anchor nav and the command palette as the nav trigger — `CommandPalette` itself stays in the DS, unused, earmarked for a future search feature)
 - **Pages split**: Sobre and Experiência are now their own routes (`/sobre`, `/experiencia`), no longer anchored sections on the home page
 - **Home evolved**: new `Hero` (logo mark, `</>`-flanked headline, rich-text highlighted subtitle, email/phone contact row, tagline strip, decorative pointer-driven `ParallaxPanels`), a `FeatureChips` value-prop grid, and a `Skills` section with real brand icons (`@icons-pack/react-simple-icons`) — replaced the old tech-stack text line and the companies strip (companies now live on the Experiência page)
+- **Real logo integrated** (monogram in the header, horizontal lockup in the hero, favicon from the square icon), replacing the hand-drawn placeholder
 - **Deployed on Vercel (free tier)**: API at `alis-portfolio-api.vercel.app`, site at `alis-portfolio-three.vercel.app`; both projects are connected to GitHub, so every push to `main` deploys to production automatically. Contact email verified end-to-end in production with the Resend key rotated (the old one revoked).
 - **Contact form**: `ContactDialog` (client-side Zod validation, honeypot) wired to a new public `sendContactMessage` GraphQL mutation; the API sends via Resend, gracefully reports `EMAIL_UNAVAILABLE` until `RESEND_API_KEY` is set (user is creating that account — see Next)
 - Two real bugs found by testing and fixed: a duplicate React `key` in `CommandPalette` (now keyed by `href`, with a regression test) and a `event.currentTarget` accessed after an `await` in `ContactDialog`'s submit handler (see "A real bug this surfaced" in `architecture.md`)
@@ -25,9 +26,8 @@
 - 101 tests total across the three repos as of this line: 34 API + 18 design system + 49 portfolio
 
 ## Next
-1. Waiting on the user: a real logo asset (current `Logo` is a hand-drawn placeholder) to replace/refine per the mockup
-2. Publish the next real design-system version through CI (tag `v*`): the automated workflow is fixed but has not yet run a real publish (see below)
-3. Later: About page long-form text once finalized, CMS editing UI, a dedicated Projetos page/content, revisit `CommandPalette` as an actual search feature
+1. Publish the next real design-system version through CI (tag `v*`): the automated workflow is fixed but has not yet run a real publish (see below)
+2. Later: About page long-form text once finalized, CMS editing UI, a dedicated Projetos page/content, revisit `CommandPalette` as an actual search feature
 
 ## Fixed along the way
 - **Automated npm publish (resolved).** The workflow first 404'd because `actions/setup-node`'s `registry-url` writes an empty `NODE_AUTH_TOKEN` into `.npmrc`, which breaks OIDC auto-detection (fixed by dropping `registry-url`). It then failed with `ENEEDAUTH`. A temporary `workflow_dispatch` diagnostic that did the OIDC token exchange by hand showed the GitHub claims were correct (repository, `publish.yml`, audience `npm:registry.npmjs.org`) but npm answered `404 OIDC token exchange error - package not found`: **no Trusted Publisher was registered for `@alishenriques/design-system`** on npmjs.com. After adding it (GitHub Actions, `alishenriques/alis-design-system`, `publish.yml`, empty environment) the exchange returned 201. The earlier note that the job lacked `id-token: write` was a misreading; the workflow was right all along. The diagnostic job has been removed. Publishing is by pushing a `v*` tag whose version matches `package.json`; a version already on npm (v0.2.0 was published manually) cannot be reused.

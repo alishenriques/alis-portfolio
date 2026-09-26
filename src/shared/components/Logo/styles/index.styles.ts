@@ -1,23 +1,25 @@
 export const styles = {
   root: `
-    inline-flex
-    items-center
-    gap-3
+    block
+    shrink-0
   `,
 
-  mark: `
-    h-8
+  symbol: `
+    h-7
     w-auto
   `,
 
-  wordmark: `
-    font-mono
-    text-lg
-    tracking-tight
-    text-[var(--ds-color-fg)]
+  horizontal: `
+    h-9
+    w-auto
+    sm:h-11
   `,
 
-  wordmarkAccent: `
-    text-[var(--ds-color-accent)]
+  mark: `
+    fill-[var(--ds-color-fg)]
+  `,
+
+  accent: `
+    fill-[var(--ds-color-accent)]
   `,
 };

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="Alis Henriques">
+<title>Alis Henriques</title>
+  <rect width="1000" height="1000" rx="200" fill="#0B0B0F"/>
+  <g transform="translate(150 300)">
+  <path fill="#F4F1EA" d="M250 0 160 0 0 400 280 400 252 330 118 330 205 112.5 320 400 410 400 350 250 465 250 525 400 615 400 455 0 365 0 435 175 320 175Z"/>
+  <path fill="#C8FF00" d="M615 185 700 185 657.5 275Z"/>
+  </g>
+</svg>
