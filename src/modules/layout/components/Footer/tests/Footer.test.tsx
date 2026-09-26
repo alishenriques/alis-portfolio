@@ -21,6 +21,7 @@ describe("Footer", () => {
     );
 
     expect(screen.getByRole("contentinfo", { name: "Rodapé" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Alisson Henriques" })).toBeInTheDocument();
 
     const github = screen.getByRole("link", { name: "Perfil do GitHub" });
     expect(github).toHaveAttribute("href", "https://github.com/alishenriques");

@@ -13,6 +13,16 @@ export const styles = {
     sm:px-6
   `,
 
+  brand: `
+    flex
+    items-center
+    gap-3
+  `,
+
+  logo: `
+    h-5
+  `,
+
   copy: `
     font-mono
     text-xs

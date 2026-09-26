@@ -1,6 +1,8 @@
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { useTranslations } from "next-intl";
 
+import { Logo } from "@/shared/components/Logo";
+
 import { LinkedinIcon } from "./LinkedinIcon";
 import { styles } from "./styles/index.styles";
 import { socialLinks } from "../../constants/socialLinks";
@@ -16,7 +18,10 @@ export function Footer() {
 
   return (
     <footer className={styles.root} aria-label={t("LABEL")}>
-      <p className={styles.copy}>© Alisson Henriques</p>
+      <div className={styles.brand}>
+        <Logo withWordmark={false} className={styles.logo} />
+        <p className={styles.copy}>© Alisson Henriques</p>
+      </div>
 
       <ul className={styles.list}>
         {socialLinks.map((link) => {
