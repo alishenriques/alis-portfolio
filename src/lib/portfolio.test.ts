@@ -5,7 +5,11 @@ import { getExperiences, getProfile, getProjects, sendContactMessage } from "./p
 const { post } = vi.hoisted(() => ({ post: vi.fn() }));
 
 vi.mock("axios", () => ({
-  default: { create: () => ({ post }) },
+  default: {
+    // graphql-client.ts registers request/response interceptors on the client it
+    // creates; the mock client needs the shape even though this file never asserts on them.
+    create: () => ({ post, interceptors: { request: { use: vi.fn() }, response: { use: vi.fn() } } }),
+  },
 }));
 
 afterEach(() => {
