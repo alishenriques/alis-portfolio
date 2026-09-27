@@ -118,22 +118,18 @@ export const styles = {
     hover:decoration-[var(--ds-color-accent)]
   `,
 
-  // Plain block flow, not flex: CSS float has no effect on flex items, and
-  // the whole point of Quote's float prop is letting paragraphs wrap around
-  // it (a flex column would just force it to the same full-width column as
-  // everything else). Spacing between blocks comes from each block's own
-  // margin-bottom instead of a flex gap.
-  bioSection: `
-    max-w-[65ch]
-  `,
+  // No max-width of its own: fills the same box as videoSection above it
+  // (both inherit root's max-w-3xl). An 65ch cap here read as a narrower,
+  // off-centre column with an odd empty gap next to the full-width video.
+  // Plain block flow (not flex): each block's own margin-bottom does the
+  // spacing, simpler than a flex gap and one less thing to coordinate with
+  // Quote's internal margins.
+  bioSection: ``,
 
-  // clear-both: a new section heading always starts on its own full-width
-  // line, never squeezed beside a still-active floated Quote from above.
   bioHeading: `
     mt-10
     mb-4
     scroll-mt-24
-    clear-both
     text-xl
     font-semibold
     text-[var(--ds-color-fg)]
@@ -153,12 +149,10 @@ export const styles = {
     sm:[hyphens:auto]
   `,
 
-  // Passed to every <Quote> as className, on top of whatever float styles it
-  // applies internally: gives inline (float="none") quotes breathing room
-  // below them in normal block flow, same as a paragraph's mb-6. Floated
-  // quotes already carry their own margin, but this wins over it (this
-  // stylesheet loads after the design system's), which is harmless — 24px
-  // instead of 16px below a floated quote reads fine.
+  // Passed to every <Quote> as className: gives it breathing room below in
+  // normal block flow, same as a paragraph's mb-6 (Quote's own CSS sets
+  // margin: 0). Wins the cascade because this stylesheet loads after the
+  // design system's.
   quoteSpacing: `
     mb-6
   `,

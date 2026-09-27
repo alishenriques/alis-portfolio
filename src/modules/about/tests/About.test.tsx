@@ -48,22 +48,20 @@ describe("About", () => {
     expect(screen.getByText(/Outro parágrafo normal/)).toBeInTheDocument();
   });
 
-  it("floats every quote but the last, which stays inline", async () => {
+  it("keeps every quote inline (no side-floating — tried it, hurt readability)", async () => {
     vi.mocked(getProfile).mockResolvedValue({
       id: "1",
       name: "Alisson",
       headline: "H",
-      bio: "Intro.\n\n> Primeira.\n\nMeio.\n\n> Segunda.\n\nMeio 2.\n\n> Terceira.",
+      bio: "Intro.\n\n> Primeira.\n\nMeio.\n\n> Segunda.",
       avatarUrl: null,
     });
 
     render(await About());
 
     const quotes = Array.from(document.querySelectorAll("blockquote"));
-    expect(quotes).toHaveLength(3);
-    expect(quotes[0].className).toMatch(/floatRight/);
-    expect(quotes[1].className).toMatch(/floatLeft/);
-    expect(quotes[2].className).not.toMatch(/float/i);
+    expect(quotes).toHaveLength(2);
+    quotes.forEach((quote) => expect(quote.className).not.toMatch(/float/i));
   });
 
   it("renders '## ' bio lines as headings, and builds a table of contents from them", async () => {

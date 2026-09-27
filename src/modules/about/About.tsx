@@ -8,31 +8,11 @@ import { VideoEmbed } from "@/shared/components/VideoEmbed";
 
 import { styles } from "./styles/index.styles";
 
-import type { QuoteProps } from "@alishenriques/design-system";
-
-/**
- * Alternates side-floated quotes for visual rhythm, but always keeps the
- * *last* quote inline (float "none") — it reads as the bio's closing
- * statement, not a margin note to skim past.
- */
-function getQuoteFloat(quoteIndex: number, totalQuotes: number): NonNullable<QuoteProps["float"]> {
-  if (quoteIndex === totalQuotes - 1) return "none";
-  return quoteIndex % 2 === 0 ? "right" : "left";
-}
-
 export async function About() {
   const [profile, t] = await Promise.all([getProfile(), getTranslations("ABOUT")]);
   const blocks = parseBio(profile.bio);
   const headings = blocks.filter((block) => block.type === "heading");
   const readingMinutes = estimateReadingMinutes(profile.bio);
-
-  // Precomputed outside the JSX map below (not mutated inside it) so each
-  // quote knows its own position among quotes, for getQuoteFloat.
-  const quotePositions: number[] = [];
-  for (const block of blocks) {
-    quotePositions.push(block.type === "quote" ? quotePositions.filter((p) => p >= 0).length : -1);
-  }
-  const totalQuotes = quotePositions.filter((p) => p >= 0).length;
 
   return (
     <main className={styles.root}>
@@ -101,9 +81,8 @@ export async function About() {
           }
 
           if (block.type === "quote") {
-            const float = getQuoteFloat(quotePositions[index], totalQuotes);
             return (
-              <Quote key={index} float={float} className={styles.quoteSpacing}>
+              <Quote key={index} className={styles.quoteSpacing}>
                 {renderInlineMarkup(block.text)}
               </Quote>
             );
