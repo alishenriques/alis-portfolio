@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { LoadingButton } from "@alishenriques/design-system";
 import { useTranslations } from "next-intl";
 
 import { sendContactMessage } from "@/lib/portfolio";
 import { contactFormSchema } from "@/lib/schemas";
-import { LoadingButton } from "@/shared/components/LoadingButton";
 
 import { styles } from "./styles/index.styles";
 import { useContactDialog } from "../../ContactDialogContext";
