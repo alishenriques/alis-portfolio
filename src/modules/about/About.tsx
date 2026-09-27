@@ -1,5 +1,4 @@
-import { Eyebrow } from "@alishenriques/design-system";
-import Image from "next/image";
+import { Avatar, Eyebrow } from "@alishenriques/design-system";
 import { getTranslations } from "next-intl/server";
 
 import { getProfile } from "@/lib/portfolio";
@@ -14,11 +13,14 @@ export async function About() {
     <main className={styles.root}>
       <div className={styles.header}>
         {profile.avatarUrl && (
-          <Image
+          <Avatar
             src={profile.avatarUrl}
             alt={profile.name}
-            width={144}
-            height={144}
+            size={144}
+            // The source photo is a tall portrait; a centred crop clips the
+            // hairline, so anchor the crop (and the expanded view) to the top.
+            objectPosition="top"
+            closeLabel={t("CLOSE_PHOTO")}
             className={styles.avatar}
           />
         )}

@@ -23,17 +23,10 @@ export const styles = {
     sm:text-left
   `,
 
-  // object-top keeps the hairline in frame: a centred crop of this portrait
-  // clips the top of the head (see docs/ai/architecture.md).
+  // The DS Avatar component owns its own size/border/crop (via props); this
+  // is only the flex-layout concern of not letting it get squeezed in the row.
   avatar: `
-    h-36
-    w-36
     shrink-0
-    rounded-full
-    border-2
-    border-[var(--ds-color-accent)]
-    object-cover
-    object-top
   `,
 
   name: `

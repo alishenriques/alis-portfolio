@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import { getProfile } from "@/lib/portfolio";
@@ -29,6 +29,27 @@ describe("About", () => {
     expect(screen.getByText("Desenvolvedor Front-End Sênior")).toBeInTheDocument();
     expect(screen.getByText("Bio completa do perfil.")).toBeInTheDocument();
     expect(screen.getByText("ABOUT.TITLE")).toBeInTheDocument();
+  });
+
+  it("renders the avatar as an expandable photo when avatarUrl is set", async () => {
+    vi.mocked(getProfile).mockResolvedValue({
+      id: "1",
+      name: "Alisson",
+      headline: "H",
+      bio: "B",
+      avatarUrl: "https://example.com/avatar.jpg",
+    });
+
+    render(await About());
+
+    const trigger = screen.getByRole("button", { name: "Alisson" });
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+
+    fireEvent.click(trigger);
+    expect(screen.getByRole("dialog", { name: "Alisson" })).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "ABOUT.CLOSE_PHOTO" }));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("omits the avatar image when avatarUrl is null", async () => {
