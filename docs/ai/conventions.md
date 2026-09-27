@@ -16,8 +16,10 @@
 
 ## Design system
 
+- **Where a new component goes** (user rule, 2026-09-27): if it's reusable across contexts — not tied to this portfolio's specific brand assets, copy, or data — it's built in `alis-design-system`, not duplicated locally in `alis-portfolio`'s `shared/components`. Props must be dynamic (text/behaviour passed in, never hardcoded), the component decoupled from any one caller, and always unit-tested. `LoadingButton` and `Avatar` are the reference examples: both were first considered for the portfolio, then built in/moved to the DS because nothing in them is portfolio-specific. By contrast, `Logo` (Alisson's actual brand SVG) and `LoadingOverlay` (which renders that `Logo`) stay in `alis-portfolio`, since they're inherently tied to this one product. When in doubt: could a *different* app reasonably import this component as-is, with different props? If yes, it belongs in the DS.
 - Every component: folder `Name/` with `Name.tsx`, `Name.module.css`, `Name.test.tsx`, `index.ts`; export it and its prop types from `src/index.ts`.
 - Use `--ds-*` tokens, never hardcoded colors or spacing.
+- A DS component overriding a CSS property the *consumer's own className* might also set (e.g. `LoadingButton`'s loading-state colours) must do it via inline `style`, not a CSS class — the consumer's stylesheet could be bundled either side of the DS's CSS in the final app, so a class-based override can't reliably win the cascade; inline styles always do.
 - Any change to public exports needs a version bump, so the portfolio can consume it.
 
 ## Git
