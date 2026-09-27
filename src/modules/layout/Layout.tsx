@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { ContactDialog } from "./components/ContactDialog";
 import { Footer } from "./components/Footer";
+import { HttpActivityOverlay } from "./components/HttpActivityOverlay";
 import { TopBar } from "./components/TopBar";
 import { ContactDialogProvider } from "./ContactDialogContext";
 
@@ -14,6 +15,7 @@ export function Layout({ children }: { children: ReactNode }) {
       {children}
       <Footer />
       <ContactDialog />
+      <HttpActivityOverlay />
     </ContactDialogProvider>
   );
 }
