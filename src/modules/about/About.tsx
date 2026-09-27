@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import { getProfile } from "@/lib/portfolio";
+import { VideoEmbed } from "@/shared/components/VideoEmbed";
 
 import { styles } from "./styles/index.styles";
 
@@ -16,8 +17,8 @@ export async function About() {
           <Image
             src={profile.avatarUrl}
             alt={profile.name}
-            width={160}
-            height={160}
+            width={144}
+            height={144}
             className={styles.avatar}
           />
         )}
@@ -29,6 +30,13 @@ export async function About() {
       </div>
 
       <p className={styles.bio}>{profile.bio}</p>
+
+      <section className={styles.videoSection} aria-labelledby="about-video-heading">
+        <h2 id="about-video-heading" className={styles.videoHeading}>
+          {t("VIDEO_TITLE")}
+        </h2>
+        <VideoEmbed title={t("VIDEO_TITLE")} comingSoonText={t("VIDEO_COMING_SOON")} />
+      </section>
     </main>
   );
 }

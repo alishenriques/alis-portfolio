@@ -6,7 +6,7 @@ export const styles = {
     max-w-3xl
     flex-1
     flex-col
-    gap-8
+    gap-12
     px-4
     py-16
     sm:px-6
@@ -23,25 +23,30 @@ export const styles = {
     sm:text-left
   `,
 
+  // object-top keeps the hairline in frame: a centred crop of this portrait
+  // clips the top of the head (see docs/ai/architecture.md).
   avatar: `
-    h-32
-    w-32
+    h-36
+    w-36
     shrink-0
     rounded-full
-    border
-    border-[var(--ds-color-border-strong)]
+    border-2
+    border-[var(--ds-color-accent)]
     object-cover
+    object-top
   `,
 
   name: `
-    mt-2
+    mt-3
     text-3xl
     font-semibold
     text-[var(--ds-color-fg)]
   `,
 
   headline: `
-    mt-1
+    mt-2
+    text-lg
+    font-medium
     text-[var(--ds-color-accent)]
   `,
 
@@ -50,5 +55,19 @@ export const styles = {
     text-[15px]
     leading-relaxed
     text-[var(--ds-color-muted)]
+  `,
+
+  videoSection: `
+    flex
+    flex-col
+    gap-4
+  `,
+
+  videoHeading: `
+    font-mono
+    text-xs
+    tracking-[0.2em]
+    text-[var(--ds-color-muted)]
+    uppercase
   `,
 };

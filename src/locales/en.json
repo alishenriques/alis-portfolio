@@ -48,7 +48,9 @@
     "PRESENT": "present"
   },
   "ABOUT": {
-    "TITLE": "About"
+    "TITLE": "About",
+    "VIDEO_TITLE": "Introduction video",
+    "VIDEO_COMING_SOON": "Video coming soon"
   },
   "PROJECTS": {
     "TITLE": "Projects",

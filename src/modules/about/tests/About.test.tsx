@@ -42,6 +42,22 @@ describe("About", () => {
 
     render(await About());
 
-    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+    expect(screen.queryByRole("img", { name: "Alisson" })).not.toBeInTheDocument();
+  });
+
+  it("renders the intro video section with the coming-soon placeholder", async () => {
+    vi.mocked(getProfile).mockResolvedValue({
+      id: "1",
+      name: "Alisson",
+      headline: "H",
+      bio: "B",
+      avatarUrl: null,
+    });
+
+    render(await About());
+
+    expect(screen.getByRole("heading", { name: "ABOUT.VIDEO_TITLE" })).toBeInTheDocument();
+    expect(screen.getByText("ABOUT.VIDEO_COMING_SOON")).toBeInTheDocument();
+    expect(document.querySelector("iframe")).toBeNull();
   });
 });
