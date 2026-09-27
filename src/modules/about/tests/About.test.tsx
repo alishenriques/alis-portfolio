@@ -31,6 +31,21 @@ describe("About", () => {
     expect(screen.getByText("ABOUT.TITLE")).toBeInTheDocument();
   });
 
+  it("renders the education field below the headline", async () => {
+    vi.mocked(getProfile).mockResolvedValue({
+      id: "1",
+      name: "Alisson",
+      headline: "H",
+      bio: "B",
+      avatarUrl: null,
+    });
+
+    render(await About());
+
+    expect(screen.getByText("ABOUT.EDUCATION_LABEL")).toBeInTheDocument();
+    expect(screen.getByText("ABOUT.EDUCATION_VALUE")).toBeInTheDocument();
+  });
+
   it("renders the avatar as an expandable photo when avatarUrl is set", async () => {
     vi.mocked(getProfile).mockResolvedValue({
       id: "1",

@@ -50,6 +50,8 @@
   "ABOUT": {
     "TITLE": "About",
     "CLOSE_PHOTO": "Close photo",
+    "EDUCATION_LABEL": "Education",
+    "EDUCATION_VALUE": "Systems Analyst",
     "VIDEO_TITLE": "Introduction video",
     "VIDEO_COMING_SOON": "Video coming soon"
   },

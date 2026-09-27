@@ -28,6 +28,10 @@ export async function About() {
           <Eyebrow>{t("TITLE")}</Eyebrow>
           <h1 className={styles.name}>{profile.name}</h1>
           <p className={styles.headline}>{profile.headline}</p>
+          <p className={styles.education}>
+            <span className={styles.educationLabel}>{t("EDUCATION_LABEL")}</span>
+            {t("EDUCATION_VALUE")}
+          </p>
         </div>
       </div>
 

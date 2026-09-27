@@ -50,6 +50,8 @@
   "ABOUT": {
     "TITLE": "Sobre",
     "CLOSE_PHOTO": "Fechar foto",
+    "EDUCATION_LABEL": "Formação",
+    "EDUCATION_VALUE": "Analista de Sistemas",
     "VIDEO_TITLE": "Vídeo de apresentação",
     "VIDEO_COMING_SOON": "Vídeo em breve"
   },

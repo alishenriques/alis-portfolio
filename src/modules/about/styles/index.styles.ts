@@ -43,6 +43,24 @@ export const styles = {
     text-[var(--ds-color-accent)]
   `,
 
+  education: `
+    mt-2
+    flex
+    items-center
+    justify-center
+    gap-2
+    font-mono
+    text-xs
+    text-[var(--ds-color-muted)]
+    sm:justify-start
+  `,
+
+  educationLabel: `
+    tracking-[0.1em]
+    text-[var(--ds-color-border-strong)]
+    uppercase
+  `,
+
   bio: `
     max-w-[65ch]
     text-[15px]
