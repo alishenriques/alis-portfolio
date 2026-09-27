@@ -85,6 +85,17 @@ A component/page that's only used by one module lives inside that module (`modul
 - `Sobre`/`Experiência` are their own routes now (`app/[locale]/sobre`, `app/[locale]/experiencia` → `modules/about`, `modules/experience`) — **not** anchored sections on the home page anymore. Projetos and Contato are not (yet): Projetos stays a Home section, Contato is the dialog, not a page.
 - All pages are marked `export const dynamic = "force-dynamic"` — required because the GraphQL calls go through Axios, not Next's `fetch`, so Next can't detect they're dynamic on its own; without this the build tries (and fails) to fetch data at build time.
 
+### Loading feedback: full-screen overlay by default, per-button for forms
+
+`shared/components/LoadingOverlay` is a full-screen blurred backdrop with the logo animating in the centre (the monogram breathing inside a spinning dashed ring, a blinking accent-coloured cursor after a terminal-style `$ carregando` caption — reusing the header nav's cursor-blink treatment). It has no hooks beyond `useTranslations` (works as a Server Component) and no visibility logic of its own — two independent callers decide *when* to show it, covering the two different ways the screen could otherwise sit frozen with no feedback:
+
+1. **Route navigation** (`app/[locale]/loading.tsx`): Next's `loading.js` file convention wraps `page.tsx` and its nested routes (`sobre`, `experiencia`) in a Suspense boundary, shown automatically while that page's Server Component fetches data from the API. Needs no state — Next shows/hides it based on the Suspense boundary.
+2. **Client-side requests, by default** (`modules/layout/components/HttpActivityOverlay`, mounted once in `Layout`): a Client Component subscribed via `useSyncExternalStore` to `lib/httpActivity.ts`, a small vanilla store (no React import, safe in both bundles) that `graphql-client.ts`'s axios request/response interceptors increment and decrement. The server-side data fetching in (1) runs in a separate module instance in the Node process and never touches this counter — no cross-contamination between the two mechanisms.
+
+The overlay's `z-[70]` sits above the `ContactDialog` (`z-[60]`) on purpose: "blur over the whole screen" was taken literally, so a request made while the dialog is open still blurs over it too, briefly.
+
+**Forms opt out and use `shared/components/LoadingButton` instead** — blurring the whole screen (including the form itself) over a small inline submission is worse UX than feedback right on the button. `graphqlRequest(schema, query, variables, { trackGlobalLoading: false })` skips `beginHttpRequest`/`endHttpRequest` for that one call (a `trackGlobalLoading` field added to axios's `AxiosRequestConfig` via TS module augmentation in `graphql-client.ts`, read by both interceptors; defaults to tracked). `sendContactMessage` passes this. `LoadingButton` takes `isLoading` and a `loadingText` prop and, while loading, overlays a dark-fill/accent-border look on top of the consumer's own `className` and swaps its children for `$ {loadingText}` with the same blinking cursor as `LoadingOverlay`/`DesktopNav` — idle appearance stays whatever the consumer already had. **Convention going forward: build new components (loading or otherwise) with their copy/behaviour driven by props, not hardcoded**, exactly like `loadingText` here, so they stay reusable beyond the first caller.
+
 ### Other front-end notes
 
 - `src/lib/env.ts`: Zod-validated public env (`NEXT_PUBLIC_GRAPHQL_URL`).
