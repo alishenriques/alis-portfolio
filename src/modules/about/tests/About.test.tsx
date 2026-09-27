@@ -48,6 +48,74 @@ describe("About", () => {
     expect(screen.getByText(/Outro parágrafo normal/)).toBeInTheDocument();
   });
 
+  it("floats every quote but the last, which stays inline", async () => {
+    vi.mocked(getProfile).mockResolvedValue({
+      id: "1",
+      name: "Alisson",
+      headline: "H",
+      bio: "Intro.\n\n> Primeira.\n\nMeio.\n\n> Segunda.\n\nMeio 2.\n\n> Terceira.",
+      avatarUrl: null,
+    });
+
+    render(await About());
+
+    const quotes = Array.from(document.querySelectorAll("blockquote"));
+    expect(quotes).toHaveLength(3);
+    expect(quotes[0].className).toMatch(/floatRight/);
+    expect(quotes[1].className).toMatch(/floatLeft/);
+    expect(quotes[2].className).not.toMatch(/float/i);
+  });
+
+  it("renders '## ' bio lines as headings, and builds a table of contents from them", async () => {
+    vi.mocked(getProfile).mockResolvedValue({
+      id: "1",
+      name: "Alisson",
+      headline: "H",
+      bio: "Intro.\n\n## Primeira Seção\n\nTexto da primeira.\n\n## Segunda Seção\n\nTexto da segunda.",
+      avatarUrl: null,
+    });
+
+    render(await About());
+
+    expect(screen.getByRole("heading", { name: "Primeira Seção" }).tagName).toBe("H2");
+    expect(document.getElementById("primeira-secao")).not.toBeNull();
+
+    const toc = screen.getByRole("navigation", { name: "ABOUT.TOC_LABEL" });
+    expect(toc.querySelectorAll("a")).toHaveLength(2);
+    expect(screen.getByRole("link", { name: /Segunda Seção/ })).toHaveAttribute(
+      "href",
+      "#segunda-secao",
+    );
+  });
+
+  it("omits the table of contents when the bio has no headings", async () => {
+    vi.mocked(getProfile).mockResolvedValue({
+      id: "1",
+      name: "Alisson",
+      headline: "H",
+      bio: "Só um parágrafo, sem seções.",
+      avatarUrl: null,
+    });
+
+    render(await About());
+
+    expect(screen.queryByRole("navigation", { name: "ABOUT.TOC_LABEL" })).not.toBeInTheDocument();
+  });
+
+  it("shows the estimated reading time", async () => {
+    vi.mocked(getProfile).mockResolvedValue({
+      id: "1",
+      name: "Alisson",
+      headline: "H",
+      bio: "Um parágrafo curto.",
+      avatarUrl: null,
+    });
+
+    render(await About());
+
+    expect(screen.getByText("ABOUT.READING_TIME")).toBeInTheDocument();
+  });
+
   it("renders the education field below the headline", async () => {
     vi.mocked(getProfile).mockResolvedValue({
       id: "1",

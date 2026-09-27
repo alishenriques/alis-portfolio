@@ -1,14 +1,38 @@
 import { Avatar, Eyebrow, Quote } from "@alishenriques/design-system";
+import { Clock } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { getProfile } from "@/lib/portfolio";
-import { parseBio, renderInlineMarkup } from "@/lib/richText";
+import { estimateReadingMinutes, parseBio, renderInlineMarkup } from "@/lib/richText";
 import { VideoEmbed } from "@/shared/components/VideoEmbed";
 
 import { styles } from "./styles/index.styles";
 
+import type { QuoteProps } from "@alishenriques/design-system";
+
+/**
+ * Alternates side-floated quotes for visual rhythm, but always keeps the
+ * *last* quote inline (float "none") — it reads as the bio's closing
+ * statement, not a margin note to skim past.
+ */
+function getQuoteFloat(quoteIndex: number, totalQuotes: number): NonNullable<QuoteProps["float"]> {
+  if (quoteIndex === totalQuotes - 1) return "none";
+  return quoteIndex % 2 === 0 ? "right" : "left";
+}
+
 export async function About() {
   const [profile, t] = await Promise.all([getProfile(), getTranslations("ABOUT")]);
+  const blocks = parseBio(profile.bio);
+  const headings = blocks.filter((block) => block.type === "heading");
+  const readingMinutes = estimateReadingMinutes(profile.bio);
+
+  // Precomputed outside the JSX map below (not mutated inside it) so each
+  // quote knows its own position among quotes, for getQuoteFloat.
+  const quotePositions: number[] = [];
+  for (const block of blocks) {
+    quotePositions.push(block.type === "quote" ? quotePositions.filter((p) => p >= 0).length : -1);
+  }
+  const totalQuotes = quotePositions.filter((p) => p >= 0).length;
 
   return (
     <main className={styles.root}>
@@ -43,16 +67,54 @@ export async function About() {
         <VideoEmbed title={t("VIDEO_TITLE")} comingSoonText={t("VIDEO_COMING_SOON")} />
       </section>
 
+      <div className={styles.bioMeta}>
+        <p className={styles.readingTime}>
+          <Clock size={14} aria-hidden="true" />
+          {t("READING_TIME", { minutes: readingMinutes })}
+        </p>
+
+        {headings.length > 0 && (
+          <nav aria-label={t("TOC_LABEL")} className={styles.toc}>
+            <p className={styles.tocTitle}>{t("TOC_TITLE")}</p>
+            <ul className={styles.tocList}>
+              {headings.map((heading) => (
+                <li key={heading.id}>
+                  <a href={`#${heading.id}`} className={styles.tocLink}>
+                    <span aria-hidden="true">{">"}</span>
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+      </div>
+
       <div className={styles.bioSection}>
-        {parseBio(profile.bio).map((block, index) =>
-          block.type === "quote" ? (
-            <Quote key={index}>{renderInlineMarkup(block.text)}</Quote>
-          ) : (
+        {blocks.map((block, index) => {
+          if (block.type === "heading") {
+            return (
+              <h2 key={index} id={block.id} className={styles.bioHeading}>
+                {block.text}
+              </h2>
+            );
+          }
+
+          if (block.type === "quote") {
+            const float = getQuoteFloat(quotePositions[index], totalQuotes);
+            return (
+              <Quote key={index} float={float} className={styles.quoteSpacing}>
+                {renderInlineMarkup(block.text)}
+              </Quote>
+            );
+          }
+
+          return (
             <p key={index} className={styles.bio}>
               {renderInlineMarkup(block.text)}
             </p>
-          ),
-        )}
+          );
+        })}
       </div>
     </main>
   );

@@ -29,6 +29,13 @@ body {
   font-family: var(--ds-font-sans);
 }
 
+/* Smooth-scrolls same-page anchor jumps (e.g. About's table of contents). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /* Blinking block cursor, used by the header's terminal-style nav (DesktopNav). */
 @keyframes blink {
   50% {

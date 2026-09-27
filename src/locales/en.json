@@ -52,6 +52,9 @@
     "CLOSE_PHOTO": "Close photo",
     "EDUCATION_LABEL": "Education",
     "EDUCATION_VALUE": "Systems Analyst",
+    "READING_TIME": "{minutes} min read",
+    "TOC_LABEL": "Table of contents",
+    "TOC_TITLE": "In this section",
     "VIDEO_TITLE": "Introduction video",
     "VIDEO_COMING_SOON": "Video coming soon"
   },

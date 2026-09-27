@@ -52,6 +52,9 @@
     "CLOSE_PHOTO": "Fechar foto",
     "EDUCATION_LABEL": "Formação",
     "EDUCATION_VALUE": "Analista de Sistemas",
+    "READING_TIME": "{minutes} min de leitura",
+    "TOC_LABEL": "Sumário do texto",
+    "TOC_TITLE": "Nesta seção",
     "VIDEO_TITLE": "Vídeo de apresentação",
     "VIDEO_COMING_SOON": "Vídeo em breve"
   },
