@@ -67,11 +67,18 @@ export const styles = {
     gap-6
   `,
 
+  // Justified only from sm up: on narrow screens a justified paragraph has too
+  // few words per line, so the browser stretches gaps into visible rivers of
+  // whitespace instead. hyphens:auto keeps justified lines from gapping on
+  // long Portuguese words (lang="pt"/"en" is already set on <html>, which the
+  // browser's hyphenation dictionary relies on).
   bio: `
     max-w-[65ch]
     text-[15px]
     leading-relaxed
-    text-[var(--ds-color-muted)]
+    text-[var(--ds-color-fg)]
+    sm:text-justify
+    sm:[hyphens:auto]
   `,
 
   videoSection: `

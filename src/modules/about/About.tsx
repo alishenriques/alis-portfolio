@@ -36,6 +36,13 @@ export async function About() {
         </div>
       </div>
 
+      <section className={styles.videoSection} aria-labelledby="about-video-heading">
+        <h2 id="about-video-heading" className={styles.videoHeading}>
+          {t("VIDEO_TITLE")}
+        </h2>
+        <VideoEmbed title={t("VIDEO_TITLE")} comingSoonText={t("VIDEO_COMING_SOON")} />
+      </section>
+
       <div className={styles.bioSection}>
         {parseBio(profile.bio).map((block, index) =>
           block.type === "quote" ? (
@@ -47,13 +54,6 @@ export async function About() {
           ),
         )}
       </div>
-
-      <section className={styles.videoSection} aria-labelledby="about-video-heading">
-        <h2 id="about-video-heading" className={styles.videoHeading}>
-          {t("VIDEO_TITLE")}
-        </h2>
-        <VideoEmbed title={t("VIDEO_TITLE")} comingSoonText={t("VIDEO_COMING_SOON")} />
-      </section>
     </main>
   );
 }
