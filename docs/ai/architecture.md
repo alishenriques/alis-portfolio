@@ -164,5 +164,4 @@ Palette/type below is still current. The **layout** was further evolved from a r
 
 - CMS editing UI (currently API only)
 - Whether/how the long-form "About" text (still a draft per the user) gets its own `Profile` field and page
-- Whether to delete the leftover `sample-project` placeholder row from the live database now that a real project (Respire C'alma) is seeded — deleting it via the CMS API was blocked by a tooling safety guard in one session; still pending
 - **Logo:** the user's real brand logo (an "AH" monogram + lime triangle + outlined "Alisson Henriques" wordmark) lives in `shared/components/Logo`. Path data is copied verbatim from the supplied SVG exports into `logoPaths.ts` (don't hand-edit; replace from a new export). `Logo` renders it inline — monogram alone (`withWordmark={false}`, used in the header) or the horizontal lockup (hero) — filling with `--ds-color-fg` / `--ds-color-accent`, which are the same `#F4F1EA` / `#C8FF00` the brand files use. `src/app/icon.svg` (from `ah-icon-square.svg`) is the favicon. The supplied `ah-*-dark/-light/-wordmark` variants are not used yet (the site is dark-only). Company logos are not on the Home.
