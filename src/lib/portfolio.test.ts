@@ -84,9 +84,12 @@ describe("sendContactMessage", () => {
     const input = { name: "Ana", email: "ana@example.com", message: "Oi!" };
 
     await expect(sendContactMessage(input)).resolves.toBe(true);
+    // Opts out of the global HttpActivityOverlay: the contact form shows its
+    // own loading state via LoadingButton instead (see graphql-client.ts).
     expect(post).toHaveBeenCalledWith(
       "",
       expect.objectContaining({ variables: { input } }),
+      { trackGlobalLoading: false },
     );
   });
 });

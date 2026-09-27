@@ -78,12 +78,18 @@ export type ContactMessageInput = {
   website?: string;
 };
 
-/** Runs client-side (the dialog submits directly from the browser to the API). */
+/**
+ * Runs client-side (the dialog submits directly from the browser to the API).
+ * Opts out of the global `HttpActivityOverlay`: the form gives its own
+ * feedback via `LoadingButton` instead, so the full-screen overlay would be
+ * redundant (and would blur the dialog itself while it's still on screen).
+ */
 export async function sendContactMessage(input: ContactMessageInput) {
   const data = await graphqlRequest(
     z.object({ sendContactMessage: z.boolean() }),
     SEND_CONTACT_MESSAGE_MUTATION,
     { input },
+    { trackGlobalLoading: false },
   );
   return data.sendContactMessage;
 }

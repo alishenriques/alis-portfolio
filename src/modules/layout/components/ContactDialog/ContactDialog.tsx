@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 
 import { sendContactMessage } from "@/lib/portfolio";
 import { contactFormSchema } from "@/lib/schemas";
+import { LoadingButton } from "@/shared/components/LoadingButton";
 
 import { styles } from "./styles/index.styles";
 import { useContactDialog } from "../../ContactDialogContext";
@@ -136,9 +137,14 @@ export function ContactDialog() {
               <p className={styles.error}>{t("ERROR", { email: CONTACT_EMAIL })}</p>
             )}
 
-            <button type="submit" className={styles.submit} disabled={status === "sending"}>
-              {status === "sending" ? t("SENDING") : t("SEND")}
-            </button>
+            <LoadingButton
+              type="submit"
+              className={styles.submit}
+              isLoading={status === "sending"}
+              loadingText={t("SENDING")}
+            >
+              {t("SEND")}
+            </LoadingButton>
           </form>
         )}
       </div>

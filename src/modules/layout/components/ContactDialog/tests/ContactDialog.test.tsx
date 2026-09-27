@@ -18,7 +18,7 @@ const messages = {
     EMAIL: "Seu e-mail",
     MESSAGE: "Mensagem",
     SEND: "Enviar mensagem",
-    SENDING: "Enviando…",
+    SENDING: "Enviando",
     SUCCESS: "Mensagem enviada!",
     ERROR: "Não foi possível enviar. Escreva para {email}.",
     CLOSE: "Fechar",
@@ -78,6 +78,29 @@ describe("ContactDialog", () => {
       message: "Olá!",
       website: "",
     });
+  });
+
+  it("shows the terminal-style loading button while the request is in flight", async () => {
+    let resolveSend!: (value: boolean) => void;
+    vi.mocked(sendContactMessage).mockReturnValue(
+      new Promise((resolve) => {
+        resolveSend = resolve;
+      }),
+    );
+    renderDialog();
+    fireEvent.click(screen.getByText("open"));
+    fillValidForm();
+
+    fireEvent.click(screen.getByRole("button", { name: "Enviar mensagem" }));
+
+    // The accessible name comes from the raw "Enviando" text (the `lowercase`
+    // CSS class only changes how it's painted, not the a11y tree).
+    const submitButton = screen.getByRole("button", { name: /enviando/i });
+    expect(submitButton).toBeDisabled();
+    expect(submitButton).toHaveAttribute("aria-busy", "true");
+
+    resolveSend(true);
+    await waitFor(() => expect(screen.getByText("Mensagem enviada!")).toBeInTheDocument());
   });
 
   it("shows an error message when sending fails", async () => {

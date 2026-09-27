@@ -61,7 +61,7 @@
     "EMAIL": "Your email",
     "MESSAGE": "Message",
     "SEND": "Send message",
-    "SENDING": "Sending…",
+    "SENDING": "Sending",
     "SUCCESS": "Message sent! I'll get back to you soon.",
     "ERROR": "Couldn't send it right now. Try again or write to {email}.",
     "CLOSE": "Close"

@@ -61,7 +61,7 @@
     "EMAIL": "Seu e-mail",
     "MESSAGE": "Mensagem",
     "SEND": "Enviar mensagem",
-    "SENDING": "Enviando…",
+    "SENDING": "Enviando",
     "SUCCESS": "Mensagem enviada! Respondo em breve.",
     "ERROR": "Não foi possível enviar agora. Tente de novo ou escreva para {email}.",
     "CLOSE": "Fechar"
