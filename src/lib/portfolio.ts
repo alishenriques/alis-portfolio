@@ -24,6 +24,10 @@ const PROJECTS_QUERY = /* GraphQL */ `
       summary
       body
       coverUrl
+      iconUrl
+      projectType
+      siteUrl
+      isActive
       tags
       featured
       publishedAt

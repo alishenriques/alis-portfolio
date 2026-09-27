@@ -36,7 +36,7 @@ describe("DesktopNav", () => {
     renderNav();
     expect(screen.getByRole("navigation", { name: "Navegação principal" })).toBeInTheDocument();
     expect(screen.getAllByRole("link")).toHaveLength(4);
-    expect(screen.getByRole("link", { name: "Projetos" })).toHaveAttribute("href", "/#projetos");
+    expect(screen.getByRole("link", { name: "Projetos" })).toHaveAttribute("href", "/projetos");
   });
 
   it("marks only the current page with aria-current", () => {

@@ -60,7 +60,12 @@
   },
   "PROJECTS": {
     "TITLE": "Projetos",
-    "EMPTY": "Nenhum projeto publicado ainda."
+    "SUBTITLE": "{count} projetos, do primeiro commit ao ar",
+    "EMPTY": "Nenhum projeto publicado ainda.",
+    "CLOSE_PANEL": "Fechar detalhes do projeto",
+    "SITE_ACTIVE": "Site ativo",
+    "SITE_INACTIVE": "Site fora do ar",
+    "VISIT_SITE": "Visite o site"
   },
   "CONTACT": {
     "TITLE": "Vamos conversar?",

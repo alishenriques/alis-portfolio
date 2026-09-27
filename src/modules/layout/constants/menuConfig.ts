@@ -9,5 +9,5 @@ export const menuList: MenuItem[] = [
   { id: "home", labelKey: "HOME", href: "/" },
   { id: "about", labelKey: "ABOUT", href: "/sobre" },
   { id: "experience", labelKey: "EXPERIENCE", href: "/experiencia" },
-  { id: "projects", labelKey: "PROJECTS", href: "/#projetos" },
+  { id: "projects", labelKey: "PROJECTS", href: "/projetos" },
 ];

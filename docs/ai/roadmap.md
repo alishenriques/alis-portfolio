@@ -27,10 +27,14 @@
 - `window.matchMedia` polyfilled in the shared Vitest setup (jsdom doesn't implement it)
 - Dead code removed: `ExternalLinkButton` (a DS `Button` wrapper) had no remaining callers once the Home's old Contato section became `ContactDialog` (plain `<a>`/`<button>` elements, not the DS `Button`)
 - **`alis-portfolio` now installs `@alishenriques/design-system@0.2.0` from the real npm registry** (no more local tarball); lint/typecheck/49 tests/build all green; verified end-to-end in the browser (curl) against the real Neon-backed API
-- 101 tests total across the three repos as of this line: 34 API + 18 design system + 49 portfolio
+- **About page polish, round 2**: body text justified from `sm` up (`hyphens: auto`), the presentation video moved above the bio text, bio font color lightened for readability, plus estimated reading time and a table-of-contents/anchors above the text (`lib/richText.tsx` extended with headings + `estimateReadingMinutes`). A side-floated ("lateralizadas") pull-quote layout was also built and shipped, then reverted after the user found it hurt readability in production — quotes stay inline; the DS `Quote`'s `float` prop remains available but unused
+- **`alis-design-system@0.6.1`**: two new components for the Projetos page — `Timeline` (GitKraken-style vertical commit graph: stacked clickable nodes connected by colored lines, golden-angle hue rotation per node so any list length stays distinct) and `SidePanel` (sliding lateral drawer, same stays-mounted/`aria-hidden`/`inert` convention as the portfolio's own `Sidebar`). `0.6.1` fixed a real type bug found immediately after 0.6.0 shipped: `Timeline`'s `onSelect` prop collided with `HTMLOListElement`'s native `onSelect` DOM event, making the prop unusable for consumers — fixed by omitting the native one
+- **Dedicated `/projetos` page**: `alis-portfolio-api`'s `Project` gained `iconUrl`, `projectType`, `siteUrl`, `isActive` (migrated on the live Neon DB); `modules/projects` (`Projects` Server Component → `ProjectsTimeline` Client Component managing selection → DS `Timeline` + `SidePanel`, with the portfolio's own `ProjectDetailPanel` as the panel's content). Replaces the old `#projetos` Home anchor section (`ProjectCard` deleted); `NAV.PROJECTS` now points at `/projetos`, matching `Sobre`/`Experiência`. First real project seeded: **Respire C'alma** (respirecalma.eco.br), content and cover screenshot sourced from a case-study document the user provided, icon uploaded to Cloudinary from the user's brand logo image
+- 106 tests total across the three repos as of this line: 35 API + 46 design system + 106 portfolio
 
 ## Next
-1. Later: About page long-form text once finalized (see "Bio rewritten and made rich" above — mostly done now), CMS editing UI, a dedicated Projetos page/content, revisit `CommandPalette` as an actual search feature
+1. Later: About page long-form text once finalized (see "Bio rewritten and made rich" above — mostly done now), CMS editing UI, revisit `CommandPalette` as an actual search feature
+2. Delete the leftover `sample-project` placeholder from the live database (blocked by a tooling safety guard in one session — see "Open decisions" in `architecture.md`)
 
 ## Fixed along the way
 - **Automated npm publish (resolved 2026-09-27, for real this time).** Three distinct bugs, fixed in sequence, each unblocking the next:
