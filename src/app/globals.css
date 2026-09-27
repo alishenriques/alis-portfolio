@@ -57,3 +57,22 @@ body {
     transform: scale(1);
   }
 }
+
+/* LoadingOverlay: the backdrop fades in, and the logo breathes while the ring around it spins. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}

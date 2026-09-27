@@ -1,4 +1,7 @@
 {
+  "COMMON": {
+    "LOADING": "Carregando"
+  },
   "NAV": {
     "HOME": "Início",
     "ABOUT": "Sobre",
