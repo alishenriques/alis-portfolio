@@ -31,6 +31,23 @@ describe("About", () => {
     expect(screen.getByText("ABOUT.TITLE")).toBeInTheDocument();
   });
 
+  it("renders a '> ' bio paragraph as a pull-quote, and bold markup as <strong>", async () => {
+    vi.mocked(getProfile).mockResolvedValue({
+      id: "1",
+      name: "Alisson",
+      headline: "H",
+      bio: "Parágrafo normal com **termo em destaque**.\n\n> Frase citada em destaque.\n\nOutro parágrafo normal.",
+      avatarUrl: null,
+    });
+
+    render(await About());
+
+    expect(screen.getByText("termo em destaque").tagName).toBe("STRONG");
+    const quote = screen.getByText(/Frase citada em destaque/).closest("blockquote");
+    expect(quote).toBeInTheDocument();
+    expect(screen.getByText(/Outro parágrafo normal/)).toBeInTheDocument();
+  });
+
   it("renders the education field below the headline", async () => {
     vi.mocked(getProfile).mockResolvedValue({
       id: "1",

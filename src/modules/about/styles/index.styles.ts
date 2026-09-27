@@ -61,6 +61,12 @@ export const styles = {
     uppercase
   `,
 
+  bioSection: `
+    flex
+    flex-col
+    gap-6
+  `,
+
   bio: `
     max-w-[65ch]
     text-[15px]

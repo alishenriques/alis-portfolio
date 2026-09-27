@@ -1,7 +1,8 @@
-import { Avatar, Eyebrow } from "@alishenriques/design-system";
+import { Avatar, Eyebrow, Quote } from "@alishenriques/design-system";
 import { getTranslations } from "next-intl/server";
 
 import { getProfile } from "@/lib/portfolio";
+import { parseBio, renderInlineMarkup } from "@/lib/richText";
 import { VideoEmbed } from "@/shared/components/VideoEmbed";
 
 import { styles } from "./styles/index.styles";
@@ -35,7 +36,17 @@ export async function About() {
         </div>
       </div>
 
-      <p className={styles.bio}>{profile.bio}</p>
+      <div className={styles.bioSection}>
+        {parseBio(profile.bio).map((block, index) =>
+          block.type === "quote" ? (
+            <Quote key={index}>{renderInlineMarkup(block.text)}</Quote>
+          ) : (
+            <p key={index} className={styles.bio}>
+              {renderInlineMarkup(block.text)}
+            </p>
+          ),
+        )}
+      </div>
 
       <section className={styles.videoSection} aria-labelledby="about-video-heading">
         <h2 id="about-video-heading" className={styles.videoHeading}>
