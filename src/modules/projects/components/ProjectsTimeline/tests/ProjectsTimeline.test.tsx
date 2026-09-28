@@ -34,28 +34,28 @@ function project(overrides: Partial<Project> = {}): Project {
   };
 }
 
-function renderTimeline(projects: Project[]) {
+function renderTimeline(projects: Project[], initialSelectedSlug?: string | null) {
   return render(
     <NextIntlClientProvider locale="pt" messages={messages}>
-      <ProjectsTimeline projects={projects} />
+      <ProjectsTimeline projects={projects} initialSelectedSlug={initialSelectedSlug} />
     </NextIntlClientProvider>,
   );
 }
 
 describe("ProjectsTimeline", () => {
   it("renders a timeline node per project", () => {
-    renderTimeline([project({ id: "1", title: "A" }), project({ id: "2", title: "B" })]);
+    renderTimeline([project({ slug: "a", title: "A" }), project({ slug: "b", title: "B" })]);
     expect(screen.getByRole("button", { name: "A" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "B" })).toBeInTheDocument();
   });
 
-  it("starts with the detail panel closed", () => {
+  it("starts with the detail panel closed by default", () => {
     renderTimeline([project()]);
     expect(screen.queryByRole("dialog")).toBeNull();
   });
 
   it("opens the detail panel for the clicked project, and closes it again", () => {
-    renderTimeline([project({ id: "1", title: "Respire C'alma" })]);
+    renderTimeline([project({ slug: "respire-calma", title: "Respire C'alma" })]);
 
     fireEvent.click(screen.getByRole("button", { name: "Respire C'alma" }));
     expect(screen.getByRole("dialog", { name: "Respire C'alma" })).toBeInTheDocument();
@@ -65,12 +65,25 @@ describe("ProjectsTimeline", () => {
   });
 
   it("switches the panel to a different project without closing it first", () => {
-    renderTimeline([project({ id: "1", title: "A" }), project({ id: "2", title: "B" })]);
+    renderTimeline([project({ slug: "a", title: "A" }), project({ slug: "b", title: "B" })]);
 
     fireEvent.click(screen.getByRole("button", { name: "A" }));
     expect(screen.getByRole("dialog", { name: "A" })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "B" }));
     expect(screen.getByRole("dialog", { name: "B" })).toBeInTheDocument();
+  });
+
+  it("opens the matching project's panel on mount when given an initialSelectedSlug (a ?project= deep link)", () => {
+    renderTimeline(
+      [project({ slug: "a", title: "A" }), project({ slug: "b", title: "B" })],
+      "b",
+    );
+    expect(screen.getByRole("dialog", { name: "B" })).toBeInTheDocument();
+  });
+
+  it("ignores an initialSelectedSlug that doesn't match any project", () => {
+    renderTimeline([project({ slug: "a", title: "A" })], "not-a-real-slug");
+    expect(screen.queryByRole("dialog")).toBeNull();
   });
 });

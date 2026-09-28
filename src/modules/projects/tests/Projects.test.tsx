@@ -10,8 +10,16 @@ vi.mock("@/lib/portfolio", () => ({
 }));
 
 vi.mock("../components/ProjectsTimeline", () => ({
-  ProjectsTimeline: ({ projects }: { projects: { id: string }[] }) => (
-    <div data-testid="projects-timeline">{projects.length}</div>
+  ProjectsTimeline: ({
+    projects,
+    initialSelectedSlug,
+  }: {
+    projects: { id: string }[];
+    initialSelectedSlug?: string | null;
+  }) => (
+    <div data-testid="projects-timeline" data-initial-slug={initialSelectedSlug ?? ""}>
+      {projects.length}
+    </div>
   ),
 }));
 
@@ -52,5 +60,13 @@ describe("Projects", () => {
 
     expect(screen.getByText("PROJECTS.EMPTY")).toBeInTheDocument();
     expect(screen.queryByTestId("projects-timeline")).not.toBeInTheDocument();
+  });
+
+  it("passes initialSelectedSlug through to the timeline, for a ?project= deep link", async () => {
+    vi.mocked(getProjects).mockResolvedValue([project]);
+
+    render(await Projects({ initialSelectedSlug: "demo" }));
+
+    expect(screen.getByTestId("projects-timeline")).toHaveAttribute("data-initial-slug", "demo");
   });
 });

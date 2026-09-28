@@ -2,14 +2,15 @@ import { Avatar, Eyebrow, Quote } from "@alishenriques/design-system";
 import { Clock } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
-import { getProfile } from "@/lib/portfolio";
+import { getProfile, getProjects } from "@/lib/portfolio";
 import { estimateReadingMinutes, parseBio, renderInlineMarkup } from "@/lib/richText";
 import { VideoEmbed } from "@/shared/components/VideoEmbed";
 
+import { ProjectsShowcase } from "./components/ProjectsShowcase";
 import { styles } from "./styles/index.styles";
 
 export async function About() {
-  const [profile, t] = await Promise.all([getProfile(), getTranslations("ABOUT")]);
+  const [profile, projects, t] = await Promise.all([getProfile(), getProjects(), getTranslations("ABOUT")]);
   const blocks = parseBio(profile.bio);
   const headings = blocks.filter((block) => block.type === "heading");
   const readingMinutes = estimateReadingMinutes(profile.bio);
@@ -102,6 +103,8 @@ export async function About() {
           );
         })}
       </div>
+
+      <ProjectsShowcase projects={projects} />
     </main>
   );
 }

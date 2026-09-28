@@ -56,7 +56,9 @@
     "TOC_LABEL": "Sumário do texto",
     "TOC_TITLE": "Nesta seção",
     "VIDEO_TITLE": "Vídeo de apresentação",
-    "VIDEO_COMING_SOON": "Vídeo em breve"
+    "VIDEO_COMING_SOON": "Vídeo em breve",
+    "PROJECTS_SHOWCASE_TITLE": "Conheça alguns dos projetos que criei",
+    "PROJECTS_SHOWCASE_LINK": "+ sobre esse projeto"
   },
   "PROJECTS": {
     "TITLE": "Projetos",

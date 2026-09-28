@@ -1,16 +1,34 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import { getProfile } from "@/lib/portfolio";
+import { getProfile, getProjects } from "@/lib/portfolio";
 
 import { About } from "../About";
 
 vi.mock("@/lib/portfolio", () => ({
   getProfile: vi.fn(),
+  // Most tests here aren't about the projects showcase; default to empty so
+  // they don't have to care. Tests that do care override this per-test.
+  getProjects: vi.fn().mockResolvedValue([]),
 }));
 
 vi.mock("next-intl/server", () => ({
   getTranslations: async (namespace: string) => (key: string) => `${namespace}.${key}`,
+}));
+
+// ProjectsShowcase (rendered by About) uses the client-hook form of
+// translations and the app's locale-aware Link — mocked the same way
+// Sidebar.test.tsx and ProjectsShowcase's own test do.
+vi.mock("next-intl", () => ({
+  useTranslations: (namespace: string) => (key: string) => `${namespace}.${key}`,
+}));
+
+vi.mock("@/i18n/navigation", () => ({
+  Link: ({ children, href, ...props }: { children: React.ReactNode; href: string }) => (
+    <a href={href} {...props}>
+      {children}
+    </a>
+  ),
 }));
 
 describe("About", () => {
@@ -178,5 +196,56 @@ describe("About", () => {
     expect(screen.getByRole("heading", { name: "ABOUT.VIDEO_TITLE" })).toBeInTheDocument();
     expect(screen.getByText("ABOUT.VIDEO_COMING_SOON")).toBeInTheDocument();
     expect(document.querySelector("iframe")).toBeNull();
+  });
+
+  it("shows the projects showcase when there are projects with a cover image", async () => {
+    vi.mocked(getProfile).mockResolvedValue({
+      id: "1",
+      name: "Alisson",
+      headline: "H",
+      bio: "B",
+      avatarUrl: null,
+    });
+    vi.mocked(getProjects).mockResolvedValue([
+      {
+        id: "1",
+        slug: "respire-calma",
+        title: "Respire C'alma",
+        summary: "Resumo",
+        body: "",
+        coverUrl: "https://example.com/cover.jpg",
+        iconUrl: null,
+        projectType: null,
+        siteUrl: null,
+        isActive: true,
+        tags: [],
+        featured: false,
+        publishedAt: "2021-01-01T00:00:00.000Z",
+      },
+    ]);
+
+    render(await About());
+
+    expect(screen.getByRole("heading", { name: "ABOUT.PROJECTS_SHOWCASE_TITLE" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Respire C'alma" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /ABOUT.PROJECTS_SHOWCASE_LINK/ })).toHaveAttribute(
+      "href",
+      "/projetos?project=respire-calma",
+    );
+  });
+
+  it("omits the projects showcase entirely when there are no eligible projects", async () => {
+    vi.mocked(getProfile).mockResolvedValue({
+      id: "1",
+      name: "Alisson",
+      headline: "H",
+      bio: "B",
+      avatarUrl: null,
+    });
+    vi.mocked(getProjects).mockResolvedValue([]);
+
+    render(await About());
+
+    expect(screen.queryByRole("heading", { name: "ABOUT.PROJECTS_SHOWCASE_TITLE" })).not.toBeInTheDocument();
   });
 });

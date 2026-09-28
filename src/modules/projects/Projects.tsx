@@ -6,7 +6,12 @@ import { getProjects } from "@/lib/portfolio";
 import { ProjectsTimeline } from "./components/ProjectsTimeline";
 import { styles } from "./styles/index.styles";
 
-export async function Projects() {
+export type ProjectsProps = {
+  /** Opens this project's detail panel on mount — e.g. a `?project=slug` deep link from the About page. */
+  initialSelectedSlug?: string | null;
+};
+
+export async function Projects({ initialSelectedSlug = null }: ProjectsProps = {}) {
   const [projects, t] = await Promise.all([getProjects(), getTranslations("PROJECTS")]);
 
   return (
@@ -16,7 +21,11 @@ export async function Projects() {
         <h1 className={styles.heading}>{t("SUBTITLE", { count: projects.length })}</h1>
       </div>
 
-      {projects.length > 0 ? <ProjectsTimeline projects={projects} /> : <p className={styles.empty}>{t("EMPTY")}</p>}
+      {projects.length > 0 ? (
+        <ProjectsTimeline projects={projects} initialSelectedSlug={initialSelectedSlug} />
+      ) : (
+        <p className={styles.empty}>{t("EMPTY")}</p>
+      )}
     </main>
   );
 }

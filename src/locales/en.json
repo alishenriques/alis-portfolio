@@ -56,7 +56,9 @@
     "TOC_LABEL": "Table of contents",
     "TOC_TITLE": "In this section",
     "VIDEO_TITLE": "Introduction video",
-    "VIDEO_COMING_SOON": "Video coming soon"
+    "VIDEO_COMING_SOON": "Video coming soon",
+    "PROJECTS_SHOWCASE_TITLE": "Get to know some of the projects I've built",
+    "PROJECTS_SHOWCASE_LINK": "+ about this project"
   },
   "PROJECTS": {
     "TITLE": "Projects",
