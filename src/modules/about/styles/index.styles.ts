@@ -149,14 +149,6 @@ export const styles = {
     sm:[hyphens:auto]
   `,
 
-  // Passed to every <Quote> as className: gives it breathing room below in
-  // normal block flow, same as a paragraph's mb-6 (Quote's own CSS sets
-  // margin: 0). Wins the cascade because this stylesheet loads after the
-  // design system's.
-  quoteSpacing: `
-    mb-6
-  `,
-
   videoSection: `
     flex
     flex-col

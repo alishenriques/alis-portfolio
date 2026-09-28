@@ -82,7 +82,14 @@ export async function About() {
 
           if (block.type === "quote") {
             return (
-              <Quote key={index} className={styles.quoteSpacing}>
+              // Inline style, not a Tailwind class: Tailwind v4's utilities
+              // live inside `@layer utilities`, and Quote's own CSS module
+              // rule (`margin: 0`) is unlayered — unlayered CSS always beats
+              // layered CSS regardless of specificity or source order, so a
+              // className here could never actually win (confirmed via
+              // getComputedStyle: it was computing to 0px). Only an inline
+              // style reliably wins over any stylesheet, layered or not.
+              <Quote key={index} style={{ marginBottom: "2.5rem" }}>
                 {renderInlineMarkup(block.text)}
               </Quote>
             );
