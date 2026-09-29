@@ -86,6 +86,27 @@ describe("ProjectsShowcase", () => {
     expect(screen.getByText("Resumo do A")).toBeInTheDocument();
   });
 
+  it("shows at most 2 tags, even when the project has more", () => {
+    renderShowcase([project({ slug: "a", title: "A", tags: ["one", "two", "three", "four"] })]);
+
+    expect(screen.getByText("one")).toBeInTheDocument();
+    expect(screen.getByText("two")).toBeInTheDocument();
+    expect(screen.queryByText("three")).not.toBeInTheDocument();
+    expect(screen.queryByText("four")).not.toBeInTheDocument();
+  });
+
+  it("shows a bare hostname (no protocol/www) in the card's address bar", () => {
+    renderShowcase([
+      project({ slug: "a", title: "A", siteUrl: "https://www.respirecalma.eco.br/" }),
+    ]);
+    expect(screen.getByText("respirecalma.eco.br")).toBeInTheDocument();
+  });
+
+  it("omits the address bar text when the project has no siteUrl", () => {
+    renderShowcase([project({ slug: "a", title: "A", siteUrl: null })]);
+    expect(screen.queryByText(/\.[a-z]{2,}/)).not.toBeInTheDocument();
+  });
+
   it("excludes projects without a coverUrl from the picks", () => {
     renderShowcase([
       project({ slug: "a", title: "A", coverUrl: null }),

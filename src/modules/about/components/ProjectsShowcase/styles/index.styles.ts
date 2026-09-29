@@ -11,9 +11,13 @@ export const styles = {
     text-[var(--ds-color-fg)]
   `,
 
+  // items-start (not the grid default, stretch): each card sizes to its own
+  // content, so one card's hover-reveal growing taller doesn't stretch its
+  // row siblings along with it.
   grid: `
     grid
     grid-cols-1
+    items-start
     gap-8
     sm:grid-cols-2
     lg:grid-cols-3
