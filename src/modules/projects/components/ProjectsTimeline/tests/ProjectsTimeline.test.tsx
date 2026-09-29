@@ -45,8 +45,19 @@ function renderTimeline(projects: Project[], initialSelectedSlug?: string | null
 describe("ProjectsTimeline", () => {
   it("renders a timeline node per project", () => {
     renderTimeline([project({ slug: "a", title: "A" }), project({ slug: "b", title: "B" })]);
-    expect(screen.getByRole("button", { name: "A" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "B" })).toBeInTheDocument();
+    // The DS Timeline builds the button's accessible name as
+    // "label — typeLabel — description" (no typeLabel here, since
+    // project()'s default projectType is null).
+    expect(screen.getByRole("button", { name: "A — Summary" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "B — Summary" })).toBeInTheDocument();
+  });
+
+  it("shows the project's type and summary alongside its name", () => {
+    renderTimeline([
+      project({ slug: "a", title: "Respire C'alma", projectType: "E-Commerce", summary: "Velas terapêuticas." }),
+    ]);
+    expect(screen.getByText("E-Commerce")).toBeInTheDocument();
+    expect(screen.getByText(/Velas terapêuticas\./)).toBeInTheDocument();
   });
 
   it("starts with the detail panel closed by default", () => {
@@ -57,7 +68,7 @@ describe("ProjectsTimeline", () => {
   it("opens the detail panel for the clicked project, and closes it again", () => {
     renderTimeline([project({ slug: "respire-calma", title: "Respire C'alma" })]);
 
-    fireEvent.click(screen.getByRole("button", { name: "Respire C'alma" }));
+    fireEvent.click(screen.getByRole("button", { name: "Respire C'alma — Summary" }));
     expect(screen.getByRole("dialog", { name: "Respire C'alma" })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "Fechar detalhes do projeto" }));
@@ -67,10 +78,10 @@ describe("ProjectsTimeline", () => {
   it("switches the panel to a different project without closing it first", () => {
     renderTimeline([project({ slug: "a", title: "A" }), project({ slug: "b", title: "B" })]);
 
-    fireEvent.click(screen.getByRole("button", { name: "A" }));
+    fireEvent.click(screen.getByRole("button", { name: "A — Summary" }));
     expect(screen.getByRole("dialog", { name: "A" })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "B" }));
+    fireEvent.click(screen.getByRole("button", { name: "B — Summary" }));
     expect(screen.getByRole("dialog", { name: "B" })).toBeInTheDocument();
   });
 

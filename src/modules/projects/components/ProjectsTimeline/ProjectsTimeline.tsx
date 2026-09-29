@@ -33,6 +33,8 @@ export function ProjectsTimeline({ projects, initialSelectedSlug = null }: Proje
     id: project.slug,
     label: project.title,
     iconUrl: project.iconUrl,
+    typeLabel: project.projectType,
+    description: project.summary,
   }));
 
   return (
