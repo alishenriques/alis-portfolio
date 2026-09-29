@@ -57,6 +57,7 @@ const EXPERIENCES_QUERY = /* GraphQL */ `
       startDate
       endDate
       description
+      isCorporate
       sortOrder
     }
   }

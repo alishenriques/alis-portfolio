@@ -14,6 +14,7 @@ const experience: Experience = {
   startDate: "2022-10",
   endDate: "2025-07",
   description: "Linha 1\nLinha 2",
+  isCorporate: true,
   sortOrder: 0,
 };
 

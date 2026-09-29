@@ -17,7 +17,7 @@ const messages = {
   NAV: {
     HOME: "Início",
     ABOUT: "Sobre",
-    EXPERIENCE: "Experiência",
+    EXPERIENCE: "Corporativo",
     PROJECTS: "Projetos",
     PRIMARY: "Navegação principal",
   },
@@ -37,6 +37,7 @@ describe("DesktopNav", () => {
     expect(screen.getByRole("navigation", { name: "Navegação principal" })).toBeInTheDocument();
     expect(screen.getAllByRole("link")).toHaveLength(4);
     expect(screen.getByRole("link", { name: "Projetos" })).toHaveAttribute("href", "/projetos");
+    expect(screen.getByRole("link", { name: "Corporativo" })).toHaveAttribute("href", "/corporativo");
   });
 
   it("marks only the current page with aria-current", () => {

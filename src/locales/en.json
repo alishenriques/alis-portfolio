@@ -5,7 +5,7 @@
   "NAV": {
     "HOME": "Home",
     "ABOUT": "About",
-    "EXPERIENCE": "Experience",
+    "EXPERIENCE": "Corporate",
     "PROJECTS": "Projects",
     "CONTACT": "Contact",
     "OPEN_MENU": "Open menu",
@@ -42,8 +42,8 @@
     "TITLE": "Core stack"
   },
   "EXPERIENCE": {
-    "TITLE": "Experience",
-    "SUBTITLE": "{count} companies, 20+ years",
+    "TITLE": "Corporate",
+    "SUBTITLE": "{count} companies, 20+ years in IT",
     "EMPTY": "No published experience yet.",
     "PRESENT": "present"
   },

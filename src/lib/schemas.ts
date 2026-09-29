@@ -36,6 +36,7 @@ export const experienceSchema = z.object({
   startDate: z.string(),
   endDate: z.string().nullable(),
   description: z.string(),
+  isCorporate: z.boolean(),
   sortOrder: z.number(),
 });
 

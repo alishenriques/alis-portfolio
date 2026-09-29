@@ -8,6 +8,6 @@ export type MenuItem = {
 export const menuList: MenuItem[] = [
   { id: "home", labelKey: "HOME", href: "/" },
   { id: "about", labelKey: "ABOUT", href: "/sobre" },
-  { id: "experience", labelKey: "EXPERIENCE", href: "/experiencia" },
+  { id: "experience", labelKey: "EXPERIENCE", href: "/corporativo" },
   { id: "projects", labelKey: "PROJECTS", href: "/projetos" },
 ];

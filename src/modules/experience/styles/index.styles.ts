@@ -19,10 +19,12 @@ export const styles = {
     text-[var(--ds-color-fg)]
   `,
 
+  // No gap: each ExperienceItem owns its own trailing space (pb-10) instead,
+  // so its timeline-rail line can reach all the way to the next item's
+  // marker through that space, not stop short at a flex gap it doesn't own.
   list: `
     flex
     flex-col
-    gap-10
   `,
 
   empty: `

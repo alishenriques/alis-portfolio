@@ -5,7 +5,7 @@
   "NAV": {
     "HOME": "Início",
     "ABOUT": "Sobre",
-    "EXPERIENCE": "Experiência",
+    "EXPERIENCE": "Corporativo",
     "PROJECTS": "Projetos",
     "CONTACT": "Contato",
     "OPEN_MENU": "Abrir menu",
@@ -42,8 +42,8 @@
     "TITLE": "Stack principal"
   },
   "EXPERIENCE": {
-    "TITLE": "Experiência",
-    "SUBTITLE": "{count} empresas, 20+ anos",
+    "TITLE": "Corporativo",
+    "SUBTITLE": "{count} empresas, 20+ anos de carreira em TI",
     "EMPTY": "Nenhuma experiência publicada ainda.",
     "PRESENT": "presente"
   },

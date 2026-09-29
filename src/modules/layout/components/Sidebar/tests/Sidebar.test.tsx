@@ -18,7 +18,7 @@ const messages = {
   NAV: {
     HOME: "Início",
     ABOUT: "Sobre",
-    EXPERIENCE: "Experiência",
+    EXPERIENCE: "Corporativo",
     PROJECTS: "Projetos",
     CLOSE_MENU: "Fechar menu",
     PRIMARY: "Navegação principal",
@@ -56,7 +56,7 @@ describe("Sidebar", () => {
   it("exposes the navigation links while open", () => {
     renderSidebar(true);
     expect(screen.getByRole("link", { name: "Início" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Experiência" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Corporativo" })).toBeInTheDocument();
   });
 
   it("locks page scroll only while open", () => {

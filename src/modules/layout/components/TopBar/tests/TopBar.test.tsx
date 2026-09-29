@@ -18,7 +18,7 @@ const messages = {
   NAV: {
     HOME: "Início",
     ABOUT: "Sobre",
-    EXPERIENCE: "Experiência",
+    EXPERIENCE: "Corporativo",
     PROJECTS: "Projetos",
     OPEN_MENU: "Abrir menu",
     CLOSE_MENU: "Fechar menu",

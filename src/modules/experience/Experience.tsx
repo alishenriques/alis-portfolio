@@ -6,8 +6,16 @@ import { ExperienceItem } from "@/shared/components/ExperienceItem";
 
 import { styles } from "./styles/index.styles";
 
+/**
+ * "Corporativo": work history, scoped to private-sector company roles only
+ * (`isCorporate`) — other entries (e.g. a public-sector internship) are real
+ * history but not shown here. Filtered client-side, not by the API: unlike
+ * `Project`'s `publishedAt`, there's no "hide until ready" concept here, just
+ * "not the kind of entry this particular page curates".
+ */
 export async function Experience() {
-  const [experiences, t] = await Promise.all([getExperiences(), getTranslations("EXPERIENCE")]);
+  const [allExperiences, t] = await Promise.all([getExperiences(), getTranslations("EXPERIENCE")]);
+  const experiences = allExperiences.filter((experience) => experience.isCorporate);
 
   return (
     <main className={styles.root}>

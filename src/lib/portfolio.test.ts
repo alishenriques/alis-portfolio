@@ -69,6 +69,7 @@ const experience = {
   startDate: "2022-10",
   endDate: "2025-07",
   description: "Descrição",
+  isCorporate: true,
   sortOrder: 0,
 };
 
