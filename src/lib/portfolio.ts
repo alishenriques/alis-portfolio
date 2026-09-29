@@ -10,6 +10,8 @@ const PROFILE_QUERY = /* GraphQL */ `
       name
       headline
       bio
+      headlineEn
+      bioEn
       avatarUrl
     }
   }

@@ -21,6 +21,8 @@ const profile = {
   name: "Alisson",
   headline: "Engineer",
   bio: "Bio",
+  headlineEn: null,
+  bioEn: null,
   avatarUrl: null,
 };
 

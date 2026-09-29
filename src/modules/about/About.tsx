@@ -1,6 +1,6 @@
 import { Avatar, Eyebrow, Quote } from "@alishenriques/design-system";
 import { Clock } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { getProfile, getProjects } from "@/lib/portfolio";
 import { estimateReadingMinutes, parseBio, renderInlineMarkup } from "@/lib/richText";
@@ -9,11 +9,25 @@ import { VideoEmbed } from "@/shared/components/VideoEmbed";
 import { ProjectsShowcase } from "./components/ProjectsShowcase";
 import { styles } from "./styles/index.styles";
 
+// headline/bio are CMS-authored Portuguese by default; headlineEn/bioEn are
+// optional English versions. Falls back to the Portuguese text when there's
+// no translation yet, rather than showing nothing.
+function pickLocalized(locale: string, pt: string, en: string | null): string {
+  return locale === "en" && en ? en : pt;
+}
+
 export async function About() {
-  const [profile, projects, t] = await Promise.all([getProfile(), getProjects(), getTranslations("ABOUT")]);
-  const blocks = parseBio(profile.bio);
+  const [profile, projects, locale, t] = await Promise.all([
+    getProfile(),
+    getProjects(),
+    getLocale(),
+    getTranslations("ABOUT"),
+  ]);
+  const headline = pickLocalized(locale, profile.headline, profile.headlineEn);
+  const bioText = pickLocalized(locale, profile.bio, profile.bioEn);
+  const blocks = parseBio(bioText);
   const headings = blocks.filter((block) => block.type === "heading");
-  const readingMinutes = estimateReadingMinutes(profile.bio);
+  const readingMinutes = estimateReadingMinutes(bioText);
 
   return (
     <main className={styles.root}>
@@ -33,7 +47,7 @@ export async function About() {
         <div>
           <Eyebrow>{t("TITLE")}</Eyebrow>
           <h1 className={styles.name}>{profile.name}</h1>
-          <p className={styles.headline}>{profile.headline}</p>
+          <p className={styles.headline}>{headline}</p>
           <p className={styles.education}>
             <span className={styles.educationLabel}>{t("EDUCATION_LABEL")}</span>
             {t("EDUCATION_VALUE")}
