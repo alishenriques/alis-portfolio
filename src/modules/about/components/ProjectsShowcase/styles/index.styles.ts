@@ -31,15 +31,19 @@ export const styles = {
     group
   `,
 
+  // Smaller than the usual text-xs mono treatment (and less letter-spacing)
+  // on purpose: at the card's narrow width, text-xs + tracking-[0.1em] wrapped
+  // "+ sobre esse projeto" onto two lines.
   link: `
     inline-flex
     items-center
-    gap-1.5
+    gap-1
+    whitespace-nowrap
     font-mono
-    text-xs
+    text-[10px]
     font-medium
     uppercase
-    tracking-[0.1em]
+    tracking-[0.04em]
     text-[var(--ds-color-accent)]
   `,
 
