@@ -12,6 +12,8 @@ const messages = {
     SLIDE_NAV: {
       PREV: "Slide anterior",
       NEXT: "Próximo slide",
+      LABEL: "Navegação de slides",
+      GOTO: "Ir para o slide {number}",
     },
     SLIDE2: {
       HEADLINE: "Quer <hl>vender mais</hl> nessa temporada?",
@@ -78,5 +80,21 @@ describe("Hero", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: /Arquitetura de front-end que escala/ }),
     ).toBeInTheDocument();
+  });
+
+  it("jumps to a slide via its dot, keeping the dots' selected state in sync", () => {
+    renderHero();
+    const dots = screen.getAllByRole("tab");
+    expect(dots).toHaveLength(2);
+    expect(dots[0]).toHaveAttribute("aria-selected", "true");
+    expect(dots[1]).toHaveAttribute("aria-selected", "false");
+
+    fireEvent.click(dots[1]);
+
+    expect(
+      screen.getByRole("heading", { level: 1, name: /Quer vender mais nessa temporada/ }),
+    ).toBeInTheDocument();
+    expect(dots[0]).toHaveAttribute("aria-selected", "false");
+    expect(dots[1]).toHaveAttribute("aria-selected", "true");
   });
 });

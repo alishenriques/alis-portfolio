@@ -80,6 +80,17 @@ body {
   }
 }
 
+/* Hero's autoplay progress line: grows across the configured interval, then
+   restarts (remounted by React, via `key`) on every slide change. */
+@keyframes hero-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 @keyframes breathe {
   0%,
   100% {

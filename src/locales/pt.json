@@ -20,7 +20,9 @@
     "SUBTITLE": "Especialista em desenvolvimento de interfaces modernas, performáticas e escaláveis, com foco em <hl>experiência do usuário</hl>, <hl>componentes reutilizáveis</hl> e <hl>código limpo</hl>.",
     "SLIDE_NAV": {
       "PREV": "Slide anterior",
-      "NEXT": "Próximo slide"
+      "NEXT": "Próximo slide",
+      "LABEL": "Navegação de slides",
+      "GOTO": "Ir para o slide {number}"
     },
     "SLIDE2": {
       "HEADLINE": "Produtos e serviços <hl>digitais</hl> para o seu negócio <hl>vender mais</hl>.",

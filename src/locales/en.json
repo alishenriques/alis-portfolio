@@ -20,7 +20,9 @@
     "SUBTITLE": "Specialist in building modern, high-performance, scalable interfaces, focused on <hl>user experience</hl>, <hl>reusable components</hl> and <hl>clean code</hl>.",
     "SLIDE_NAV": {
       "PREV": "Previous slide",
-      "NEXT": "Next slide"
+      "NEXT": "Next slide",
+      "LABEL": "Slide navigation",
+      "GOTO": "Go to slide {number}"
     },
     "SLIDE2": {
       "HEADLINE": "<hl>Digital</hl> products and services to help your business <hl>sell more</hl>.",

@@ -21,7 +21,7 @@ const SLIDE_COUNT = 2;
 const SLIDE2_FEATURE_KEYS = ["GBP", "WHATSAPP", "PAGE", "AI"] as const;
 // Slide 2's own accent — see styles/index.styles.ts for the rest of its usages.
 const SLIDE2_ACCENT = "#38bdf8";
-const AUTOPLAY_INTERVAL_MS = 5000;
+const AUTOPLAY_INTERVAL_MS = 12000;
 
 /**
  * The `</>` glyphs double as the slide's prev/next controls — clicking either
@@ -38,7 +38,7 @@ export function Hero() {
   const goPrev = () => setSlide((current) => (current + SLIDE_COUNT - 1) % SLIDE_COUNT);
   const goNext = () => setSlide((current) => (current + 1) % SLIDE_COUNT);
 
-  // Re-runs (restarting the 5s countdown) on every slide change, including a
+  // Re-runs (restarting the countdown) on every slide change, including a
   // manual click — so clicking next/prev doesn't feel like it's fighting the
   // autoplay. Skipped entirely under prefers-reduced-motion, same as every
   // other animation in this component.
@@ -50,6 +50,17 @@ export function Hero() {
 
   return (
     <section className={styles.root}>
+      <div className={styles.progressTrack} aria-hidden="true">
+        <div
+          key={slide}
+          className={styles.progressFill}
+          style={{
+            animationDuration: `${AUTOPLAY_INTERVAL_MS}ms`,
+            background: slide === 1 ? SLIDE2_ACCENT : undefined,
+          }}
+        />
+      </div>
+
       <div className={slide === 0 ? styles.glowActive : styles.glow} aria-hidden="true" />
       <div className={slide === 1 ? styles.glow2Active : styles.glow2} aria-hidden="true" />
 
@@ -121,6 +132,21 @@ export function Hero() {
               </ul>
             </div>
           )}
+        </div>
+
+        <div className={styles.dots} role="tablist" aria-label={t("SLIDE_NAV.LABEL")}>
+          {Array.from({ length: SLIDE_COUNT }, (_, index) => (
+            <button
+              key={index}
+              type="button"
+              role="tab"
+              aria-selected={slide === index}
+              aria-label={t("SLIDE_NAV.GOTO", { number: index + 1 })}
+              className={index === slide ? styles.dotActive : styles.dot}
+              style={index === slide ? { background: slide === 1 ? SLIDE2_ACCENT : undefined } : undefined}
+              onClick={() => setSlide(index)}
+            />
+          ))}
         </div>
 
         <div className={styles.contactRow}>

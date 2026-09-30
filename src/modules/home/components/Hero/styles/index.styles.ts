@@ -28,6 +28,31 @@ export const styles = {
     sm:py-28
   `,
 
+  // A thin, edge-to-edge progress line at the very top of the section (right
+  // below the sticky site header) showing how much of the autoplay interval
+  // has elapsed — the track is a faint constant bar, .progressFill is the
+  // part that actually grows, keyed by slide so its fill-animation restarts
+  // (from 0%) on every change, same technique as GrowthTrace's redraw.
+  progressTrack: `
+    absolute
+    top-0
+    left-0
+    right-0
+    z-10
+    h-[2px]
+    bg-[var(--ds-color-border)]
+    motion-reduce:hidden
+  `,
+
+  progressFill: `
+    h-full
+    w-0
+    bg-[var(--ds-color-accent)]
+    [animation-timing-function:linear]
+    [animation-fill-mode:forwards]
+    [animation-name:hero-progress]
+  `,
+
   // Two stacked radial-glow layers, crossfaded by opacity as the slide
   // changes — plain "background" isn't reliably animatable across two
   // different gradients, but two overlapping layers are.
@@ -224,6 +249,42 @@ export const styles = {
   featureIcon: `
     flex-none
     text-[#38bdf8]
+  `,
+
+  dots: `
+    flex
+    items-center
+    justify-center
+    gap-2
+  `,
+
+  dot: `
+    h-2
+    w-2
+    flex-none
+    rounded-full
+    bg-[var(--ds-color-border-strong)]
+    transition-colors
+    duration-200
+    hover:bg-[var(--ds-color-muted)]
+    focus-visible:outline
+    focus-visible:outline-2
+    focus-visible:outline-[var(--ds-color-accent)]
+    focus-visible:outline-offset-2
+  `,
+
+  dotActive: `
+    h-2
+    w-2
+    flex-none
+    rounded-full
+    bg-[var(--ds-color-accent)]
+    transition-colors
+    duration-200
+    focus-visible:outline
+    focus-visible:outline-2
+    focus-visible:outline-[var(--ds-color-accent)]
+    focus-visible:outline-offset-2
   `,
 
   contactRow: `
