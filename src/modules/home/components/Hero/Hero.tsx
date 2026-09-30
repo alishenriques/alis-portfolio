@@ -72,7 +72,7 @@ export function Hero() {
               })}
             </h1>
           ) : (
-            <h1 key="title-1" className={styles.title}>
+            <h1 key="title-1" className={styles.title2}>
               {t.rich("SLIDE2.HEADLINE", {
                 hl: (chunks) => <span className={styles.titleHighlight2}>{chunks}</span>,
               })}

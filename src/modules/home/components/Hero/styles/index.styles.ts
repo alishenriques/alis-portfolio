@@ -1,3 +1,15 @@
+const titleBase = `
+  font-[family-name:var(--ds-font-display)]
+  text-[clamp(30px,5.4vw,52px)]
+  leading-[1.06]
+  font-extrabold
+  tracking-[-0.015em]
+  text-balance
+  text-[var(--ds-color-fg)]
+  animate-[slide-reveal_0.5s_ease-out]
+  motion-reduce:animate-none
+`;
+
 export const styles = {
   root: `
     ds-dot-grid
@@ -73,7 +85,7 @@ export const styles = {
     relative
     z-10
     flex
-    max-w-3xl
+    max-w-[850px]
     flex-col
     items-center
     gap-6
@@ -118,17 +130,12 @@ export const styles = {
     uppercase
   `,
 
-  title: `
-    font-[family-name:var(--ds-font-display)]
-    text-[clamp(30px,5.4vw,52px)]
-    leading-[1.06]
-    font-extrabold
-    tracking-[-0.015em]
-    text-balance
-    text-[var(--ds-color-fg)]
-    animate-[slide-reveal_0.5s_ease-out]
-    motion-reduce:animate-none
-  `,
+  title: titleBase,
+
+  // Slide 2's own headline is shorter than slide 1's, so it needs its own
+  // (narrower) cap to keep wrapping at 3 lines too, now that .content is
+  // wide enough for slide 1 — a shared width can't fit both at once.
+  title2: titleBase + " max-w-[640px]",
 
   titleHighlight: `
     text-[var(--ds-color-accent)]
