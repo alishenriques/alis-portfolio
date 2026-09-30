@@ -10,9 +10,15 @@ export const styles = {
     px-4
   `,
 
+  // w-fit: without it, a flex-wrap row lets a shrunk item keep its
+  // pre-wrap ("auto" flex-basis) width even once its own text wraps onto
+  // two lines — the box stays as wide as the unwrapped text needed, so the
+  // wrapped lines sit in a much wider pill than they need, looking like
+  // stray padding. w-fit re-measures against the actual (wrapped) content.
   item: `
     group
     inline-flex
+    w-fit
     items-center
     gap-2.5
     rounded-full

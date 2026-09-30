@@ -11,7 +11,7 @@ const messages = {
       PERFORMANCE: "Performance",
       SCALABILITY: "Escalabilidade",
       AI_ASSISTED: "Engenharia de Software Assistida por IA",
-      ECOMMERCE: "E-Commerce",
+      ECOMMERCE: "E-Commerces",
     },
   },
 };
@@ -27,7 +27,7 @@ describe("TaglineHighlights", () => {
     expect(screen.getAllByRole("listitem")).toHaveLength(5);
     expect(screen.getByText("Interfaces modernas")).toBeInTheDocument();
     expect(screen.getByText("Engenharia de Software Assistida por IA")).toBeInTheDocument();
-    expect(screen.getByText("E-Commerce")).toBeInTheDocument();
+    expect(screen.getByText("E-Commerces")).toBeInTheDocument();
     const icons = container.querySelectorAll("li svg");
     expect(icons).toHaveLength(5);
     icons.forEach((icon) => expect(icon).toHaveAttribute("aria-hidden", "true"));
