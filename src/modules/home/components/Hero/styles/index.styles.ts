@@ -108,7 +108,8 @@ export const styles = {
     rounded-md
     font-mono
     text-base
-    text-[var(--ds-color-border-strong)]
+    font-semibold
+    text-[var(--ds-color-muted)]
     transition-colors
     duration-150
     hover:text-[var(--ds-color-accent)]

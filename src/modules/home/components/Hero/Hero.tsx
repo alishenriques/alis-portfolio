@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Check, Mail, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -21,6 +21,7 @@ const SLIDE_COUNT = 2;
 const SLIDE2_FEATURE_KEYS = ["GBP", "WHATSAPP", "PAGE", "AI"] as const;
 // Slide 2's own accent — see styles/index.styles.ts for the rest of its usages.
 const SLIDE2_ACCENT = "#38bdf8";
+const AUTOPLAY_INTERVAL_MS = 5000;
 
 /**
  * The `</>` glyphs double as the slide's prev/next controls — clicking either
@@ -36,6 +37,16 @@ export function Hero() {
 
   const goPrev = () => setSlide((current) => (current + SLIDE_COUNT - 1) % SLIDE_COUNT);
   const goNext = () => setSlide((current) => (current + 1) % SLIDE_COUNT);
+
+  // Re-runs (restarting the 5s countdown) on every slide change, including a
+  // manual click — so clicking next/prev doesn't feel like it's fighting the
+  // autoplay. Skipped entirely under prefers-reduced-motion, same as every
+  // other animation in this component.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(goNext, AUTOPLAY_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [slide]);
 
   return (
     <section className={styles.root}>
@@ -84,7 +95,7 @@ export function Hero() {
           </button>
         </div>
 
-        <GrowthTrace color={slide === 1 ? SLIDE2_ACCENT : undefined} />
+        <GrowthTrace key={slide} color={slide === 1 ? SLIDE2_ACCENT : undefined} />
 
         <div aria-live="polite" className={styles.slideBody}>
           {slide === 0 ? (
