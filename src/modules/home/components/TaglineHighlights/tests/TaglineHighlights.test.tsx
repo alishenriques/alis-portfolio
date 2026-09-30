@@ -11,23 +11,25 @@ const messages = {
       PERFORMANCE: "Performance",
       SCALABILITY: "Escalabilidade",
       AI_ASSISTED: "Engenharia de Software Assistida por IA",
+      ECOMMERCE: "E-Commerce",
     },
   },
 };
 
 describe("TaglineHighlights", () => {
-  it("renders the four highlights, each with a decorative icon", () => {
+  it("renders the five highlights, each with a decorative icon", () => {
     const { container } = render(
       <NextIntlClientProvider locale="pt" messages={messages}>
         <TaglineHighlights />
       </NextIntlClientProvider>,
     );
 
-    expect(screen.getAllByRole("listitem")).toHaveLength(4);
+    expect(screen.getAllByRole("listitem")).toHaveLength(5);
     expect(screen.getByText("Interfaces modernas")).toBeInTheDocument();
     expect(screen.getByText("Engenharia de Software Assistida por IA")).toBeInTheDocument();
+    expect(screen.getByText("E-Commerce")).toBeInTheDocument();
     const icons = container.querySelectorAll("li svg");
-    expect(icons).toHaveLength(4);
+    expect(icons).toHaveLength(5);
     icons.forEach((icon) => expect(icon).toHaveAttribute("aria-hidden", "true"));
   });
 });

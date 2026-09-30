@@ -57,6 +57,17 @@ export function ScalabilityIcon(props: IconProps) {
   );
 }
 
+/** A shopping cart, one wheel picked out in the accent color. */
+export function EcommerceIcon(props: IconProps) {
+  return (
+    <BaseIcon {...props}>
+      <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L20.5 8H6" />
+      <circle cx="9.5" cy="20" r="1.3" />
+      <circle cx="16.5" cy="20" r="1.3" className="fill-[var(--ds-color-accent)] stroke-[var(--ds-color-accent)]" />
+    </BaseIcon>
+  );
+}
+
 /** A microchip with a sparkle at its core: engineering with an AI assist. */
 export function AiAssistedIcon(props: IconProps) {
   return (

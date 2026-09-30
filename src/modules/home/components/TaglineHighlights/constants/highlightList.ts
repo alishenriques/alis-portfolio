@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 
-import { AiAssistedIcon, ModernUiIcon, PerformanceIcon, ScalabilityIcon } from "../icons";
+import { AiAssistedIcon, EcommerceIcon, ModernUiIcon, PerformanceIcon, ScalabilityIcon } from "../icons";
 
 import type { IconProps } from "../icons";
 
@@ -16,4 +16,5 @@ export const highlightList: HighlightItem[] = [
   { id: "performance", messageKey: "PERFORMANCE", icon: PerformanceIcon },
   { id: "scalability", messageKey: "SCALABILITY", icon: ScalabilityIcon },
   { id: "ai-assisted", messageKey: "AI_ASSISTED", icon: AiAssistedIcon },
+  { id: "ecommerce", messageKey: "ECOMMERCE", icon: EcommerceIcon },
 ];
