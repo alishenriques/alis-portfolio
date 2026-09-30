@@ -72,6 +72,14 @@ body {
   }
 }
 
+/* Hero's slide toggle: headline/subtitle fade and settle in on each switch. */
+@keyframes slide-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
 @keyframes breathe {
   0%,
   100% {

@@ -18,6 +18,20 @@
     "EYEBROW": "Alisson Henriques · Desenvolvedor Front‑End Sênior",
     "HEADLINE": "Arquitetura de front‑end que <hl>escala</hl> — construída com engenharia e IA.",
     "SUBTITLE": "Especialista em desenvolvimento de interfaces modernas, performáticas e escaláveis, com foco em <hl>experiência do usuário</hl>, <hl>componentes reutilizáveis</hl> e <hl>código limpo</hl>.",
+    "SLIDE_NAV": {
+      "PREV": "Slide anterior",
+      "NEXT": "Próximo slide"
+    },
+    "SLIDE2": {
+      "HEADLINE": "Quer <hl>vender mais</hl> nessa temporada?",
+      "SUBTITLE": "Um pacote fechado pra pousadas, passeios e restaurantes — pronto antes de dezembro, pra você <hl>vender mais</hl> sem dor de cabeça.",
+      "FEATURES": {
+        "GBP": "Google Meu Negócio arrumado",
+        "WHATSAPP": "WhatsApp Business configurado",
+        "PAGE": "Página com link de reserva",
+        "AI": "Atendente de IA (opcional)"
+      }
+    },
     "FEATURES": {
       "TITLE": "O que eu valorizo",
       "TYPESCRIPT": { "LABEL": "Tipagem forte", "HIGHLIGHT": "com TypeScript" },
