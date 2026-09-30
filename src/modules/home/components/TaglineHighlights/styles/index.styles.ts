@@ -10,11 +10,6 @@ export const styles = {
     px-4
   `,
 
-  // w-fit: without it, a flex-wrap row lets a shrunk item keep its
-  // pre-wrap ("auto" flex-basis) width even once its own text wraps onto
-  // two lines — the box stays as wide as the unwrapped text needed, so the
-  // wrapped lines sit in a much wider pill than they need, looking like
-  // stray padding. w-fit re-measures against the actual (wrapped) content.
   item: `
     group
     inline-flex
@@ -53,5 +48,17 @@ export const styles = {
     motion-reduce:transition-none
     motion-reduce:group-hover:rotate-0
     motion-reduce:group-hover:scale-100
+  `,
+
+  // CSS `fit-content` isn't "the tightest box around however the text ends
+  // up wrapping" — it's bounded by the row's *available* space, which for
+  // a lone item on its own row is nearly the full row width. That's why
+  // .item's own w-fit alone didn't tighten the AI-Assisted/E-Commerces
+  // pills: the label's own max-content (its single-line width) was still
+  // wide enough to make "available space" the binding constraint. Capping
+  // the label itself bounds that max-content directly, so .item's fit-content
+  // resolves against a genuinely small number instead.
+  label: `
+    max-w-[210px]
   `,
 };

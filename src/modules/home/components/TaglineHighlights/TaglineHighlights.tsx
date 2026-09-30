@@ -11,7 +11,7 @@ export function TaglineHighlights() {
       {highlightList.map((item) => (
         <li key={item.id} className={styles.item}>
           <item.icon className={styles.icon} />
-          {t(item.messageKey)}
+          <span className={styles.label}>{t(item.messageKey)}</span>
         </li>
       ))}
     </ul>
