@@ -134,6 +134,22 @@ export const styles = {
     text-[var(--ds-color-accent)]
   `,
 
+  // "<front-end>", styled like an HTML tag: terminal font instead of the
+  // headline's display face, high weight (matching the rest of the
+  // headline, not the mono font's own lighter default) so it reads as part
+  // of the sentence rather than clashing with it.
+  titleTag: `
+    inline-block
+    whitespace-nowrap
+    font-[family-name:var(--ds-font-mono)]
+    font-extrabold
+    text-[var(--ds-color-accent)]
+  `,
+
+  titleTagBracket: `
+    text-[var(--ds-color-muted)]
+  `,
+
   titleHighlight2: `
     text-[#38bdf8]
   `,

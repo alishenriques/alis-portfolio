@@ -58,6 +58,17 @@ export function Hero() {
             <h1 key="title-0" className={styles.title}>
               {t.rich("HEADLINE", {
                 hl: (chunks) => <span className={styles.titleHighlight}>{chunks}</span>,
+                tag: (chunks) => (
+                  <span className={styles.titleTag}>
+                    <span className={styles.titleTagBracket} aria-hidden="true">
+                      {"<"}
+                    </span>
+                    {chunks}
+                    <span className={styles.titleTagBracket} aria-hidden="true">
+                      {">"}
+                    </span>
+                  </span>
+                ),
               })}
             </h1>
           ) : (

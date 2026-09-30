@@ -7,7 +7,7 @@ import { Hero } from "../Hero";
 const messages = {
   HOME: {
     EYEBROW: "Alisson Henriques · Desenvolvedor Front‑End Sênior",
-    HEADLINE: "Arquitetura de front‑end que <hl>escala</hl> — construída com engenharia e IA.",
+    HEADLINE: "Arquitetura de <tag>front-end</tag> que <hl>escala</hl> — construída com engenharia e IA.",
     SUBTITLE: "Foco em <hl>experiência do usuário</hl>.",
     SLIDE_NAV: {
       PREV: "Slide anterior",
@@ -45,7 +45,7 @@ describe("Hero", () => {
     renderHero();
 
     expect(
-      screen.getByRole("heading", { level: 1, name: /Arquitetura de front‑end que escala/ }),
+      screen.getByRole("heading", { level: 1, name: /Arquitetura de front-end que escala/ }),
     ).toBeInTheDocument();
     expect(screen.getByText("escala")).toBeInTheDocument();
     expect(screen.getByText("Alisson Henriques · Desenvolvedor Front‑End Sênior")).toBeInTheDocument();
@@ -76,7 +76,7 @@ describe("Hero", () => {
     expect(growthTraceSvg()?.getAttribute("style") ?? "").not.toContain("--growth-trace-color");
 
     expect(
-      screen.getByRole("heading", { level: 1, name: /Arquitetura de front‑end que escala/ }),
+      screen.getByRole("heading", { level: 1, name: /Arquitetura de front-end que escala/ }),
     ).toBeInTheDocument();
   });
 });
