@@ -33,7 +33,7 @@ const messages = {
 };
 
 function renderHero() {
-  render(
+  return render(
     <NextIntlClientProvider locale="pt" messages={messages}>
       <Hero />
     </NextIntlClientProvider>,
@@ -57,7 +57,8 @@ describe("Hero", () => {
   });
 
   it("swaps to the services pitch when the next control is clicked, and back on prev", () => {
-    renderHero();
+    const { container } = renderHero();
+    const growthTraceSvg = () => container.querySelector('svg[viewBox="0 0 260 40"]');
 
     fireEvent.click(screen.getByRole("button", { name: "Próximo slide" }));
 
@@ -68,8 +69,11 @@ describe("Hero", () => {
     expect(screen.getByText("Atendente de IA (opcional)")).toBeInTheDocument();
     // Constant chrome stays put across slides.
     expect(screen.getByText("alishenriques@gmail.com")).toBeInTheDocument();
+    // The growth-chart SVG picks up slide 2's own accent too.
+    expect(growthTraceSvg()).toHaveStyle({ "--growth-trace-color": "#38bdf8" });
 
     fireEvent.click(screen.getByRole("button", { name: "Slide anterior" }));
+    expect(growthTraceSvg()?.getAttribute("style") ?? "").not.toContain("--growth-trace-color");
 
     expect(
       screen.getByRole("heading", { level: 1, name: /Arquitetura de front‑end que escala/ }),

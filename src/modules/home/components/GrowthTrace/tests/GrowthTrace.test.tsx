@@ -12,4 +12,14 @@ describe("GrowthTrace", () => {
     expect(svg?.querySelector("path")).toHaveAttribute("pathLength", "1");
     expect(svg?.querySelector("circle")).not.toBeNull();
   });
+
+  it("defaults to the DS accent color, uncustomized", () => {
+    const { container } = render(<GrowthTrace />);
+    expect(container.querySelector("svg")).not.toHaveAttribute("style");
+  });
+
+  it("lets a consumer override the line/marker color", () => {
+    const { container } = render(<GrowthTrace color="#38bdf8" />);
+    expect(container.querySelector("svg")).toHaveStyle({ "--growth-trace-color": "#38bdf8" });
+  });
 });

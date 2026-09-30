@@ -19,6 +19,8 @@ const CONTACT_PHONE = "(11) 98118-4672";
 // a real /servicos page is planned (see roadmap.md), which may add a third.
 const SLIDE_COUNT = 2;
 const SLIDE2_FEATURE_KEYS = ["GBP", "WHATSAPP", "PAGE", "AI"] as const;
+// Slide 2's own accent — see styles/index.styles.ts for the rest of its usages.
+const SLIDE2_ACCENT = "#38bdf8";
 
 /**
  * The `</>` glyphs double as the slide's prev/next controls — clicking either
@@ -71,7 +73,7 @@ export function Hero() {
           </button>
         </div>
 
-        <GrowthTrace />
+        <GrowthTrace color={slide === 1 ? SLIDE2_ACCENT : undefined} />
 
         <div aria-live="polite" className={styles.slideBody}>
           {slide === 0 ? (
