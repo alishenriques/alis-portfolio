@@ -102,5 +102,33 @@
     "LABEL": "Rodapé",
     "GITHUB": "Perfil do GitHub de Alisson Henriques",
     "LINKEDIN": "Perfil do LinkedIn de Alisson Henriques"
+  },
+  "SEO": {
+    "SITE_NAME": "Alisson Henriques",
+    "DEFAULT_DESCRIPTION": "Portfólio de Alisson Henriques, desenvolvedor front-end sênior: arquitetura de front-end escalável com React, Next.js e TypeScript, projetos reais e serviços digitais para o seu negócio.",
+    "PAGES": {
+      "HOME": {
+        "TITLE": "Alisson Henriques · Desenvolvedor Front-End Sênior",
+        "DESCRIPTION": "Arquitetura de front-end que escala, construída com engenharia e IA. Portfólio, projetos e serviços digitais de Alisson Henriques, desenvolvedor front-end sênior.",
+        "OG_HEADLINE": "Arquitetura de front-end que escala."
+      },
+      "ABOUT": {
+        "TITLE": "Sobre",
+        "DESCRIPTION": "Conheça Alisson Henriques: mais de 20 anos em TI, formação, filosofia de carreira e como a IA faz parte do seu fluxo de trabalho.",
+        "OG_HEADLINE": "Sobre mim"
+      },
+      "CORPORATE": {
+        "TITLE": "Experiência corporativa",
+        "DESCRIPTION": "Experiência corporativa de Alisson Henriques no setor privado: mais de 20 anos de carreira em TI e desenvolvimento front-end.",
+        "OG_HEADLINE": "Experiência corporativa"
+      },
+      "PROJECTS": {
+        "TITLE": "Projetos",
+        "DESCRIPTION": "Projetos reais de Alisson Henriques, do primeiro commit ao ar: e-commerces, sites institucionais e produtos digitais.",
+        "OG_HEADLINE": "Projetos, do primeiro commit ao ar"
+      }
+    },
+    "OG_ROLE": "Desenvolvedor Front-End Sênior",
+    "OG_ALT": "{title} · Alisson Henriques"
   }
 }
