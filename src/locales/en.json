@@ -102,5 +102,33 @@
     "LABEL": "Footer",
     "GITHUB": "Alisson Henriques on GitHub",
     "LINKEDIN": "Alisson Henriques on LinkedIn"
+  },
+  "SEO": {
+    "SITE_NAME": "Alisson Henriques",
+    "DEFAULT_DESCRIPTION": "Portfolio of Alisson Henriques, senior front-end developer: scalable front-end architecture with React, Next.js and TypeScript, real projects and digital services for your business.",
+    "PAGES": {
+      "HOME": {
+        "TITLE": "Alisson Henriques · Senior Front-End Developer",
+        "DESCRIPTION": "Front-end architecture that scales, built with engineering and AI. Portfolio, projects and digital services by Alisson Henriques, senior front-end developer.",
+        "OG_HEADLINE": "Front-end architecture that scales."
+      },
+      "ABOUT": {
+        "TITLE": "About",
+        "DESCRIPTION": "Meet Alisson Henriques: 20+ years in IT, education, career philosophy and the role AI plays in day-to-day engineering work.",
+        "OG_HEADLINE": "About me"
+      },
+      "CORPORATE": {
+        "TITLE": "Corporate experience",
+        "DESCRIPTION": "Alisson Henriques's corporate experience in the private sector: a 20+ year career in IT and front-end development.",
+        "OG_HEADLINE": "Corporate experience"
+      },
+      "PROJECTS": {
+        "TITLE": "Projects",
+        "DESCRIPTION": "Real projects by Alisson Henriques, from first commit to live: e-commerce, institutional sites and digital products.",
+        "OG_HEADLINE": "Projects, from first commit to live"
+      }
+    },
+    "OG_ROLE": "Senior Front-End Developer",
+    "OG_ALT": "{title} · Alisson Henriques"
   }
 }

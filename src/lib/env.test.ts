@@ -15,4 +15,13 @@ describe("loadPublicEnv", () => {
   it("rejects an invalid URL", () => {
     expect(() => loadPublicEnv({ NEXT_PUBLIC_GRAPHQL_URL: "not-a-url" })).toThrow();
   });
+
+  it("falls back to the production site URL", () => {
+    expect(loadPublicEnv({}).NEXT_PUBLIC_SITE_URL).toBe("https://alis-portfolio-three.vercel.app");
+  });
+
+  it("accepts a custom site URL and rejects an invalid one", () => {
+    expect(loadPublicEnv({ NEXT_PUBLIC_SITE_URL: "https://alis.dev" }).NEXT_PUBLIC_SITE_URL).toBe("https://alis.dev");
+    expect(() => loadPublicEnv({ NEXT_PUBLIC_SITE_URL: "alis.dev" })).toThrow();
+  });
 });

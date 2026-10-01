@@ -1,11 +1,13 @@
 import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 
 import "@alishenriques/design-system/styles.css";
 import "../globals.css";
 import { routing } from "@/i18n/routing";
+import { loadPublicEnv } from "@/lib/env";
+import { resolveLocale, type LocaleParams } from "@/lib/pageMetadata";
 import { Layout } from "@/modules/layout";
 
 import type { Metadata } from "next";
@@ -32,10 +34,23 @@ const archivo = Archivo({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Alisson Henriques — Portfolio",
-  description: "Interactive portfolio of Alisson Henriques.",
-};
+// Site-wide defaults. Each page's generateMetadata adds its own title,
+// description, canonical, hreflang and social tags on top (see lib/seo.ts).
+export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: "SEO" });
+  const siteName = t("SITE_NAME");
+
+  return {
+    metadataBase: new URL(loadPublicEnv().NEXT_PUBLIC_SITE_URL),
+    title: { default: t("PAGES.HOME.TITLE"), template: `%s | ${siteName}` },
+    description: t("DEFAULT_DESCRIPTION"),
+    applicationName: siteName,
+    authors: [{ name: siteName }],
+    creator: siteName,
+    robots: { index: true, follow: true },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

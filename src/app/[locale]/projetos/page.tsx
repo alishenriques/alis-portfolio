@@ -1,6 +1,13 @@
+import { getPageMetadata, type LocaleParams } from "@/lib/pageMetadata";
 import { Projects } from "@/modules/projects";
 
+import type { Metadata } from "next";
+
 export const dynamic = "force-dynamic";
+
+export function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
+  return getPageMetadata(params, "PROJECTS");
+}
 
 type PageProps = {
   searchParams: Promise<{ project?: string | string[] }>;
