@@ -50,14 +50,7 @@ export const styles = {
     motion-reduce:group-hover:scale-100
   `,
 
-  // CSS `fit-content` isn't "the tightest box around however the text ends
-  // up wrapping" — it's bounded by the row's *available* space, which for
-  // a lone item on its own row is nearly the full row width. That's why
-  // .item's own w-fit alone didn't tighten the AI-Assisted/E-Commerces
-  // pills: the label's own max-content (its single-line width) was still
-  // wide enough to make "available space" the binding constraint. Capping
-  // the label itself bounds that max-content directly, so .item's fit-content
-  // resolves against a genuinely small number instead.
+  // Caps long labels so they wrap into a tight pill instead of stretching the row.
   label: `
     max-w-[210px]
   `,

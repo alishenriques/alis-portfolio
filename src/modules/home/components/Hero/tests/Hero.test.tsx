@@ -23,7 +23,6 @@ const messages = {
       MODERN_UI: "Interfaces modernas",
       PERFORMANCE: "Performance",
       SCALABILITY: "Escalabilidade",
-      AI_ASSISTED: "Engenharia de Software Assistida por IA",
     },
   },
 };
@@ -47,7 +46,6 @@ describe("Hero", () => {
     expect(screen.getByText("Alisson Henriques · Desenvolvedor Front‑End Sênior")).toBeInTheDocument();
     expect(screen.getByText("experiência do usuário")).toBeInTheDocument();
     expect(screen.getByText("Interfaces modernas")).toBeInTheDocument();
-    expect(screen.getByText("Engenharia de Software Assistida por IA")).toBeInTheDocument();
     expect(screen.getByText("alishenriques@gmail.com")).toBeInTheDocument();
     expect(screen.getByText("(11) 98118-4672")).toBeInTheDocument();
   });

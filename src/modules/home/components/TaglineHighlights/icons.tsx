@@ -4,7 +4,7 @@ export type IconProps = SVGProps<SVGSVGElement>;
 
 /**
  * Small hand-drawn icons for the hero tagline: 24x24 grid, 1.75 stroke, rounded caps,
- * each with a playful detail (cursor, speed lines, growing bars, sparkle).
+ * each with a playful detail (cursor, speed lines, growing bars).
  * `currentColor` for the main stroke, the accent for the fun bits.
  */
 function BaseIcon(props: IconProps) {
@@ -53,31 +53,6 @@ export function ScalabilityIcon(props: IconProps) {
       <path d="M4 20v-4M10 20v-8M16 20V9" />
       <path d="M3 20.5h17" />
       <path d="M13 4h7v7M20 4l-8 8" className="stroke-[var(--ds-color-accent)]" />
-    </BaseIcon>
-  );
-}
-
-/** A shopping cart, one wheel picked out in the accent color. */
-export function EcommerceIcon(props: IconProps) {
-  return (
-    <BaseIcon {...props}>
-      <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L20.5 8H6" />
-      <circle cx="9.5" cy="20" r="1.3" />
-      <circle cx="16.5" cy="20" r="1.3" className="fill-[var(--ds-color-accent)] stroke-[var(--ds-color-accent)]" />
-    </BaseIcon>
-  );
-}
-
-/** A microchip with a sparkle at its core: engineering with an AI assist. */
-export function AiAssistedIcon(props: IconProps) {
-  return (
-    <BaseIcon {...props}>
-      <rect x="5" y="5" width="14" height="14" rx="3" />
-      <path d="M9 2.5V5M15 2.5V5M9 19v2.5M15 19v2.5M2.5 9H5M2.5 15H5M19 9h2.5M19 15h2.5" />
-      <path
-        d="M12 8.2l1.1 2.7 2.7 1.1-2.7 1.1L12 15.8l-1.1-2.7L8.2 12l2.7-1.1z"
-        className="fill-[var(--ds-color-accent)] stroke-[var(--ds-color-accent)]"
-      />
     </BaseIcon>
   );
 }
