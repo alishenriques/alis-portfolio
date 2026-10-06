@@ -24,6 +24,23 @@
 
 ## Git
 
-- Default branch `main`. Work on feature branches and open PRs once CI exists.
+- Default branch `main`. Work on feature branches (one branch per change).
 - Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`, `test:`).
 - Never commit `.env*` (except `.env.example`), `dist/`, `node_modules/`.
+
+## Pull requests (user rule, 2026-10-06)
+
+Every big change (the SEO work is the reference example: new features, pages, components, refactors, schema changes, anything touching more than a small fix) follows this flow, in every repo of the ecosystem:
+
+1. **Branch**: create a new branch from up-to-date `main`.
+2. **PR**: open a detailed, informative PR so Alisson can evaluate it without reading the code first. The body covers:
+   - **What changed** and **what it is about** (context).
+   - **The problem it solves** (why now, what was wrong or missing).
+   - **New or changed components**: what each is for and how to use it (props, a usage snippet), plus the DS version bump when there is one.
+   - **Architecture decisions** and alternatives discarded, when there were any.
+   - **How it was verified** (lint/typecheck/test/build results, a preview URL or screenshots for visual changes) and anything left out on purpose.
+   - Cross-links to the matching PRs in the other repos when a change spans several.
+3. **Review**: Alisson comments on the PR asking for structural, visual, architectural or convention fixes. Reply to each comment on its thread, push the fix to the same branch, and keep the PR description current.
+4. **Merge only after his explicit approval on the PR.** Never merge on your own, not even when CI is green.
+
+Small fixes may still go on a branch with a short PR; when in doubt, treat the change as big.

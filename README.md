@@ -1,8 +1,14 @@
 # Alis Portfolio
 
-Portfólio online interativo e animado de Alisson Henriques (`alishenriques`). Este é o **repositório principal** do ecossistema; ele consome o design system e a API descritos abaixo.
+Portfólio online interativo e animado de Alisson Henriques (`alishenriques`), focado na **carreira corporativa** (programador, líder técnico, analista de sistemas, arquiteto de software). Este é o **repositório principal** do ecossistema; ele consome o design system e a API descritos abaixo.
+
+> Serviços autônomos (soluções digitais para PMEs e empreendedores) não fazem parte deste site: terão um site de vendas próprio, alimentado pela mesma API e pelo mesmo design system.
 
 > Agentes de IA: leia [`CLAUDE.md`](CLAUDE.md) e [`docs/ai/`](docs/ai/) antes de alterar qualquer coisa.
+
+## Fluxo de contribuição
+
+Mudanças grandes vão em uma branch nova com uma PR detalhada (o que mudou, qual problema resolve, como usar componentes novos, decisões de arquitetura). Nada entra na `main` sem aprovação explícita do Alisson na PR. Detalhes em [`docs/ai/conventions.md`](docs/ai/conventions.md#pull-requests-user-rule-2026-10-06).
 
 ## Ecossistema
 
