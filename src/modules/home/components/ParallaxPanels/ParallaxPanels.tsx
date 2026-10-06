@@ -2,47 +2,30 @@
 
 import { useEffect, useRef } from "react";
 
-import { cn } from "@/lib/utils";
-
+import { AiDecorations } from "./decorations/AiDecorations";
+import { CodeDecorations } from "./decorations/CodeDecorations";
+import { parallaxTransform } from "./decorations/Floating";
 import { styles } from "./styles/index.styles";
 
-const CODE_SNIPPET = [
-  "import React from 'react'",
-  "import { Container, Title } from './ui'",
-  "",
-  "export default function Home() {",
-  "  return (",
-  "    <Container>",
-  "      <Title>Front-end com foco",
-  "        em performance</Title>",
-  "    </Container>",
-  "  )",
-  "}",
-];
+export type ParallaxVariant = "code" | "ai";
 
-const FILE_TREE = [
-  { label: "src", depth: 0, kind: "dir" as const },
-  { label: "components", depth: 1, kind: "dir" as const },
-  { label: "pages", depth: 1, kind: "dir" as const },
-  { label: "hooks", depth: 1, kind: "dir" as const },
-  { label: "utils", depth: 1, kind: "dir" as const },
-  { label: "styles", depth: 1, kind: "dir" as const },
-  { label: "services", depth: 1, kind: "dir" as const },
-  { label: "index.tsx", depth: 0, kind: "file" as const },
-  { label: "tsconfig.json", depth: 0, kind: "file" as const },
-];
+type ParallaxPanelsProps = {
+  /** Which set of decorations is shown; the other one fades out. Defaults to `"code"`. */
+  variant?: ParallaxVariant;
+};
 
 /**
- * Two decorative "floating window" panels (a code snippet and a file tree)
- * that tilt gently toward the pointer — a lightweight, JS-driven parallax
- * (no scroll listener; the hero sits above the fold, so pointer position is
- * what's available to react to). Static on touch devices and when the
- * visitor prefers reduced motion.
+ * Decorative floating elements around the hero that tilt gently toward the
+ * pointer — a lightweight, JS-driven parallax (no scroll listener; the hero
+ * sits above the fold, so pointer position is what's available to react to).
+ * Two sets, one per hero slide: a code editor + file tree (`"code"`), and AI
+ * logos, a pixel robot and agile charts (`"ai"`). Both stay mounted and
+ * crossfade on `variant` changes. Each element opts in with `Floating`'s
+ * `data-parallax` attributes. Static on touch devices and when the visitor
+ * prefers reduced motion.
  */
-export function ParallaxPanels() {
+export function ParallaxPanels({ variant = "code" }: ParallaxPanelsProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const codeRef = useRef<HTMLDivElement>(null);
-  const treeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -50,17 +33,15 @@ export function ParallaxPanels() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
+    const elements = Array.from(root.querySelectorAll<HTMLElement>("[data-parallax]"));
     let frame: number | null = null;
 
     function apply(x: number, y: number) {
-      codeRef.current?.style.setProperty(
-        "transform",
-        `rotate(${(-4 + y * 4).toFixed(2)}deg) translate(${(x * -12).toFixed(1)}px, ${(y * -12).toFixed(1)}px)`,
-      );
-      treeRef.current?.style.setProperty(
-        "transform",
-        `rotate(${(4 + y * 4).toFixed(2)}deg) translate(${(x * 12).toFixed(1)}px, ${(y * 12).toFixed(1)}px)`,
-      );
+      for (const element of elements) {
+        const rotate = Number(element.dataset.rotate ?? 0);
+        const depth = Number(element.dataset.depth ?? 1);
+        element.style.setProperty("transform", parallaxTransform(rotate, depth, x, y));
+      }
     }
 
     function onPointerMove(event: PointerEvent) {
@@ -83,40 +64,8 @@ export function ParallaxPanels() {
 
   return (
     <div ref={rootRef} className={styles.root} aria-hidden="true">
-      <div ref={codeRef} className={cn(styles.panelBase, styles.codePanel)}>
-        <div className={styles.panelChrome}>
-          <span className={styles.dot} />
-          <span className={styles.dot} />
-          <span className={styles.dot} />
-        </div>
-        <pre className={styles.code}>
-          {CODE_SNIPPET.map((line, index) => (
-            <div key={index} className={styles.codeLine}>
-              <span className={styles.lineNumber}>{index + 1}</span>
-              {line}
-            </div>
-          ))}
-        </pre>
-      </div>
-
-      <div ref={treeRef} className={cn(styles.panelBase, styles.treePanel)}>
-        <div className={styles.panelChrome}>
-          <span className={styles.dot} />
-          <span className={styles.dot} />
-          <span className={styles.dot} />
-        </div>
-        <ul className={styles.tree}>
-          {FILE_TREE.map((entry) => (
-            <li
-              key={entry.label}
-              className={styles.treeItem}
-              style={{ paddingLeft: `${entry.depth * 14 + 8}px` }}
-            >
-              {entry.kind === "dir" ? "📁" : "📄"} {entry.label}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <CodeDecorations active={variant === "code"} />
+      <AiDecorations active={variant === "ai"} />
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { Check, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Logo } from "@/shared/components/Logo";
@@ -15,21 +15,19 @@ import { styles } from "./styles/index.styles";
 const CONTACT_EMAIL = "alishenriques@gmail.com";
 const CONTACT_PHONE = "(11) 98118-4672";
 
-// Two slides for now (the default dev pitch, and a freelance-services pitch);
-// a real /servicos page is planned (see roadmap.md), which may add a third.
+// Two slides: the default dev pitch, and AI-assisted development.
 const SLIDE_COUNT = 2;
-const SLIDE2_FEATURE_KEYS = ["GBP", "WHATSAPP", "PAGE", "AI"] as const;
 // Slide 2's own accent — see styles/index.styles.ts for the rest of its usages.
 const SLIDE2_ACCENT = "#38bdf8";
 const AUTOPLAY_INTERVAL_MS = 12000;
 
 /**
  * The `</>` glyphs double as the slide's prev/next controls — clicking either
- * one toggles between the default dev-focused pitch and a freelance-services
- * pitch (slide 2's own accent color, blue, is the one deliberate departure
- * from the site's single-accent lime palette). Only the headline/subtitle
- * block and the background glow change between slides; identity chrome
- * (logo, eyebrow, contact row) stays constant.
+ * one toggles between the default dev-focused pitch and an AI-assisted
+ * development pitch (slide 2's own accent color, blue, is the one deliberate
+ * departure from the site's single-accent lime palette). The headline/subtitle
+ * block, the background glow and the floating parallax decorations change
+ * between slides; identity chrome (logo, eyebrow, contact row) stays constant.
  */
 export function Hero() {
   const t = useTranslations("HOME");
@@ -64,7 +62,7 @@ export function Hero() {
       <div className={slide === 0 ? styles.glowActive : styles.glow} aria-hidden="true" />
       <div className={slide === 1 ? styles.glow2Active : styles.glow2} aria-hidden="true" />
 
-      <ParallaxPanels />
+      <ParallaxPanels variant={slide === 1 ? "ai" : "code"} />
 
       <div className={styles.content}>
         <Logo />
@@ -116,21 +114,11 @@ export function Hero() {
               })}
             </p>
           ) : (
-            <div key="body-1" className={styles.slide2}>
-              <p className={styles.subtitle}>
-                {t.rich("SLIDE2.SUBTITLE", {
-                  hl: (chunks) => <span className={styles.subtitleHighlight2}>{chunks}</span>,
-                })}
-              </p>
-              <ul className={styles.featureList}>
-                {SLIDE2_FEATURE_KEYS.map((key) => (
-                  <li key={key} className={styles.featureItem}>
-                    <Check size={14} className={styles.featureIcon} aria-hidden="true" />
-                    {t(`SLIDE2.FEATURES.${key}`)}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p key="body-1" className={styles.subtitle}>
+              {t.rich("SLIDE2.SUBTITLE", {
+                hl: (chunks) => <span className={styles.subtitleHighlight2}>{chunks}</span>,
+              })}
+            </p>
           )}
         </div>
 

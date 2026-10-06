@@ -212,45 +212,6 @@ export const styles = {
     text-[#38bdf8]
   `,
 
-  slide2: `
-    flex
-    flex-col
-    items-center
-    gap-4
-  `,
-
-  // Own animation (not just inherited from .subtitle's) so the chips don't
-  // pop in ahead of the paragraph above them.
-  featureList: `
-    flex
-    flex-wrap
-    items-center
-    justify-center
-    gap-2
-    animate-[slide-reveal_0.5s_ease-out_0.1s_backwards]
-    motion-reduce:animate-none
-  `,
-
-  featureItem: `
-    inline-flex
-    items-center
-    gap-1.5
-    rounded-full
-    border
-    border-[rgba(56,189,248,0.35)]
-    bg-[rgba(56,189,248,0.08)]
-    px-3
-    py-1
-    font-mono
-    text-xs
-    text-[var(--ds-color-fg)]
-  `,
-
-  featureIcon: `
-    flex-none
-    text-[#38bdf8]
-  `,
-
   dots: `
     flex
     items-center
