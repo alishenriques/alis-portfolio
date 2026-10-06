@@ -25,14 +25,8 @@
       "GOTO": "Go to slide {number}"
     },
     "SLIDE2": {
-      "HEADLINE": "<hl>Digital</hl> products and services to help your business <hl>sell more</hl>.",
-      "SUBTITLE": "Solutions to <hl>grow your sales</hl> through digital products and services built around your business.",
-      "FEATURES": {
-        "GBP": "Google Business Profile, sorted",
-        "WHATSAPP": "WhatsApp Business set up",
-        "PAGE": "Booking-link landing page",
-        "AI": "AI-powered support"
-      }
+      "HEADLINE": "<hl>AI</hl>-assisted development with <hl>architectural precision</hl>.",
+      "SUBTITLE": "AI in service of engineering, guided by a product and business mindset, to <hl>ship faster without losing quality</hl>."
     },
     "FEATURES": {
       "TITLE": "What I value",

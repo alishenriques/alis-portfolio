@@ -25,14 +25,8 @@
       "GOTO": "Ir para o slide {number}"
     },
     "SLIDE2": {
-      "HEADLINE": "Produtos e serviços <hl>digitais</hl> para o seu negócio <hl>vender mais</hl>.",
-      "SUBTITLE": "Soluções para <hl>aumentar as suas vendas</hl> através de serviços e produtos digitais desenhados pensando no seu negócio.",
-      "FEATURES": {
-        "GBP": "Google Meu Negócio arrumado",
-        "WHATSAPP": "WhatsApp Business configurado",
-        "PAGE": "Página com link de reserva",
-        "AI": "Atendimento com IA"
-      }
+      "HEADLINE": "Programação assistida por <hl>IA</hl> com <hl>precisão arquitetural</hl>.",
+      "SUBTITLE": "IA a serviço da engenharia, guiada por visão de produto e de negócio, para <hl>acelerar entregas sem perder qualidade</hl>."
     },
     "FEATURES": {
       "TITLE": "O que eu valorizo",

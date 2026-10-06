@@ -102,3 +102,14 @@ body {
     transform: scale(1.05);
   }
 }
+
+/* Hero's AI decorations (ParallaxPanels): the pixel robot bobs gently in place. */
+@keyframes float-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}

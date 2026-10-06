@@ -16,14 +16,8 @@ const messages = {
       GOTO: "Ir para o slide {number}",
     },
     SLIDE2: {
-      HEADLINE: "Quer <hl>vender mais</hl> nessa temporada?",
-      SUBTITLE: "Pacote pra <hl>vender mais</hl>.",
-      FEATURES: {
-        GBP: "Google Meu Negócio arrumado",
-        WHATSAPP: "WhatsApp Business configurado",
-        PAGE: "Página com link de reserva",
-        AI: "Atendente de IA (opcional)",
-      },
+      HEADLINE: "Programação assistida por <hl>IA</hl> com <hl>precisão arquitetural</hl>.",
+      SUBTITLE: "IA para <hl>acelerar entregas sem perder qualidade</hl>.",
     },
     TAGLINE: {
       MODERN_UI: "Interfaces modernas",
@@ -58,17 +52,22 @@ describe("Hero", () => {
     expect(screen.getByText("(11) 98118-4672")).toBeInTheDocument();
   });
 
-  it("swaps to the services pitch when the next control is clicked, and back on prev", () => {
+  it("swaps to the AI-assisted development pitch when the next control is clicked, and back on prev", () => {
     const { container } = renderHero();
     const growthTraceSvg = () => container.querySelector('svg[viewBox="0 0 260 40"]');
+    const decor = (name: string) => container.querySelector(`[data-decor="${name}"]`);
+    expect(decor("code")).toHaveAttribute("data-active", "true");
+    expect(decor("ai")).toHaveAttribute("data-active", "false");
 
     fireEvent.click(screen.getByRole("button", { name: "Próximo slide" }));
 
     expect(
-      screen.getByRole("heading", { level: 1, name: /Quer vender mais nessa temporada/ }),
+      screen.getByRole("heading", { level: 1, name: /Programação assistida por IA com precisão arquitetural/ }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Google Meu Negócio arrumado")).toBeInTheDocument();
-    expect(screen.getByText("Atendente de IA (opcional)")).toBeInTheDocument();
+    expect(screen.getByText("acelerar entregas sem perder qualidade")).toBeInTheDocument();
+    // The floating decorations swap to the AI set along with the copy.
+    expect(decor("ai")).toHaveAttribute("data-active", "true");
+    expect(decor("code")).toHaveAttribute("data-active", "false");
     // Constant chrome stays put across slides.
     expect(screen.getByText("alishenriques@gmail.com")).toBeInTheDocument();
     // The growth-chart SVG picks up slide 2's own accent too.
@@ -76,6 +75,7 @@ describe("Hero", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Slide anterior" }));
     expect(growthTraceSvg()?.getAttribute("style") ?? "").not.toContain("--growth-trace-color");
+    expect(decor("code")).toHaveAttribute("data-active", "true");
 
     expect(
       screen.getByRole("heading", { level: 1, name: /Arquitetura de front-end que escala/ }),
@@ -92,7 +92,7 @@ describe("Hero", () => {
     fireEvent.click(dots[1]);
 
     expect(
-      screen.getByRole("heading", { level: 1, name: /Quer vender mais nessa temporada/ }),
+      screen.getByRole("heading", { level: 1, name: /Programação assistida por IA/ }),
     ).toBeInTheDocument();
     expect(dots[0]).toHaveAttribute("aria-selected", "false");
     expect(dots[1]).toHaveAttribute("aria-selected", "true");

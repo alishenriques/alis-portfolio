@@ -1,3 +1,12 @@
+const groupBase = `
+  absolute
+  inset-0
+  transition-[opacity,scale]
+  duration-700
+  ease-out
+  motion-reduce:transition-none
+`;
+
 export const styles = {
   root: `
     pointer-events-none
@@ -8,8 +17,23 @@ export const styles = {
     lg:block
   `,
 
-  panelBase: `
+  // One set of decorations per hero slide, both always mounted: the active
+  // one is shown, the other fades (and shrinks slightly) out of view.
+  group: groupBase + " opacity-100 scale-100",
+
+  groupHidden: groupBase + " opacity-0 scale-95",
+
+  // Every pointer-driven element (see Floating.tsx); its rotation lives in
+  // the inline transform, so position classes below never set one.
+  floating: `
     absolute
+    transition-transform
+    duration-200
+    ease-out
+    will-change-transform
+  `,
+
+  panelBase: `
     w-72
     rounded-xl
     border
@@ -17,23 +41,17 @@ export const styles = {
     bg-[var(--ds-color-bg)]/90
     shadow-2xl
     backdrop-blur-sm
-    transition-transform
-    duration-200
-    ease-out
-    will-change-transform
   `,
 
   codePanel: `
     top-16
     -left-6
-    -rotate-4
   `,
 
   treePanel: `
     top-10
     -right-6
     w-64
-    rotate-4
   `,
 
   panelChrome: `
@@ -44,6 +62,13 @@ export const styles = {
     border-[var(--ds-color-border)]
     px-3
     py-2
+  `,
+
+  panelTitle: `
+    ml-2
+    font-mono
+    text-[10px]
+    text-[var(--ds-color-muted)]
   `,
 
   dot: `
@@ -86,5 +111,86 @@ export const styles = {
 
   treeItem: `
     truncate
+  `,
+
+  logoTile: `
+    flex
+    h-20
+    w-20
+    items-center
+    justify-center
+    text-[var(--ds-color-fg)]
+  `,
+
+  anthropicTile: `
+    top-14
+    left-16
+  `,
+
+  openaiTile: `
+    right-20
+    bottom-20
+  `,
+
+  burndownPanel: `
+    bottom-44
+    -left-4
+    w-60
+  `,
+
+  velocityPanel: `
+    top-[40%]
+    -right-6
+    w-56
+  `,
+
+  chart: `
+    block
+    w-full
+    p-3
+  `,
+
+  chartAxis: `
+    stroke-[var(--ds-color-border-strong)]
+    stroke-1
+  `,
+
+  chartIdeal: `
+    stroke-[var(--ds-color-muted)]
+    stroke-1
+    [stroke-dasharray:4_4]
+  `,
+
+  chartLine: `
+    fill-none
+    stroke-[#38bdf8]
+    stroke-2
+    [stroke-linejoin:round]
+  `,
+
+  chartDot: `
+    fill-[#38bdf8]
+  `,
+
+  chartBar: `
+    fill-[var(--ds-color-border-strong)]
+  `,
+
+  chartBarCurrent: `
+    fill-[#38bdf8]
+  `,
+
+  robot: `
+    top-10
+    right-24
+    w-24
+  `,
+
+  robotSvg: `
+    block
+    w-full
+    drop-shadow-[0_0_18px_rgba(56,189,248,0.25)]
+    animate-[float-bob_4s_ease-in-out_infinite]
+    motion-reduce:animate-none
   `,
 };
