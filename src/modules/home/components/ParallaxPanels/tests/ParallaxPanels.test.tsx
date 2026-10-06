@@ -16,15 +16,14 @@ describe("ParallaxPanels", () => {
     expect(container.querySelector('[data-decor="ai"]')).toHaveAttribute("data-active", "false");
   });
 
-  it("swaps to the AI decorations (logos, robot, agile charts) for the ai variant", () => {
+  it("swaps to the AI decorations (logos, robot, neural network) for the ai variant", () => {
     const { container } = render(<ParallaxPanels variant="ai" />);
     const ai = container.querySelector('[data-decor="ai"]');
     expect(ai).toHaveAttribute("data-active", "true");
     expect(container.querySelector('[data-decor="code"]')).toHaveAttribute("data-active", "false");
-    // Anthropic + OpenAI marks, the pixel robot and the two charts.
-    expect(ai?.querySelectorAll("[data-parallax]")).toHaveLength(5);
-    expect(ai?.textContent).toContain("sprint burndown");
-    expect(ai?.textContent).toContain("velocity");
+    // Six logo tiles (Anthropic, OpenAI, Claude, Cursor, Copilot, v0), the pixel robot and the network.
+    expect(ai?.querySelectorAll("[data-parallax]")).toHaveLength(8);
+    expect(ai?.textContent).toContain("neural network");
   });
 
   it("gives every floating element its resting rotation before any pointer movement", () => {

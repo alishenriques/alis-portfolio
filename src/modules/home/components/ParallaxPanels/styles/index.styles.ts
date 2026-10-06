@@ -113,35 +113,31 @@ export const styles = {
     truncate
   `,
 
-  logoTile: `
+  // Lab marks (Anthropic, OpenAI) are the large tiles; tool marks the small ones.
+  // Each tile's position comes from AiDecorations' LOGO_TILES.
+  logoTileLarge: `
     flex
-    h-20
-    w-20
+    h-24
+    w-24
     items-center
     justify-center
     text-[var(--ds-color-fg)]
   `,
 
-  anthropicTile: `
-    top-14
-    left-16
+  logoTile: `
+    flex
+    h-16
+    w-16
+    items-center
+    justify-center
+    rounded-lg
+    text-[var(--ds-color-fg)]/80
   `,
 
-  openaiTile: `
-    right-20
-    bottom-20
-  `,
-
-  burndownPanel: `
-    bottom-44
-    -left-4
-    w-60
-  `,
-
-  velocityPanel: `
-    top-[40%]
-    -right-6
-    w-56
+  networkPanel: `
+    bottom-36
+    left-4
+    w-64
   `,
 
   chart: `
@@ -150,33 +146,33 @@ export const styles = {
     p-3
   `,
 
-  chartAxis: `
+  networkEdge: `
     stroke-[var(--ds-color-border-strong)]
     stroke-1
   `,
 
-  chartIdeal: `
-    stroke-[var(--ds-color-muted)]
-    stroke-1
-    [stroke-dasharray:4_4]
-  `,
-
-  chartLine: `
-    fill-none
+  // A short dash that hops across its edge in the first 12% of the cycle
+  // (one hop of NeuralNetwork's cycle), then waits off the line for the rest.
+  networkSignal: `
     stroke-[#38bdf8]
     stroke-2
-    [stroke-linejoin:round]
+    [stroke-linecap:round]
+    [stroke-dasharray:10_110]
+    [stroke-dashoffset:10]
+    [animation-name:neural-signal]
+    [animation-iteration-count:infinite]
+    [animation-timing-function:linear]
+    [animation-fill-mode:backwards]
+    motion-reduce:hidden
   `,
 
-  chartDot: `
-    fill-[#38bdf8]
+  networkNode: `
+    fill-[var(--ds-color-bg-raised)]
+    stroke-[var(--ds-color-muted)]
+    stroke-1
   `,
 
-  chartBar: `
-    fill-[var(--ds-color-border-strong)]
-  `,
-
-  chartBarCurrent: `
+  networkNodeOutput: `
     fill-[#38bdf8]
   `,
 
