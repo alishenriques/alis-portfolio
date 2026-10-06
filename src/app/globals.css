@@ -113,17 +113,3 @@ body {
     transform: translateY(-6px);
   }
 }
-
-/* Hero's neural network (ParallaxPanels): a signal dash crosses its edge in the first
-   12% of the cycle, then stays off the line. Must match HOP_SECONDS / cycle in NeuralNetwork.tsx. */
-@keyframes neural-signal {
-  0% {
-    stroke-dashoffset: 10;
-  }
-  12% {
-    stroke-dashoffset: -100;
-  }
-  100% {
-    stroke-dashoffset: -100;
-  }
-}
