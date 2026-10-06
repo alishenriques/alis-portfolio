@@ -46,8 +46,11 @@
 - 244 tests total across the three repos as of this line: 37 API + 54 design system + 153 portfolio
 
 ## Next
-1. **Página de Serviços**: a dedicated page for the freelance services now teased on the Home Hero's second slide (starting with the "temporada" package for small local businesses) — more detail to be defined with the user before building
-2. Later: About page long-form text once finalized (see "Bio rewritten and made rich" above — mostly done now), CMS editing UI, revisit `CommandPalette` as an actual search feature
+1. **Align the portfolio with the corporate-only scope** (scope split, 2026-10-06): remove the Home Hero's freelance-services slide (and its "Atendimento com IA"-style chips/copy), and review with the user whether the "Atuação como freelancer" bio section and the freelance-client paragraph in "IA no meu fluxo de trabalho" stay (as career history) or move to the services site. Big change, so its own PR.
+2. **Storybook in `alis-design-system`**: install and configure Storybook to browse, document and organize every component (one story per component and variant, controls for props, the `--ds-*` tokens on display). Must stay zero-cost (local + a free static host such as GitHub Pages or Vercel), and must not leak into the published npm package.
+3. **Large-file and architecture review** across the three repos: find oversized files (components, resolvers, CSS, tests) and split them; review code organization, module boundaries and duplication to prevent maintenance problems as the ecosystem grows to two front-ends. Deliver as a written report with prioritized findings first, then one PR per fix area.
+4. **Services site (new repo)**: a separate sales site for freelance services (digital solutions for small businesses, starting with the "temporada" package), fed by the same `alis-portfolio-api` and `@alishenriques/design-system`. Replaces the old plan of a `/servicos` page inside the portfolio. Details to be defined with the user before building; likely needs API additions (services/packages content) and a CORS origin for the new domain.
+5. Later: CMS editing UI, revisit `CommandPalette` as an actual search feature
 
 ## Fixed along the way
 - **Automated npm publish (resolved 2026-09-27, for real this time).** Three distinct bugs, fixed in sequence, each unblocking the next:
