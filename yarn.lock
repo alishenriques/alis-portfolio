@@ -12,13 +12,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@alishenriques/design-system@npm:^0.9.3":
-  version: 0.9.3
-  resolution: "@alishenriques/design-system@npm:0.9.3"
+"@alishenriques/design-system@npm:^0.10.0":
+  version: 0.10.0
+  resolution: "@alishenriques/design-system@npm:0.10.0"
   peerDependencies:
     react: ^19.0.0
     react-dom: ^19.0.0
-  checksum: 10c0/ca448f4e4a8c0d39be4293c2f490e4465481da1362c56de9aa1d4862b3e8402fed01e3cb0534077365d1d730fb9b2ea2096939208b6adef62a13076d0b58a756
+  checksum: 10c0/e3e29eb074ea4aa1fdf6c9031dd527c599b0dc096891406b119fef5c1dd0d75ae3caa14fc740f4b540fc5d84774d2071c48ad57df3d87d9ab1fb3308ef79d9ec
   languageName: node
   linkType: hard
 
@@ -2498,7 +2498,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "alis-portfolio@workspace:."
   dependencies:
-    "@alishenriques/design-system": "npm:^0.9.3"
+    "@alishenriques/design-system": "npm:^0.10.0"
     "@icons-pack/react-simple-icons": "npm:^13.15.1"
     "@tailwindcss/postcss": "npm:^4"
     "@testing-library/dom": "npm:^10.4.2"
