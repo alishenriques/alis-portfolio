@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { LoadingButton } from "@alishenriques/design-system";
 import { useTranslations } from "next-intl";
@@ -21,6 +21,10 @@ export function ContactDialog() {
   const [status, setStatus] = useState<Status>("idle");
   const [fieldError, setFieldError] = useState<string | null>(null);
   const nameRef = useRef<HTMLInputElement>(null);
+  const fieldId = useId();
+  const nameId = `${fieldId}-name`;
+  const emailId = `${fieldId}-email`;
+  const messageId = `${fieldId}-message`;
 
   // Resets the form state on every open, without an effect: React's documented
   // pattern for adjusting state during render (see "Adjusting some state when
@@ -100,7 +104,14 @@ export function ContactDialog() {
           <p className={styles.success}>{t("SUCCESS")}</p>
         ) : (
           <form className={styles.form} onSubmit={handleSubmit}>
+            {/* Labels are visually hidden (the design shows only placeholders) but
+                keep each field named for screen readers once typing starts and
+                the placeholder disappears. */}
+            <label htmlFor={nameId} className={styles.label}>
+              {t("NAME")}
+            </label>
             <input
+              id={nameId}
               ref={nameRef}
               name="name"
               type="text"
@@ -108,14 +119,22 @@ export function ContactDialog() {
               className={styles.input}
               required
             />
+            <label htmlFor={emailId} className={styles.label}>
+              {t("EMAIL")}
+            </label>
             <input
+              id={emailId}
               name="email"
               type="email"
               placeholder={t("EMAIL")}
               className={styles.input}
               required
             />
+            <label htmlFor={messageId} className={styles.label}>
+              {t("MESSAGE")}
+            </label>
             <textarea
+              id={messageId}
               name="message"
               placeholder={t("MESSAGE")}
               className={styles.textarea}
