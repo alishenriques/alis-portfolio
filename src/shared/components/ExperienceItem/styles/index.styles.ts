@@ -26,7 +26,8 @@ export const styles = {
     ring-[var(--ds-color-bg)]
   `,
 
-  // group-last:hidden: no dangling line below the last item.
+  // Also shown on the last item (per the user): there the rail runs down to
+  // the end of its description, since last:pb-0 leaves no trailing gap.
   line: `
     absolute
     left-1
@@ -35,7 +36,6 @@ export const styles = {
     w-px
     bg-[var(--ds-color-accent)]
     opacity-35
-    group-last:hidden
   `,
 
   date: `
