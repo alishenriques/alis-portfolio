@@ -56,6 +56,12 @@ export const styles = {
     gap-3
   `,
 
+  // Visually hidden, still read by screen readers. `sr-only` is absolutely
+  // positioned, so it adds no gap to the flex column and the layout is unchanged.
+  label: `
+    sr-only
+  `,
+
   input: `
     rounded-lg
     border

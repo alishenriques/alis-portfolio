@@ -128,6 +128,20 @@ describe("ContactDialog", () => {
     expect(sendContactMessage).not.toHaveBeenCalled();
   });
 
+  it("gives every field an accessible name that survives typing", () => {
+    renderDialog();
+    fireEvent.click(screen.getByText("open"));
+    fillValidForm();
+
+    // Once filled, the placeholders are gone from view; the labels still name the fields.
+    expect(screen.getByLabelText("Nome")).toHaveValue("Ana");
+    expect(screen.getByLabelText("Seu e-mail")).toHaveValue("ana@example.com");
+    expect(screen.getByLabelText("Mensagem")).toHaveValue("Olá!");
+    expect(screen.getByRole("textbox", { name: "Nome" })).toHaveAttribute("name", "name");
+    expect(screen.getByRole("textbox", { name: "Seu e-mail" })).toHaveAttribute("name", "email");
+    expect(screen.getByRole("textbox", { name: "Mensagem" })).toHaveAttribute("name", "message");
+  });
+
   it("closes on Escape", () => {
     renderDialog();
     fireEvent.click(screen.getByText("open"));
