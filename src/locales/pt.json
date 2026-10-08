@@ -97,11 +97,11 @@
   },
   "SEO": {
     "SITE_NAME": "Alisson Henriques",
-    "DEFAULT_DESCRIPTION": "Portfólio de Alisson Henriques, desenvolvedor front-end sênior: arquitetura de front-end escalável com React, Next.js e TypeScript, projetos reais e serviços digitais para o seu negócio.",
+    "DEFAULT_DESCRIPTION": "Portfólio de Alisson Henriques, desenvolvedor front-end sênior e líder técnico com 20+ anos em TI: arquitetura de front-end escalável com React, Next.js e TypeScript.",
     "PAGES": {
       "HOME": {
         "TITLE": "Alisson Henriques · Desenvolvedor Front-End Sênior",
-        "DESCRIPTION": "Arquitetura de front-end que escala, construída com engenharia e IA. Portfólio, projetos e serviços digitais de Alisson Henriques, desenvolvedor front-end sênior.",
+        "DESCRIPTION": "Desenvolvedor front-end sênior, líder técnico e arquiteto de software com mais de 20 anos em TI. Conheça a trajetória e os projetos de Alisson Henriques.",
         "OG_HEADLINE": "Arquitetura de front-end que escala."
       },
       "ABOUT": {

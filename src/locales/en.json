@@ -97,11 +97,11 @@
   },
   "SEO": {
     "SITE_NAME": "Alisson Henriques",
-    "DEFAULT_DESCRIPTION": "Portfolio of Alisson Henriques, senior front-end developer: scalable front-end architecture with React, Next.js and TypeScript, real projects and digital services for your business.",
+    "DEFAULT_DESCRIPTION": "Portfolio of Alisson Henriques, senior front-end developer and tech lead with 20+ years in IT: scalable front-end architecture with React, Next.js and TypeScript.",
     "PAGES": {
       "HOME": {
         "TITLE": "Alisson Henriques · Senior Front-End Developer",
-        "DESCRIPTION": "Front-end architecture that scales, built with engineering and AI. Portfolio, projects and digital services by Alisson Henriques, senior front-end developer.",
+        "DESCRIPTION": "Senior front-end developer, tech lead and software architect with 20+ years in IT. Explore Alisson Henriques' career and real-world projects.",
         "OG_HEADLINE": "Front-end architecture that scales."
       },
       "ABOUT": {
