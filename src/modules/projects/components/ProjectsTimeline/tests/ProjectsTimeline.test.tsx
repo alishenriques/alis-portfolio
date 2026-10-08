@@ -97,4 +97,15 @@ describe("ProjectsTimeline", () => {
     renderTimeline([project({ slug: "a", title: "A" })], "not-a-real-slug");
     expect(screen.queryByRole("dialog")).toBeNull();
   });
+
+  it("features the first project with its tech icons, and only the first", () => {
+    renderTimeline([
+      project({ slug: "a", title: "A", tags: ["React", "GraphQL", "Elementor"] }),
+      project({ slug: "b", title: "B", tags: ["React"] }),
+    ]);
+    // Badge labels join the accessible name; "Elementor" has no icon, so it's skipped.
+    expect(screen.getByRole("button", { name: "A — Summary — React, GraphQL" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "B — Summary" })).toBeInTheDocument();
+    expect(screen.getAllByTitle("GraphQL").length).toBeGreaterThan(0);
+  });
 });
