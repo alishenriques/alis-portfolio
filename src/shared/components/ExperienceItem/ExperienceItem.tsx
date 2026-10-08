@@ -13,8 +13,8 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
     <article className={styles.root}>
       {/* The marker + line together read as one continuous timeline rail
           down the list — the line is `bottom-0`, reaching all the way to
-          the next item's own marker (hidden on the last item, so nothing
-          dangles below it), rather than each item having its own
+          the next item's own marker (on the last item, to the end of its
+          description), rather than each item having its own
           disconnected border segment. */}
       <span className={styles.marker} aria-hidden="true" />
       <span className={styles.line} aria-hidden="true" />
