@@ -39,19 +39,18 @@ export const OOPS_ROBOT_PIXELS = [
   ".........bbbb.......bbbb.........",
 ];
 
-// The 404 page's blue (the same one as the Hero's AI slide), on the DS's dark
-// surfaces.
+// The DS's blue secondary accent, on its dark surfaces.
 const PIXEL_FILL: Record<string, string> = {
-  k: "fill-[#38bdf8]",
+  k: "fill-[var(--ds-color-secondary)]",
   f: "fill-[var(--ds-color-bg-raised)]",
-  t: "fill-[#38bdf8]",
+  t: "fill-[var(--ds-color-secondary)]",
   g: "fill-[var(--ds-color-fg)]",
-  a: "fill-[#38bdf8]",
+  a: "fill-[var(--ds-color-secondary)]",
   b: "fill-[var(--ds-color-muted)]",
   h: "fill-[var(--ds-color-bg-raised)]",
-  e: "fill-[#38bdf8]",
-  m: "fill-[#38bdf8]",
-  c: "fill-[#38bdf8]",
+  e: "fill-[var(--ds-color-secondary)]",
+  m: "fill-[var(--ds-color-secondary)]",
+  c: "fill-[var(--ds-color-secondary)]",
 };
 
 const OOPS_ROBOT_RUNS = toPixelRuns(OOPS_ROBOT_PIXELS);
