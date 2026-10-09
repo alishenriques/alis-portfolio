@@ -122,5 +122,13 @@
     },
     "OG_ROLE": "Desenvolvedor Front-End Sênior",
     "OG_ALT": "{title} · Alisson Henriques"
+  },
+  "NOT_FOUND": {
+    "META_TITLE": "Página não encontrada",
+    "CODE": "Erro 404",
+    "TITLE": "Não encontramos essa página",
+    "DESCRIPTION": "Verifique a URL ou volte para a página anterior.",
+    "BACK": "Voltar para a página anterior",
+    "ILLUSTRATION_LABEL": "Robô em pixel art segurando uma placa escrita OOPS!"
   }
 }

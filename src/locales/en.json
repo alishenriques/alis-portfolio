@@ -122,5 +122,13 @@
     },
     "OG_ROLE": "Senior Front-End Developer",
     "OG_ALT": "{title} · Alisson Henriques"
+  },
+  "NOT_FOUND": {
+    "META_TITLE": "Page not found",
+    "CODE": "Error 404",
+    "TITLE": "We couldn't find this page",
+    "DESCRIPTION": "Check the URL or go back to the previous page.",
+    "BACK": "Go back to the previous page",
+    "ILLUSTRATION_LABEL": "Pixel art robot holding a sign that reads OOPS!"
   }
 }
