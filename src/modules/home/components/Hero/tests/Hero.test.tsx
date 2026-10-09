@@ -14,6 +14,8 @@ const messages = {
       NEXT: "Próximo slide",
       LABEL: "Navegação de slides",
       GOTO: "Ir para o slide {number}",
+      PAUSE: "Pausar apresentação",
+      PLAY: "Retomar apresentação",
     },
     SLIDE2: {
       HEADLINE: "Programação assistida por <hl>IA</hl> com <hl>precisão arquitetural</hl>.",
@@ -94,5 +96,66 @@ describe("Hero", () => {
     ).toBeInTheDocument();
     expect(dots[0]).toHaveAttribute("aria-selected", "false");
     expect(dots[1]).toHaveAttribute("aria-selected", "true");
+  });
+
+  describe("autoplay", () => {
+    const progress = () => screen.getByTestId("hero-progress");
+    const currentHeadline = () => screen.getByRole("heading", { level: 1 }).textContent;
+
+    it("advances to the next slide when the progress line finishes", () => {
+      renderHero();
+      expect(progress()).toHaveStyle({ animationPlayState: "running" });
+
+      // jsdom has no AnimationEvent, so React listens for the vendor-prefixed
+      // name instead of "animationend"; fire that one directly.
+      fireEvent(progress(), new Event("webkitAnimationEnd", { bubbles: true }));
+
+      expect(currentHeadline()).toMatch(/Programação assistida por IA/);
+    });
+
+    it("pauses while the pointer is over the hero and resumes when it leaves", () => {
+      const { container } = renderHero();
+      const section = container.querySelector("section")!;
+
+      fireEvent.mouseEnter(section);
+      expect(progress()).toHaveStyle({ animationPlayState: "paused" });
+
+      fireEvent.mouseLeave(section);
+      expect(progress()).toHaveStyle({ animationPlayState: "running" });
+    });
+
+    it("stays paused while keyboard focus moves inside the hero, resuming once it leaves", () => {
+      renderHero();
+      const next = screen.getByRole("button", { name: "Próximo slide" });
+      const prev = screen.getByRole("button", { name: "Slide anterior" });
+
+      fireEvent.focus(next);
+      expect(progress()).toHaveStyle({ animationPlayState: "paused" });
+
+      // Moving between controls inside the hero doesn't resume it.
+      fireEvent.blur(next, { relatedTarget: prev });
+      fireEvent.focus(prev);
+      expect(progress()).toHaveStyle({ animationPlayState: "paused" });
+
+      fireEvent.blur(prev, { relatedTarget: null });
+      expect(progress()).toHaveStyle({ animationPlayState: "running" });
+    });
+
+    it("toggles with the pause button, which keeps it paused after hover and focus leave", () => {
+      const { container } = renderHero();
+      const section = container.querySelector("section")!;
+      const pause = screen.getByRole("button", { name: "Pausar apresentação" });
+
+      fireEvent.click(pause);
+      fireEvent.mouseLeave(section);
+      fireEvent.blur(pause, { relatedTarget: null });
+
+      expect(progress()).toHaveStyle({ animationPlayState: "paused" });
+      const resume = screen.getByRole("button", { name: "Retomar apresentação" });
+
+      fireEvent.click(resume);
+      expect(progress()).toHaveStyle({ animationPlayState: "running" });
+      expect(screen.getByRole("button", { name: "Pausar apresentação" })).toBeInTheDocument();
+    });
   });
 });
