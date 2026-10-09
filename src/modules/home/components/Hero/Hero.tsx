@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { type FocusEvent, useState } from "react";
 
-import { Mail, Phone } from "lucide-react";
+import { Mail, Pause, Phone, Play } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Logo } from "@/shared/components/Logo";
@@ -28,34 +28,53 @@ const AUTOPLAY_INTERVAL_MS = 12000;
  * departure from the site's single-accent lime palette). The headline/subtitle
  * block, the background glow and the floating parallax decorations change
  * between slides; identity chrome (logo, eyebrow, contact row) stays constant.
+ *
+ * Autoplay is driven by the progress line itself: the slide advances when its
+ * fill animation ends, so pausing (hover, keyboard focus inside the hero, or
+ * the pause button, per WCAG 2.2.2) just freezes that animation and resuming
+ * picks up exactly where it stopped, keeping the line and the timer in sync.
  */
 export function Hero() {
   const t = useTranslations("HOME");
   const [slide, setSlide] = useState(0);
+  const [hovered, setHovered] = useState(false);
+  const [focusWithin, setFocusWithin] = useState(false);
+  const [pausedByUser, setPausedByUser] = useState(false);
+  const paused = hovered || focusWithin || pausedByUser;
 
   const goPrev = () => setSlide((current) => (current + SLIDE_COUNT - 1) % SLIDE_COUNT);
   const goNext = () => setSlide((current) => (current + 1) % SLIDE_COUNT);
 
-  // Re-runs (restarting the countdown) on every slide change, including a
-  // manual click — so clicking next/prev doesn't feel like it's fighting the
-  // autoplay. Skipped entirely under prefers-reduced-motion, same as every
-  // other animation in this component.
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(goNext, AUTOPLAY_INTERVAL_MS);
-    return () => clearInterval(id);
-  }, [slide]);
+  // Focus moving between controls inside the hero bubbles a blur then a
+  // focus; only count it as leaving when the next target is outside.
+  const handleBlur = (event: FocusEvent<HTMLElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) setFocusWithin(false);
+  };
 
   return (
-    <section className={styles.root}>
+    <section
+      className={styles.root}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocusWithin(true)}
+      onBlur={handleBlur}
+    >
+      {/* The fill is keyed by slide, so its animation (and the countdown)
+          restarts on every change, including a manual click — clicking
+          next/prev doesn't feel like it's fighting the autoplay. Hidden
+          under prefers-reduced-motion, which turns autoplay off entirely,
+          same as every other animation in this component. */}
       <div className={styles.progressTrack} aria-hidden="true">
         <div
           key={slide}
+          data-testid="hero-progress"
           className={styles.progressFill}
           style={{
             animationDuration: `${AUTOPLAY_INTERVAL_MS}ms`,
+            animationPlayState: paused ? "paused" : "running",
             background: slide === 1 ? SLIDE2_ACCENT : undefined,
           }}
+          onAnimationEnd={goNext}
         />
       </div>
 
@@ -122,19 +141,33 @@ export function Hero() {
           )}
         </div>
 
-        <div className={styles.dots} role="tablist" aria-label={t("SLIDE_NAV.LABEL")}>
-          {Array.from({ length: SLIDE_COUNT }, (_, index) => (
-            <button
-              key={index}
-              type="button"
-              role="tab"
-              aria-selected={slide === index}
-              aria-label={t("SLIDE_NAV.GOTO", { number: index + 1 })}
-              className={index === slide ? styles.dotActive : styles.dot}
-              style={index === slide ? { background: slide === 1 ? SLIDE2_ACCENT : undefined } : undefined}
-              onClick={() => setSlide(index)}
-            />
-          ))}
+        <div className={styles.slideControls}>
+          <div className={styles.dots} role="tablist" aria-label={t("SLIDE_NAV.LABEL")}>
+            {Array.from({ length: SLIDE_COUNT }, (_, index) => (
+              <button
+                key={index}
+                type="button"
+                role="tab"
+                aria-selected={slide === index}
+                aria-label={t("SLIDE_NAV.GOTO", { number: index + 1 })}
+                className={index === slide ? styles.dotActive : styles.dot}
+                style={index === slide ? { background: slide === 1 ? SLIDE2_ACCENT : undefined } : undefined}
+                onClick={() => setSlide(index)}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            className={styles.pauseButton}
+            aria-label={pausedByUser ? t("SLIDE_NAV.PLAY") : t("SLIDE_NAV.PAUSE")}
+            onClick={() => setPausedByUser((current) => !current)}
+          >
+            {pausedByUser ? (
+              <Play size={12} fill="currentColor" aria-hidden="true" />
+            ) : (
+              <Pause size={12} fill="currentColor" aria-hidden="true" />
+            )}
+          </button>
         </div>
 
         <div className={styles.contactRow}>

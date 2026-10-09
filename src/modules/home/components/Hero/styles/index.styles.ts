@@ -212,6 +212,12 @@ export const styles = {
     text-[#38bdf8]
   `,
 
+  slideControls: `
+    flex
+    items-center
+    justify-center
+  `,
+
   dots: `
     flex
     items-center
@@ -246,6 +252,30 @@ export const styles = {
     focus-visible:outline-2
     focus-visible:outline-[var(--ds-color-accent)]
     focus-visible:outline-offset-2
+  `,
+
+  // Pause/resume autoplay (WCAG 2.2.2). Sits after the dots, sized as a
+  // small target that still reads as part of the same control group; hidden
+  // under prefers-reduced-motion, where there's no autoplay to pause.
+  pauseButton: `
+    ml-2
+    inline-flex
+    h-6
+    w-6
+    flex-none
+    items-center
+    justify-center
+    rounded-md
+    text-[var(--ds-color-muted)]
+    transition-colors
+    duration-150
+    hover:text-[var(--ds-color-accent)]
+    hover:bg-[var(--ds-color-bg-raised)]
+    focus-visible:outline
+    focus-visible:outline-2
+    focus-visible:outline-[var(--ds-color-accent)]
+    focus-visible:outline-offset-2
+    motion-reduce:hidden
   `,
 
   contactRow: `

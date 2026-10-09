@@ -22,7 +22,9 @@
       "PREV": "Slide anterior",
       "NEXT": "Próximo slide",
       "LABEL": "Navegação de slides",
-      "GOTO": "Ir para o slide {number}"
+      "GOTO": "Ir para o slide {number}",
+      "PAUSE": "Pausar apresentação",
+      "PLAY": "Retomar apresentação"
     },
     "SLIDE2": {
       "HEADLINE": "Programação assistida por <hl>IA</hl> com <hl>precisão arquitetural</hl>.",

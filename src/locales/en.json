@@ -22,7 +22,9 @@
       "PREV": "Previous slide",
       "NEXT": "Next slide",
       "LABEL": "Slide navigation",
-      "GOTO": "Go to slide {number}"
+      "GOTO": "Go to slide {number}",
+      "PAUSE": "Pause slideshow",
+      "PLAY": "Resume slideshow"
     },
     "SLIDE2": {
       "HEADLINE": "<hl>AI</hl>-assisted development with <hl>architectural precision</hl>.",
