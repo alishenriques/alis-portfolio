@@ -1,5 +1,5 @@
 export const styles = {
   root: `
-    max-w-md
+    max-w-lg
   `,
 };
