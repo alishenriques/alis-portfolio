@@ -27,3 +27,20 @@ export async function getPageMetadata(params: LocaleParams["params"], page: SeoP
     siteName: t("SITE_NAME"),
   });
 }
+
+/**
+ * `generateMetadata` for [locale]/not-found.tsx: its own title and description
+ * instead of the layout's home defaults. `robots: null` drops the layout's
+ * "index, follow"; Next already emits `<meta name="robots" content="noindex">`
+ * on every 404 response, so that stays the only robots tag.
+ */
+export async function getNotFoundMetadata(params: LocaleParams["params"]): Promise<Metadata> {
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: "NOT_FOUND" });
+
+  return {
+    title: t("META_TITLE"),
+    description: t("META_DESCRIPTION"),
+    robots: null,
+  };
+}

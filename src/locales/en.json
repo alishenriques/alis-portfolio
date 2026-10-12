@@ -127,6 +127,7 @@
   },
   "NOT_FOUND": {
     "META_TITLE": "Page not found",
+    "META_DESCRIPTION": "The page you were looking for doesn't exist or has moved. Go back and keep browsing Alisson Henriques' portfolio.",
     "CODE": "Error 404",
     "TITLE": "We couldn't find this page",
     "DESCRIPTION": "Check the URL or go back to the previous page.",
