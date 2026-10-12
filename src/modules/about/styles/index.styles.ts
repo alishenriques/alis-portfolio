@@ -57,7 +57,7 @@ export const styles = {
 
   educationLabel: `
     tracking-[0.1em]
-    text-[var(--ds-color-border-strong)]
+    text-[var(--ds-color-muted)]
     uppercase
   `,
 
