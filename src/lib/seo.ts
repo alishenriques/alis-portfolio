@@ -1,16 +1,21 @@
-import { routing } from "@/i18n/routing";
+import { routing, type AppPathname } from "@/i18n/routing";
+
+import { localizedPathname } from "./localizedRoutes";
 
 import type { Metadata, MetadataRoute } from "next";
 
 export type AppLocale = (typeof routing.locales)[number];
 
-/** Every indexable page, keyed by the `SEO.PAGES.*` translation key, with its locale-less path. */
+/**
+ * Every indexable page, keyed by the `SEO.PAGES.*` translation key, with its
+ * internal route (a key of `routing.pathnames`; the public URL can differ per locale).
+ */
 export const SEO_PAGES = {
   HOME: "/",
   ABOUT: "/sobre",
   CORPORATE: "/corporativo",
   PROJECTS: "/projetos",
-} as const;
+} as const satisfies Record<string, AppPathname>;
 
 export type SeoPage = keyof typeof SEO_PAGES;
 
@@ -18,13 +23,17 @@ export type SeoPage = keyof typeof SEO_PAGES;
 const HREFLANG: Record<AppLocale, string> = { pt: "pt-BR", en: "en" };
 const OG_LOCALE: Record<AppLocale, string> = { pt: "pt_BR", en: "en_US" };
 
-/** `/pt` for the home page, `/pt/sobre` otherwise: the app's URLs always carry the locale prefix. */
-export function localizedPath(locale: AppLocale, path: string): string {
-  return path === "/" ? `/${locale}` : `/${locale}${path}`;
+/**
+ * The public, locale-prefixed URL path of an internal route: `/pt` for the home
+ * page, `/pt/sobre` or `/en/about` otherwise (the app's URLs always carry the locale prefix).
+ */
+export function localizedPath(locale: AppLocale, path: AppPathname): string {
+  const localized = localizedPathname(locale, path);
+  return localized === "/" ? `/${locale}` : `/${locale}${localized}`;
 }
 
 /** hreflang map for one page: every locale plus `x-default`, pointing at the default locale. */
-export function languageAlternates(path: string, toUrl: (path: string) => string = (p) => p): Record<string, string> {
+export function languageAlternates(path: AppPathname, toUrl: (path: string) => string = (p) => p): Record<string, string> {
   const languages: Record<string, string> = {};
   for (const locale of routing.locales) {
     languages[HREFLANG[locale]] = toUrl(localizedPath(locale, path));

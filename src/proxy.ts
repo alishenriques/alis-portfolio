@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import createMiddleware from "next-intl/middleware";
 
 import { routing } from "./i18n/routing";
+import { legacyPathRedirect } from "./lib/localizedRoutes";
 import { isFileLikePath, isRootFile, pathLocale } from "./lib/pathKinds";
 import { preferredLocale } from "./lib/preferredLocale";
 
@@ -23,6 +24,15 @@ export default function proxy(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = `/${preferredLocale(request.headers.get("accept-language"))}${pathname}`;
     return NextResponse.rewrite(url);
+  }
+
+  // A page under the other locale's spelling (`/en/sobre`, the English URLs
+  // before they were translated) moves permanently to the right one, query kept.
+  const redirectTo = legacyPathRedirect(pathname);
+  if (redirectTo) {
+    const url = request.nextUrl.clone();
+    url.pathname = redirectTo;
+    return NextResponse.redirect(url, 308);
   }
 
   return handleI18nRouting(request);

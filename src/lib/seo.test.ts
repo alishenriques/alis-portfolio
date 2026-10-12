@@ -13,7 +13,12 @@ describe("localizedPath", () => {
   });
 
   it("prefixes other pages with the locale", () => {
-    expect(localizedPath("en", "/sobre")).toBe("/en/sobre");
+    expect(localizedPath("pt", "/sobre")).toBe("/pt/sobre");
+  });
+
+  it("uses each locale's own spelling of the page", () => {
+    expect(localizedPath("en", "/sobre")).toBe("/en/about");
+    expect(localizedPath("en", "/corporativo")).toBe("/en/corporate");
   });
 });
 
@@ -21,7 +26,7 @@ describe("languageAlternates", () => {
   it("lists every locale plus x-default pointing at Portuguese", () => {
     expect(languageAlternates("/projetos")).toEqual({
       "pt-BR": "/pt/projetos",
-      en: "/en/projetos",
+      en: "/en/projects",
       "x-default": "/pt/projetos",
     });
   });
@@ -40,7 +45,7 @@ describe("buildPageMetadata", () => {
     expect(metadata.title).toBe("Sobre");
     expect(metadata.description).toBe("Quem sou");
     expect(metadata.alternates?.canonical).toBe("/pt/sobre");
-    expect(metadata.alternates?.languages).toEqual({ "pt-BR": "/pt/sobre", en: "/en/sobre", "x-default": "/pt/sobre" });
+    expect(metadata.alternates?.languages).toEqual({ "pt-BR": "/pt/sobre", en: "/en/about", "x-default": "/pt/sobre" });
     expect(metadata.openGraph).toMatchObject({
       url: "/pt/sobre",
       title: "Sobre | Alisson Henriques",
@@ -66,15 +71,15 @@ describe("buildSitemap", () => {
   it("has one absolute entry per page and locale", () => {
     expect(sitemap).toHaveLength(Object.keys(SEO_PAGES).length * 2);
     expect(sitemap.map((entry) => entry.url)).toEqual(
-      expect.arrayContaining([`${SITE}/pt`, `${SITE}/en`, `${SITE}/pt/sobre`, `${SITE}/en/projetos`]),
+      expect.arrayContaining([`${SITE}/pt`, `${SITE}/en`, `${SITE}/pt/sobre`, `${SITE}/en/projects`]),
     );
   });
 
   it("links each entry to its translations", () => {
-    const entry = sitemap.find((item) => item.url === `${SITE}/en/corporativo`);
+    const entry = sitemap.find((item) => item.url === `${SITE}/en/corporate`);
     expect(entry?.alternates?.languages).toEqual({
       "pt-BR": `${SITE}/pt/corporativo`,
-      en: `${SITE}/en/corporativo`,
+      en: `${SITE}/en/corporate`,
       "x-default": `${SITE}/pt/corporativo`,
     });
   });
