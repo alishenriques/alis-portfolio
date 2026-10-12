@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { getPageMetadata, resolveLocale } from "./pageMetadata";
+import { getNotFoundMetadata, getPageMetadata, resolveLocale } from "./pageMetadata";
 
 const getTranslations = vi.hoisted(() =>
   vi.fn(async ({ locale, namespace }: { locale: string; namespace: string }) => (key: string) =>
@@ -28,5 +28,16 @@ describe("getPageMetadata", () => {
     expect(metadata.title).toBe("en:SEO.PAGES.PROJECTS.TITLE");
     expect(metadata.description).toBe("en:SEO.PAGES.PROJECTS.DESCRIPTION");
     expect(metadata.alternates?.canonical).toBe("/en/projetos");
+  });
+});
+
+describe("getNotFoundMetadata", () => {
+  it("uses the 404's own title and description and drops the layout's robots", async () => {
+    const metadata = await getNotFoundMetadata(Promise.resolve({ locale: "en" }));
+
+    expect(getTranslations).toHaveBeenCalledWith({ locale: "en", namespace: "NOT_FOUND" });
+    expect(metadata.title).toBe("en:NOT_FOUND.META_TITLE");
+    expect(metadata.description).toBe("en:NOT_FOUND.META_DESCRIPTION");
+    expect(metadata.robots).toBeNull();
   });
 });
