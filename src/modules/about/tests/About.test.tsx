@@ -28,8 +28,16 @@ vi.mock("next-intl", () => ({
 }));
 
 vi.mock("@/i18n/navigation", () => ({
-  Link: ({ children, href, ...props }: { children: React.ReactNode; href: string }) => (
-    <a href={href} {...props}>
+  // Mirrors next-intl's Link for the internal route + query object form.
+  Link: ({
+    children,
+    href,
+    ...props
+  }: {
+    children: React.ReactNode;
+    href: string | { pathname: string; query: Record<string, string> };
+  }) => (
+    <a href={typeof href === "string" ? href : `${href.pathname}?${new URLSearchParams(href.query)}`} {...props}>
       {children}
     </a>
   ),

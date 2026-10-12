@@ -27,6 +27,6 @@ describe("getPageMetadata", () => {
     expect(getTranslations).toHaveBeenCalledWith({ locale: "en", namespace: "SEO" });
     expect(metadata.title).toBe("en:SEO.PAGES.PROJECTS.TITLE");
     expect(metadata.description).toBe("en:SEO.PAGES.PROJECTS.DESCRIPTION");
-    expect(metadata.alternates?.canonical).toBe("/en/projetos");
+    expect(metadata.alternates?.canonical).toBe("/en/projects");
   });
 });

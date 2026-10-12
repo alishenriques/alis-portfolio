@@ -54,7 +54,7 @@ export function ProjectsShowcase({ projects }: { projects: Project[] }) {
             tags={project.tags.slice(0, MAX_VISIBLE_TAGS)}
             description={project.summary}
             footer={
-              <Link href={`/projetos?project=${project.slug}`} className={styles.link}>
+              <Link href={{ pathname: "/projetos", query: { project: project.slug } }} className={styles.link}>
                 {t("PROJECTS_SHOWCASE_LINK")}
                 <span className={styles.arrow} aria-hidden="true">
                   →

@@ -1,7 +1,10 @@
+import type { AppPathname } from "@/i18n/routing";
+
 export type MenuItem = {
   id: string;
   labelKey: string;
-  href: string;
+  /** Internal route; `Link` from `@/i18n/navigation` turns it into the localized URL (`/sobre` → `/en/about`). */
+  href: AppPathname;
 };
 
 // Keys are relative to the "NAV" i18n namespace (see useTranslations("NAV") in Sidebar and DesktopNav).
