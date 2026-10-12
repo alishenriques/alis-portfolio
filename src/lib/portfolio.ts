@@ -54,9 +54,11 @@ const EXPERIENCES_QUERY = /* GraphQL */ `
       company
       companyLogoUrl
       role
+      roleEn
       startDate
       endDate
       description
+      descriptionEn
       isCorporate
       sortOrder
     }

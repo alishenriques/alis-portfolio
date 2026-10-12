@@ -11,9 +11,11 @@ const experience: Experience = {
   company: "Ingresse",
   companyLogoUrl: null,
   role: "Desenvolvedor Front-End Sênior",
+  roleEn: null,
   startDate: "2022-10",
   endDate: "2025-07",
   description: "Linha 1\nLinha 2",
+  descriptionEn: null,
   isCorporate: true,
   sortOrder: 0,
 };
@@ -44,5 +46,25 @@ describe("ExperienceItem", () => {
   it("formats months and the ongoing label in English", () => {
     renderItem({ endDate: null }, "en");
     expect(screen.getByText("Oct/2022 — present")).toBeInTheDocument();
+  });
+
+  it("shows the English role and description under /en", () => {
+    renderItem({ roleEn: "Senior Front-End Developer", descriptionEn: "English text" }, "en");
+    expect(
+      screen.getByRole("heading", { name: /Senior Front-End Developer.*Ingresse/ }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("English text")).toBeInTheDocument();
+  });
+
+  it("falls back to Portuguese under /en when there's no translation", () => {
+    renderItem({}, "en");
+    expect(
+      screen.getByRole("heading", { name: /Desenvolvedor Front-End Sênior.*Ingresse/ }),
+    ).toBeInTheDocument();
+  });
+
+  it("keeps Portuguese under /pt even with a translation", () => {
+    renderItem({ roleEn: "Senior Front-End Developer", descriptionEn: "English text" });
+    expect(screen.queryByText("English text")).not.toBeInTheDocument();
   });
 });
