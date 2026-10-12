@@ -1,6 +1,7 @@
 import { Eyebrow } from "@alishenriques/design-system";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
+import { localizeProject } from "@/lib/localized";
 import { getProjects } from "@/lib/portfolio";
 
 import { ProjectsTimeline } from "./components/ProjectsTimeline";
@@ -12,7 +13,8 @@ export type ProjectsProps = {
 };
 
 export async function Projects({ initialSelectedSlug = null }: ProjectsProps = {}) {
-  const [projects, t] = await Promise.all([getProjects(), getTranslations("PROJECTS")]);
+  const [allProjects, locale, t] = await Promise.all([getProjects(), getLocale(), getTranslations("PROJECTS")]);
+  const projects = allProjects.map((project) => localizeProject(project, locale));
 
   return (
     <main className={styles.root}>

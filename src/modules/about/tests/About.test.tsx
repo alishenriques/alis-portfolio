@@ -183,6 +183,9 @@ describe("About", () => {
         coverUrl: "https://example.com/cover.jpg",
         iconUrl: null,
         projectType: null,
+        summaryEn: null,
+        bodyEn: null,
+        projectTypeEn: null,
         siteUrl: null,
         isActive: true,
         tags: [],
@@ -240,6 +243,36 @@ describe("About", () => {
 
       expect(screen.getByText("Desenvolvedor Front-End Sênior")).toBeInTheDocument();
       expect(screen.getByText("Bio em português.")).toBeInTheDocument();
+    });
+
+    it("shows the projects showcase summary in English when a translation exists", async () => {
+      getLocale.mockResolvedValue("en");
+      vi.mocked(getProfile).mockResolvedValue(profile());
+      vi.mocked(getProjects).mockResolvedValue([
+        {
+          id: "1",
+          slug: "respire-calma",
+          title: "Respire C'alma",
+          summary: "Velas terapêuticas.",
+          summaryEn: "Therapeutic candles.",
+          body: "",
+          bodyEn: null,
+          coverUrl: "https://example.com/cover.jpg",
+          iconUrl: null,
+          projectType: null,
+          projectTypeEn: null,
+          siteUrl: null,
+          isActive: true,
+          tags: [],
+          featured: false,
+          publishedAt: "2021-01-01T00:00:00.000Z",
+        },
+      ]);
+
+      render(await About());
+
+      expect(screen.getByText("Therapeutic candles.")).toBeInTheDocument();
+      expect(screen.queryByText("Velas terapêuticas.")).not.toBeInTheDocument();
     });
 
     it("keeps the Portuguese headline/bio when the locale is pt, even if an English version exists", async () => {

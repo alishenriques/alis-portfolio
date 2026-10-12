@@ -24,10 +24,13 @@ const PROJECTS_QUERY = /* GraphQL */ `
       slug
       title
       summary
+      summaryEn
       body
+      bodyEn
       coverUrl
       iconUrl
       projectType
+      projectTypeEn
       siteUrl
       isActive
       tags

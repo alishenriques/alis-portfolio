@@ -2,7 +2,7 @@ import { Avatar, Eyebrow, Quote } from "@alishenriques/design-system";
 import { Clock } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 
-import { pickLocalized } from "@/lib/localized";
+import { localizeProject, pickLocalized } from "@/lib/localized";
 import { getProfile, getProjects } from "@/lib/portfolio";
 import { estimateReadingMinutes, parseBio, renderInlineMarkup } from "@/lib/richText";
 import { VideoEmbed } from "@/shared/components/VideoEmbed";
@@ -123,7 +123,7 @@ export async function About() {
         })}
       </div>
 
-      <ProjectsShowcase projects={projects} />
+      <ProjectsShowcase projects={projects.map((project) => localizeProject(project, locale))} />
     </main>
   );
 }
