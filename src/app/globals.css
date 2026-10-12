@@ -29,6 +29,12 @@ body {
   font-family: var(--ds-font-sans);
 }
 
+/* Reserves the scrollbar's space even on short pages (Projetos, 404), so the
+   header's nav and contact button don't shift sideways between pages. */
+html {
+  scrollbar-gutter: stable;
+}
+
 /* Smooth-scrolls same-page anchor jumps (e.g. About's table of contents). */
 @media (prefers-reduced-motion: no-preference) {
   html {
