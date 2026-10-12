@@ -33,9 +33,11 @@ export const experienceSchema = z.object({
   company: z.string().min(1),
   companyLogoUrl: z.string().url().nullable(),
   role: z.string().min(1),
+  roleEn: z.string().nullable(),
   startDate: z.string(),
   endDate: z.string().nullable(),
   description: z.string(),
+  descriptionEn: z.string().nullable(),
   isCorporate: z.boolean(),
   sortOrder: z.number(),
 });

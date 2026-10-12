@@ -66,9 +66,11 @@ const experience = {
   company: "Ingresse",
   companyLogoUrl: null,
   role: "Front-End Sênior",
+  roleEn: null,
   startDate: "2022-10",
   endDate: "2025-07",
   description: "Descrição",
+  descriptionEn: null,
   isCorporate: true,
   sortOrder: 0,
 };

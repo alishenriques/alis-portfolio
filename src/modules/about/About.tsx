@@ -2,6 +2,7 @@ import { Avatar, Eyebrow, Quote } from "@alishenriques/design-system";
 import { Clock } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 
+import { pickLocalized } from "@/lib/localized";
 import { getProfile, getProjects } from "@/lib/portfolio";
 import { estimateReadingMinutes, parseBio, renderInlineMarkup } from "@/lib/richText";
 import { VideoEmbed } from "@/shared/components/VideoEmbed";
@@ -9,17 +10,10 @@ import { VideoEmbed } from "@/shared/components/VideoEmbed";
 import { ProjectsShowcase } from "./components/ProjectsShowcase";
 import { styles } from "./styles/index.styles";
 
-// headline/bio are CMS-authored Portuguese by default; headlineEn/bioEn are
-// optional English versions. Falls back to the Portuguese text when there's
-// no translation yet, rather than showing nothing.
 // The intro video isn't recorded yet. While this is unset the whole section
 // stays hidden, so the bio sits in the first fold instead of a "coming soon"
 // placeholder. Set it to the YouTube id once the video is published.
 const INTRO_VIDEO_YOUTUBE_ID: string | undefined = undefined;
-
-function pickLocalized(locale: string, pt: string, en: string | null): string {
-  return locale === "en" && en ? en : pt;
-}
 
 export async function About() {
   const [profile, projects, locale, t] = await Promise.all([
