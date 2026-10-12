@@ -161,13 +161,13 @@ describe("About", () => {
     expect(screen.queryByRole("img", { name: "Alisson" })).not.toBeInTheDocument();
   });
 
-  it("renders the intro video section with the coming-soon placeholder", async () => {
+  it("hides the intro video section while there is no video yet", async () => {
     vi.mocked(getProfile).mockResolvedValue(profile());
 
     render(await About());
 
-    expect(screen.getByRole("heading", { name: "ABOUT.VIDEO_TITLE" })).toBeInTheDocument();
-    expect(screen.getByText("ABOUT.VIDEO_COMING_SOON")).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "ABOUT.VIDEO_TITLE" })).not.toBeInTheDocument();
+    expect(screen.queryByText("ABOUT.VIDEO_COMING_SOON")).not.toBeInTheDocument();
     expect(document.querySelector("iframe")).toBeNull();
   });
 

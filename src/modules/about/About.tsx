@@ -12,6 +12,11 @@ import { styles } from "./styles/index.styles";
 // headline/bio are CMS-authored Portuguese by default; headlineEn/bioEn are
 // optional English versions. Falls back to the Portuguese text when there's
 // no translation yet, rather than showing nothing.
+// The intro video isn't recorded yet. While this is unset the whole section
+// stays hidden, so the bio sits in the first fold instead of a "coming soon"
+// placeholder. Set it to the YouTube id once the video is published.
+const INTRO_VIDEO_YOUTUBE_ID: string | undefined = undefined;
+
 function pickLocalized(locale: string, pt: string, en: string | null): string {
   return locale === "en" && en ? en : pt;
 }
@@ -55,12 +60,18 @@ export async function About() {
         </div>
       </div>
 
-      <section className={styles.videoSection} aria-labelledby="about-video-heading">
-        <h2 id="about-video-heading" className={styles.videoHeading}>
-          {t("VIDEO_TITLE")}
-        </h2>
-        <VideoEmbed title={t("VIDEO_TITLE")} comingSoonText={t("VIDEO_COMING_SOON")} />
-      </section>
+      {INTRO_VIDEO_YOUTUBE_ID && (
+        <section className={styles.videoSection} aria-labelledby="about-video-heading">
+          <h2 id="about-video-heading" className={styles.videoHeading}>
+            {t("VIDEO_TITLE")}
+          </h2>
+          <VideoEmbed
+            youtubeId={INTRO_VIDEO_YOUTUBE_ID}
+            title={t("VIDEO_TITLE")}
+            comingSoonText={t("VIDEO_COMING_SOON")}
+          />
+        </section>
+      )}
 
       <div className={styles.bioMeta}>
         <p className={styles.readingTime}>
