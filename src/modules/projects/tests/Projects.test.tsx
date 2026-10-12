@@ -14,16 +14,23 @@ vi.mock("../components/ProjectsTimeline", () => ({
     projects,
     initialSelectedSlug,
   }: {
-    projects: { id: string }[];
+    projects: { id: string; summary: string }[];
     initialSelectedSlug?: string | null;
   }) => (
-    <div data-testid="projects-timeline" data-initial-slug={initialSelectedSlug ?? ""}>
+    <div
+      data-testid="projects-timeline"
+      data-initial-slug={initialSelectedSlug ?? ""}
+      data-summaries={projects.map((project) => project.summary).join("|")}
+    >
       {projects.length}
     </div>
   ),
 }));
 
+const { getLocale } = vi.hoisted(() => ({ getLocale: vi.fn(async () => "pt") }));
+
 vi.mock("next-intl/server", () => ({
+  getLocale,
   getTranslations: async (namespace: string) => (key: string, values?: Record<string, unknown>) =>
     values ? `${namespace}.${key}(${JSON.stringify(values)})` : `${namespace}.${key}`,
 }));
@@ -37,6 +44,9 @@ const project = {
   coverUrl: null,
   iconUrl: null,
   projectType: null,
+  summaryEn: null,
+  bodyEn: null,
+  projectTypeEn: null,
   siteUrl: null,
   isActive: true,
   tags: [],
@@ -68,5 +78,20 @@ describe("Projects", () => {
     render(await Projects({ initialSelectedSlug: "demo" }));
 
     expect(screen.getByTestId("projects-timeline")).toHaveAttribute("data-initial-slug", "demo");
+  });
+
+  it("hands the timeline the English text under /en, keeping Portuguese where there's no translation", async () => {
+    getLocale.mockResolvedValueOnce("en");
+    vi.mocked(getProjects).mockResolvedValue([
+      { ...project, slug: "a", summary: "Resumo", summaryEn: "Summary in English" },
+      { ...project, slug: "b", summary: "Só em português" },
+    ]);
+
+    render(await Projects());
+
+    expect(screen.getByTestId("projects-timeline")).toHaveAttribute(
+      "data-summaries",
+      "Summary in English|Só em português",
+    );
   });
 });
