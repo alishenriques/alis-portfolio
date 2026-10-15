@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -75,6 +76,9 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[lo
         <NextIntlClientProvider messages={messages}>
           <Layout>{children}</Layout>
         </NextIntlClientProvider>
+        {/* Vercel Web Analytics: page views only, no cookies. Its script and
+            beacon live under /_vercel/insights, which proxy.ts leaves alone. */}
+        <Analytics />
       </body>
     </html>
   );
