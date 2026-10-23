@@ -106,6 +106,31 @@ export const styles = {
     ease-out
   `,
 
+  // Slide 3's own accent (neon pink), from the DS's tertiary token.
+  glow3: `
+    pointer-events-none
+    absolute
+    inset-0
+    -z-10
+    bg-[radial-gradient(circle_at_50%_0%,rgba(255,62,165,0.1),transparent_60%)]
+    opacity-0
+    transition-opacity
+    duration-700
+    ease-out
+  `,
+
+  glow3Active: `
+    pointer-events-none
+    absolute
+    inset-0
+    -z-10
+    bg-[radial-gradient(circle_at_50%_0%,rgba(255,62,165,0.1),transparent_60%)]
+    opacity-100
+    transition-opacity
+    duration-700
+    ease-out
+  `,
+
   content: `
     relative
     z-10
@@ -163,6 +188,10 @@ export const styles = {
   // wide enough for slide 1 — a shared width can't fit both at once.
   title2: titleBase + " max-w-[640px]",
 
+  // Slide 3's headline is shorter still in English, so a tighter cap keeps
+  // it at 3 lines in both locales too.
+  title3: titleBase + " max-w-[560px]",
+
   titleHighlight: `
     text-[var(--ds-color-accent)]
   `,
@@ -185,6 +214,10 @@ export const styles = {
 
   titleHighlight2: `
     text-[#38bdf8]
+  `,
+
+  titleHighlight3: `
+    text-[var(--ds-color-tertiary)]
   `,
 
   slideBody: `
@@ -210,6 +243,11 @@ export const styles = {
   subtitleHighlight2: `
     font-semibold
     text-[#38bdf8]
+  `,
+
+  subtitleHighlight3: `
+    font-semibold
+    text-[var(--ds-color-tertiary)]
   `,
 
   slideControls: `
