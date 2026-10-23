@@ -30,6 +30,10 @@
       "HEADLINE": "<hl>AI</hl>-assisted development with <hl>architectural precision</hl>.",
       "SUBTITLE": "AI in service of engineering, guided by a product and business mindset, to <hl>ship faster without losing quality</hl>."
     },
+    "SLIDE3": {
+      "HEADLINE": "I turn <hl>ideas</hl> into complete <hl>digital products</hl>.",
+      "SUBTITLE": "From creative websites, online stores and digital exhibitions to full online systems, with <hl>front-end, back-end, database and integrations</hl>: today there are almost no borders to bringing digital ideas to life."
+    },
     "FEATURES": {
       "TITLE": "What I value",
       "TYPESCRIPT": { "LABEL": "Strongly typed", "HIGHLIGHT": "with TypeScript" },

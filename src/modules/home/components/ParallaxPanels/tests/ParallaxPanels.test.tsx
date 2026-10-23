@@ -27,6 +27,18 @@ describe("ParallaxPanels", () => {
     expect(ai?.textContent).toContain("velocity");
   });
 
+  it("swaps to the ideas decorations (bulb, site, store, full stack, exhibition) for the ideas variant", () => {
+    const { container } = render(<ParallaxPanels variant="ideas" />);
+    const ideas = container.querySelector('[data-decor="ideas"]');
+    expect(ideas).toHaveAttribute("data-active", "true");
+    expect(container.querySelector('[data-decor="code"]')).toHaveAttribute("data-active", "false");
+    expect(container.querySelector('[data-decor="ai"]')).toHaveAttribute("data-active", "false");
+    expect(ideas?.querySelectorAll("[data-parallax]")).toHaveLength(5);
+    for (const layer of ["front-end", "back-end", "database", "integrations"]) {
+      expect(ideas?.textContent).toContain(layer);
+    }
+  });
+
   it("gives every floating element its resting rotation before any pointer movement", () => {
     const { container } = render(<ParallaxPanels />);
     const floating = container.querySelectorAll<HTMLElement>("[data-parallax]");

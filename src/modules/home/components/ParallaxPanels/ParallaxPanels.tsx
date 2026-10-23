@@ -5,9 +5,10 @@ import { useEffect, useRef } from "react";
 import { AiDecorations } from "./decorations/AiDecorations";
 import { CodeDecorations } from "./decorations/CodeDecorations";
 import { parallaxTransform } from "./decorations/Floating";
+import { IdeaDecorations } from "./decorations/IdeaDecorations";
 import { styles } from "./styles/index.styles";
 
-export type ParallaxVariant = "code" | "ai";
+export type ParallaxVariant = "code" | "ai" | "ideas";
 
 type ParallaxPanelsProps = {
   /** Which set of decorations is shown; the other one fades out. Defaults to `"code"`. */
@@ -18,8 +19,9 @@ type ParallaxPanelsProps = {
  * Decorative floating elements around the hero that tilt gently toward the
  * pointer — a lightweight, JS-driven parallax (no scroll listener; the hero
  * sits above the fold, so pointer position is what's available to react to).
- * Two sets, one per hero slide: a code editor + file tree (`"code"`), and AI
- * logos, a pixel robot and agile charts (`"ai"`). Both stay mounted and
+ * One set per hero slide: a code editor + file tree (`"code"`), AI logos, a
+ * pixel robot and agile charts (`"ai"`), and a light bulb with a site, a store,
+ * an exhibition and a full-stack diagram (`"ideas"`). All stay mounted and
  * crossfade on `variant` changes. Each element opts in with `Floating`'s
  * `data-parallax` attributes. Static on touch devices and when the visitor
  * prefers reduced motion.
@@ -66,6 +68,7 @@ export function ParallaxPanels({ variant = "code" }: ParallaxPanelsProps) {
     <div ref={rootRef} className={styles.root} aria-hidden="true">
       <CodeDecorations active={variant === "code"} />
       <AiDecorations active={variant === "ai"} />
+      <IdeaDecorations active={variant === "ideas"} />
     </div>
   );
 }

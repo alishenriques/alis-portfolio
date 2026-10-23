@@ -21,6 +21,10 @@ const messages = {
       HEADLINE: "Programação assistida por <hl>IA</hl> com <hl>precisão arquitetural</hl>.",
       SUBTITLE: "IA para <hl>acelerar entregas sem perder qualidade</hl>.",
     },
+    SLIDE3: {
+      HEADLINE: "Materializo <hl>ideias</hl> em <hl>produtos digitais</hl> completos.",
+      SUBTITLE: "Sistemas completos, com <hl>front-end, back-end, banco de dados e integrações</hl>.",
+    },
     TAGLINE: {
       MODERN_UI: "Interfaces modernas",
       PERFORMANCE: "Performance",
@@ -85,7 +89,7 @@ describe("Hero", () => {
   it("jumps to a slide via its dot, keeping the dots' selected state in sync", () => {
     renderHero();
     const dots = screen.getAllByRole("tab");
-    expect(dots).toHaveLength(2);
+    expect(dots).toHaveLength(3);
     expect(dots[0]).toHaveAttribute("aria-selected", "true");
     expect(dots[1]).toHaveAttribute("aria-selected", "false");
 
@@ -96,6 +100,37 @@ describe("Hero", () => {
     ).toBeInTheDocument();
     expect(dots[0]).toHaveAttribute("aria-selected", "false");
     expect(dots[1]).toHaveAttribute("aria-selected", "true");
+  });
+
+  it("shows the ideas-into-products pitch on slide 3, in the neon pink accent, and wraps around to slide 1", () => {
+    const { container } = renderHero();
+    const growthTraceSvg = () => container.querySelector('svg[viewBox="0 0 260 40"]');
+    const decor = (name: string) => container.querySelector(`[data-decor="${name}"]`);
+
+    fireEvent.click(screen.getAllByRole("tab")[2]);
+
+    expect(
+      screen.getByRole("heading", { level: 1, name: /Materializo ideias em produtos digitais completos/ }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("front-end, back-end, banco de dados e integrações")).toBeInTheDocument();
+    expect(decor("ideas")).toHaveAttribute("data-active", "true");
+    expect(decor("ai")).toHaveAttribute("data-active", "false");
+    expect(decor("code")).toHaveAttribute("data-active", "false");
+    expect(growthTraceSvg()).toHaveStyle({ "--growth-trace-color": "var(--ds-color-tertiary)" });
+    expect(screen.getAllByRole("tab")[2]).toHaveStyle({ background: "var(--ds-color-tertiary)" });
+
+    fireEvent.click(screen.getByRole("button", { name: "Próximo slide" }));
+    expect(
+      screen.getByRole("heading", { level: 1, name: /Arquitetura de front-end que escala/ }),
+    ).toBeInTheDocument();
+  });
+
+  it("goes back from slide 1 to slide 3 on prev", () => {
+    renderHero();
+
+    fireEvent.click(screen.getByRole("button", { name: "Slide anterior" }));
+
+    expect(screen.getByRole("heading", { level: 1, name: /Materializo ideias/ })).toBeInTheDocument();
   });
 
   describe("autoplay", () => {
@@ -125,7 +160,7 @@ describe("Hero", () => {
 
       expect(progress()).toHaveStyle({ animationPlayState: "running" });
       endProgress();
-      expect(currentHeadline()).toMatch(/Arquitetura de/);
+      expect(currentHeadline()).toMatch(/Materializo ideias/);
     });
 
     it("toggles with the pause button, and resumes autoplay when played again", () => {

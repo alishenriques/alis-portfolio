@@ -195,4 +195,168 @@ export const styles = {
     animate-[float-bob_4s_ease-in-out_infinite]
     motion-reduce:animate-none
   `,
+
+  // Slide 3 (ideas into digital products): every highlight uses the DS's
+  // neon pink tertiary accent.
+  sitePanel: `
+    top-16
+    left-4
+    w-64
+  `,
+
+  siteBody: `
+    flex
+    flex-col
+    gap-2
+    p-4
+  `,
+
+  siteHeadline: `
+    block
+    h-3
+    w-3/4
+    rounded-sm
+    bg-[var(--ds-color-tertiary)]
+  `,
+
+  siteLine: `
+    block
+    h-1.5
+    w-full
+    rounded-sm
+    bg-[var(--ds-color-border-strong)]
+  `,
+
+  siteLineShort: `
+    block
+    h-1.5
+    w-2/3
+    rounded-sm
+    bg-[var(--ds-color-border-strong)]
+  `,
+
+  siteButton: `
+    mt-2
+    block
+    h-4
+    w-16
+    rounded-full
+    border
+    border-[var(--ds-color-tertiary)]
+    bg-[var(--ds-color-tertiary-soft)]
+  `,
+
+  bulbTile: `
+    top-10
+    right-24
+    flex
+    h-24
+    w-24
+    items-center
+    justify-center
+    text-[var(--ds-color-tertiary)]
+    drop-shadow-[0_0_18px_rgba(255,62,165,0.3)]
+  `,
+
+  storePanel: `
+    bottom-24
+    left-10
+    w-44
+  `,
+
+  storeBody: `
+    flex
+    flex-col
+    gap-2
+    p-3
+  `,
+
+  storeImage: `
+    block
+    h-16
+    rounded-md
+    bg-[linear-gradient(135deg,var(--ds-color-tertiary-soft),var(--ds-color-bg-raised))]
+  `,
+
+  storeRow: `
+    flex
+    items-center
+    justify-between
+  `,
+
+  storePrice: `
+    font-mono
+    text-[10px]
+    text-[var(--ds-color-fg)]
+  `,
+
+  storeCart: `
+    flex
+    h-5
+    w-5
+    items-center
+    justify-center
+    rounded-md
+    bg-[var(--ds-color-tertiary)]
+    text-[var(--ds-color-accent-ink)]
+  `,
+
+  stackPanel: `
+    top-[40%]
+    -right-6
+    w-52
+  `,
+
+  stackList: `
+    flex
+    flex-col
+    gap-1.5
+    p-3
+    font-mono
+    text-[10px]
+    text-[var(--ds-color-muted)]
+  `,
+
+  stackItem: `
+    flex
+    items-center
+    gap-2
+    rounded-md
+    border
+    border-[var(--ds-color-border)]
+    px-2
+    py-1
+    [&>svg]:text-[var(--ds-color-tertiary)]
+  `,
+
+  galleryPanel: `
+    bottom-10
+    right-20
+    w-48
+  `,
+
+  galleryGrid: `
+    grid
+    grid-cols-3
+    gap-1.5
+    p-3
+  `,
+
+  galleryFrame: `
+    block
+    aspect-square
+    rounded-sm
+    bg-[var(--ds-color-bg-raised)]
+    ring-1
+    ring-[var(--ds-color-border-strong)]
+  `,
+
+  galleryFrameFeatured: `
+    block
+    aspect-square
+    rounded-sm
+    bg-[var(--ds-color-tertiary-soft)]
+    ring-1
+    ring-[var(--ds-color-tertiary)]
+  `,
 };

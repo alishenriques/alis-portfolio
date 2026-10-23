@@ -30,6 +30,10 @@
       "HEADLINE": "Programação assistida por <hl>IA</hl> com <hl>precisão arquitetural</hl>.",
       "SUBTITLE": "IA a serviço da engenharia, guiada por visão de produto e de negócio, para <hl>acelerar entregas sem perder qualidade</hl>."
     },
+    "SLIDE3": {
+      "HEADLINE": "Materializo <hl>ideias</hl> em <hl>produtos digitais</hl> completos.",
+      "SUBTITLE": "De sites criativos, lojas virtuais e exposições digitais a sistemas online completos, com <hl>front-end, back-end, banco de dados e integrações</hl>: hoje quase não há fronteiras para materializar ideias digitais."
+    },
     "FEATURES": {
       "TITLE": "O que eu valorizo",
       "TYPESCRIPT": { "LABEL": "Tipagem forte", "HIGHLIGHT": "com TypeScript" },

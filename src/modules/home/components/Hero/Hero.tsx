@@ -8,24 +8,31 @@ import { useTranslations } from "next-intl";
 import { Logo } from "@/shared/components/Logo";
 
 import { GrowthTrace } from "../GrowthTrace";
-import { ParallaxPanels } from "../ParallaxPanels";
+import { ParallaxPanels, type ParallaxVariant } from "../ParallaxPanels";
 import { TaglineHighlights } from "../TaglineHighlights";
 import { styles } from "./styles/index.styles";
 
 const CONTACT_EMAIL = "alishenriques@gmail.com";
 const CONTACT_PHONE = "(11) 98118-4672";
 
-// Two slides: the default dev pitch, and AI-assisted development.
-const SLIDE_COUNT = 2;
+// Three slides: the default dev pitch, AI-assisted development, and turning
+// ideas into complete digital products.
+const SLIDE_COUNT = 3;
 // Slide 2's own accent — see styles/index.styles.ts for the rest of its usages.
 const SLIDE2_ACCENT = "#38bdf8";
+// Slide 3's own accent: the DS's neon pink tertiary token.
+const SLIDE3_ACCENT = "var(--ds-color-tertiary)";
+// Per slide: the accent that overrides the default lime (none on slide 1) and its decorations.
+const SLIDE_ACCENTS: ReadonlyArray<string | undefined> = [undefined, SLIDE2_ACCENT, SLIDE3_ACCENT];
+const SLIDE_DECORATIONS: ReadonlyArray<ParallaxVariant> = ["code", "ai", "ideas"];
 const AUTOPLAY_INTERVAL_MS = 12000;
 
 /**
- * The `</>` glyphs double as the slide's prev/next controls — clicking either
- * one toggles between the default dev-focused pitch and an AI-assisted
- * development pitch (slide 2's own accent color, blue, is the one deliberate
- * departure from the site's single-accent lime palette). The headline/subtitle
+ * The `</>` glyphs double as the slide's prev/next controls, cycling through
+ * the default dev-focused pitch, an AI-assisted development pitch and an
+ * "ideas into digital products" pitch. Slides 2 and 3 each have their own
+ * accent color (blue and neon pink), the deliberate departures from the
+ * site's lime palette. The headline/subtitle
  * block, the background glow and the floating parallax decorations change
  * between slides; identity chrome (logo, eyebrow, contact row) stays constant.
  *
@@ -43,6 +50,7 @@ export function Hero() {
 
   const goPrev = () => setSlide((current) => (current + SLIDE_COUNT - 1) % SLIDE_COUNT);
   const goNext = () => setSlide((current) => (current + 1) % SLIDE_COUNT);
+  const accent = SLIDE_ACCENTS[slide];
 
   return (
     <section className={styles.root}>
@@ -59,7 +67,7 @@ export function Hero() {
           style={{
             animationDuration: `${AUTOPLAY_INTERVAL_MS}ms`,
             animationPlayState: paused ? "paused" : "running",
-            background: slide === 1 ? SLIDE2_ACCENT : undefined,
+            background: accent,
           }}
           onAnimationEnd={goNext}
         />
@@ -67,8 +75,9 @@ export function Hero() {
 
       <div className={slide === 0 ? styles.glowActive : styles.glow} aria-hidden="true" />
       <div className={slide === 1 ? styles.glow2Active : styles.glow2} aria-hidden="true" />
+      <div className={slide === 2 ? styles.glow3Active : styles.glow3} aria-hidden="true" />
 
-      <ParallaxPanels variant={slide === 1 ? "ai" : "code"} />
+      <ParallaxPanels variant={SLIDE_DECORATIONS[slide]} />
 
       <div className={styles.content}>
         <Logo />
@@ -97,10 +106,16 @@ export function Hero() {
                 ),
               })}
             </h1>
-          ) : (
+          ) : slide === 1 ? (
             <h1 key="title-1" className={styles.title2}>
               {t.rich("SLIDE2.HEADLINE", {
                 hl: (chunks) => <span className={styles.titleHighlight2}>{chunks}</span>,
+              })}
+            </h1>
+          ) : (
+            <h1 key="title-2" className={styles.title3}>
+              {t.rich("SLIDE3.HEADLINE", {
+                hl: (chunks) => <span className={styles.titleHighlight3}>{chunks}</span>,
               })}
             </h1>
           )}
@@ -110,7 +125,7 @@ export function Hero() {
           </button>
         </div>
 
-        <GrowthTrace key={slide} color={slide === 1 ? SLIDE2_ACCENT : undefined} />
+        <GrowthTrace key={slide} color={accent} />
 
         <div aria-live="polite" className={styles.slideBody}>
           {slide === 0 ? (
@@ -119,10 +134,16 @@ export function Hero() {
                 hl: (chunks) => <span className={styles.subtitleHighlight}>{chunks}</span>,
               })}
             </p>
-          ) : (
+          ) : slide === 1 ? (
             <p key="body-1" className={styles.subtitle}>
               {t.rich("SLIDE2.SUBTITLE", {
                 hl: (chunks) => <span className={styles.subtitleHighlight2}>{chunks}</span>,
+              })}
+            </p>
+          ) : (
+            <p key="body-2" className={styles.subtitle}>
+              {t.rich("SLIDE3.SUBTITLE", {
+                hl: (chunks) => <span className={styles.subtitleHighlight3}>{chunks}</span>,
               })}
             </p>
           )}
@@ -138,7 +159,7 @@ export function Hero() {
                 aria-selected={slide === index}
                 aria-label={t("SLIDE_NAV.GOTO", { number: index + 1 })}
                 className={index === slide ? styles.dotActive : styles.dot}
-                style={index === slide ? { background: slide === 1 ? SLIDE2_ACCENT : undefined } : undefined}
+                style={index === slide ? { background: accent } : undefined}
                 onClick={() => setSlide(index)}
               />
             ))}
