@@ -6,7 +6,7 @@ import { Hero } from "../Hero";
 
 const messages = {
   HOME: {
-    EYEBROW: "Alisson Henriques · Desenvolvedor Front‑End Sênior",
+    EYEBROW: "Alisson Henriques - Engenheiro de Software Sênior",
     HEADLINE: "Arquitetura de <tag>front-end</tag> que <hl>escala</hl> — construída com engenharia e IA.",
     SUBTITLE: "Foco em <hl>experiência do usuário</hl>.",
     SLIDE_NAV: {
@@ -49,7 +49,7 @@ describe("Hero", () => {
       screen.getByRole("heading", { level: 1, name: /Arquitetura de front-end que escala/ }),
     ).toBeInTheDocument();
     expect(screen.getByText("escala")).toBeInTheDocument();
-    expect(screen.getByText("Alisson Henriques · Desenvolvedor Front‑End Sênior")).toBeInTheDocument();
+    expect(screen.getByText("Alisson Henriques - Engenheiro de Software Sênior")).toBeInTheDocument();
     expect(screen.getByText("experiência do usuário")).toBeInTheDocument();
     expect(screen.getByText("Interfaces modernas")).toBeInTheDocument();
     expect(screen.getByText("alishenriques@gmail.com")).toBeInTheDocument();
