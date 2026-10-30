@@ -9,7 +9,7 @@ Instructions for AI agents (Claude Code, Cursor, etc.) working on the Alis portf
 ## Scope (decided by the user, 2026-10-06)
 
 - **`alis-portfolio` is a corporate career portfolio only**: Alisson as developer, tech lead, systems analyst and software architect, aimed at companies hiring for those roles. It does **not** sell services.
-- **Freelance services** (digital solutions for small businesses and entrepreneurs) get a **separate, future sales site** in its own repo. It consumes the same `alis-portfolio-api` and the same `@alishenriques/design-system`, so both stay consumer-agnostic: nothing portfolio-specific in the API's contract or in DS components.
+- **Freelance services** (digital solutions for small businesses and entrepreneurs) live in a **separate sales site, [`alis-web-solutions`](https://github.com/alishenriques/alis-web-solutions)** (created 2026-10-30). It is a static export with **no API** and consumes only `@alishenriques/design-system`, so the DS stays consumer-agnostic: nothing portfolio-specific in DS components. Its own decisions are in that repo's docs/decisions.md.
 - When a request blurs the line (a services pitch, pricing, packages), it belongs to the services site, not here. Ask before adding it to the portfolio.
 
 ## Non-negotiables
