@@ -7,9 +7,9 @@
 | `alis-portfolio` | (private app) | Next.js App Router front-end; main repo and source of these docs |
 | `alis-portfolio-api` | `@alishenriques/portfolio-api` | GraphQL API and CMS backend |
 | `alis-design-system` | `@alishenriques/design-system` | React component library published to public npm |
-| *(future)* services site | (private app, repo not created yet) | Sales site for freelance services; consumes the same API and design system |
+| `alis-web-solutions` | (private app) | Sales site for freelance services (created 2026-10-30): Next.js static export, **no API**, consumes only the design system. Its decisions live in its own docs/decisions.md |
 
-**Scope split (2026-10-06):** `alis-portfolio` is only the corporate career portfolio; freelance services move to the future services site (see "Scope" in [README.md](README.md)). The API and the design system are shared by both front-ends, so keep them generic: no portfolio-only assumptions in GraphQL types, resolvers or DS components.
+**Scope split (2026-10-06):** `alis-portfolio` is only the corporate career portfolio; freelance services moved to `alis-web-solutions` (see "Scope" in [README.md](README.md)). The design system is shared by both front-ends, so keep it generic: no portfolio-only assumptions in DS components. The API is used by the portfolio only (decided 2026-10-30: the services site has no backend), but keep its contract generic anyway.
 
 ## Data flow
 
