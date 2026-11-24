@@ -16,7 +16,7 @@ export type OgCardProps = {
   headline: string;
   /** Short supporting copy under the headline. */
   description: string;
-  /** Role line next to the name, e.g. "Desenvolvedor Front-End Sênior". */
+  /** Role line next to the name, e.g. "Engenheiro de Software Sênior · Tech Lead". */
   role: string;
   /** Locale-prefixed path shown as a terminal prompt, e.g. "/pt/sobre". */
   path: string;
